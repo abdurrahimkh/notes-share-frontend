@@ -4,12 +4,24 @@ import PersonalInfo from "./PersonalInfo";
 import AcademicInfo from "./AcademicInfo";
 import RenderButton from "./RenderButton";
 import { useForm } from "react-hook-form";
+import * as Yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 const Register = () => {
   const [formSetup, setFormSetup] = useState(0);
-
-  const { register, watch, formState, handleSubmit } = useForm({
+  const formSchema = Yup.object().shape({
+    email: Yup.string().required("Email is required").email(),
+    password: Yup.string()
+      .required("Password is required")
+      .min(6, "Password length should be at least 6 characters"),
+    cpassword: Yup.string()
+      .required("Confirm Password is required")
+      .min(6, "Password length should be at least 6 characters")
+      .oneOf([Yup.ref("password")], "Passwords do not match"),
+  });
+  const { register, formState, handleSubmit } = useForm({
     mode: "all",
+    resolver: yupResolver(formSchema),
   });
   const maxSteps = 3;
 
@@ -63,7 +75,6 @@ const Register = () => {
               register={register}
               formState={formState}
               formSetup={formSetup}
-              watch={watch}
             />
           )}
           {formSetup >= 1 && (

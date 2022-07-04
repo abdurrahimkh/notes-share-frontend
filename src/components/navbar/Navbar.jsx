@@ -1,8 +1,10 @@
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/images/logo.png";
+import { useSelector } from "react-redux";
+import { logout } from "../../redux/features/auth/authSlice";
 const navigation = [
   { name: "Home", to: "/", current: true },
   { name: "Login", to: "/user/login", current: false },
@@ -14,7 +16,15 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
-  const user = true;
+  const [user, setUser] = useState(false);
+  const userInfo = useSelector(state => state.auth.user);
+  console.log(user);
+  useEffect(() => {
+    if (userInfo !== null) {
+      setUser(true);
+    }
+  }, []);
+
   return (
     <Disclosure as="nav" className="bg-white border">
       {({ open }) => (
@@ -120,15 +130,15 @@ export default function Navbar() {
                         </Menu.Item>
                         <Menu.Item>
                           {({ active }) => (
-                            <a
-                              href="#"
+                            <button
+                              onClick={() => logout()}
                               className={classNames(
                                 active ? "bg-gray-100" : "",
                                 "block px-4 py-2 text-sm text-gray-700"
                               )}
                             >
                               Sign out
-                            </a>
+                            </button>
                           )}
                         </Menu.Item>
                       </Menu.Items>

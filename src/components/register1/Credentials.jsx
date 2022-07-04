@@ -1,15 +1,12 @@
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import React from "react";
 
-const Login = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+const Credentials = ({ setFormSetup }) => {
   return (
-    <div className="flex items-center min-h-[90vh] p-6 bg-gradient-to-b from-gray-50 to to-blue-200 dark:bg-gray-900">
-      <div className="flex-1 h-full max-w-md mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800">
+    <div className="flex-1 h-full max-w-md mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800">
+      <form onSubmit={() => setFormSetup(cur => cur + 1)}>
         <div className="p-6">
           <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
-            Login
+            Register
           </h1>
           <label className="block text-sm">
             <span className="text-gray-700 dark:text-gray-400">Email</span>
@@ -27,7 +24,7 @@ const Login = () => {
             />
           </label>
           <button className="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-purple">
-            Log in
+            Signup
           </button>
           <hr className="my-4 " />
           <button className="flex items-center justify-center w-full px-4 py-2 text-sm font-medium leading-5 text-gray-700 transition-colors duration-150 border border-gray-300 rounded-lg dark:text-gray-400 active:bg-transparent hover:border-gray-500 focus:border-gray-500 active:text-gray-500 focus:outline-none focus:shadow-outline-gray">
@@ -41,27 +38,18 @@ const Login = () => {
             </svg>
             Google
           </button>
-
-          <p className="mt-4">
-            <a
-              className="text-sm font-medium text-blue-600 dark:text-purple-400 hover:underline"
-              href="#"
-            >
-              Forgot your password?
-            </a>
-          </p>
           <p className="mt-1">
             <a
               className="text-sm font-medium text-blue-600 dark:text-purple-400 hover:underline"
               href="./create-account.html"
             >
-              Create account
+              Already have account? Login
             </a>
           </p>
         </div>
-      </div>
+      </form>
     </div>
   );
 };
 
-export default Login;
+export default Credentials;
