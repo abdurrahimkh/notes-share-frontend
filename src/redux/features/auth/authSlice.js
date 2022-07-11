@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { login, register } from "./authAction";
+import { login, register, googleLogin } from "./authAction";
 
 const user = JSON.parse(localStorage.getItem("user"));
 
@@ -9,6 +9,7 @@ const initialState = {
   isSuccess: false,
   isLoading: false,
   message: "",
+  isActive: user ? true : false,
 };
 
 const authSlice = createSlice({
@@ -16,9 +17,9 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     logout: state => {
-      console.log("Logout Cliked");
       state.user = null;
       localStorage.removeItem("user");
+      state.isActive = false;
     },
   },
   extraReducers: {
@@ -27,6 +28,7 @@ const authSlice = createSlice({
     },
     [register.fulfilled]: (state, action) => {
       state.isLoading = false;
+      state.isActive = true;
       state.user = action.payload;
     },
     [register.rejected]: state => {
@@ -39,8 +41,24 @@ const authSlice = createSlice({
     [login.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.user = action.payload;
+      if (action.payload !== null) {
+        state.isActive = true;
+      }
     },
     [login.rejected]: state => {
+      state.isLoading = false;
+      state.user = null;
+    },
+    [googleLogin.pending]: state => {
+      state.isLoading = true;
+    },
+    [googleLogin.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.isActive = true;
+      state.user = action.payload;
+      console.log(action.payload);
+    },
+    [googleLogin.rejected]: state => {
       state.isLoading = false;
       state.user = null;
     },

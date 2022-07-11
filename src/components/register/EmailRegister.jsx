@@ -1,8 +1,10 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
-
+import { GoogleLogin } from "@react-oauth/google";
+import { useDispatch } from "react-redux";
+import { googleLogin } from "../../redux/features/auth/authAction";
 const EmailRegister = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   return (
     <div className="flex items-center min-h-[90vh] p-6 bg-gradient-to-b from-gray-50 to to-blue-200 dark:bg-gray-900">
       <div className="flex-1 h-full max-w-md mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800">
@@ -10,7 +12,7 @@ const EmailRegister = () => {
           <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200 mx-36">
             Sign up
           </h1>
-          <button className="flex items-center space-x-1 justify-center w-full px-4 py-2 text-sm font-medium leading-5 text-gray-700 transition-colors duration-150 border border-gray-300 rounded-lg dark:text-gray-400 active:bg-transparent hover:border-gray-500 focus:border-gray-500 active:text-gray-500 focus:outline-none focus:shadow-outline-gray">
+          {/* <button className="flex items-center space-x-1 justify-center w-full px-4 py-2 text-sm font-medium leading-5 text-gray-700 transition-colors duration-150 border border-gray-300 rounded-lg dark:text-gray-400 active:bg-transparent hover:border-gray-500 focus:border-gray-500 active:text-gray-500 focus:outline-none focus:shadow-outline-gray">
             <span>Sign In With</span>
             <div>
               <svg
@@ -51,7 +53,17 @@ const EmailRegister = () => {
               </svg>
             </div>
             Google
-          </button>
+          </button> */}
+          <GoogleLogin
+            text="signup_with"
+            onSuccess={credentialResponse => {
+              dispatch(googleLogin(credentialResponse.credential));
+            }}
+            onError={() => {
+              console.log("Login Failed");
+            }}
+          />
+
           <hr className="my-4 " />
           <button
             onClick={() => navigate("/user/step")}
@@ -62,16 +74,16 @@ const EmailRegister = () => {
               <svg
                 stroke="currentColor"
                 fill="none"
-                stroke-width="0"
+                strokeWidth="0"
                 viewBox="0 0 24 24"
                 height="1.4em"
                 width="1.4em"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                 ></path>
               </svg>

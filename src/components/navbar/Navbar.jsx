@@ -3,7 +3,7 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/images/logo.png";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/features/auth/authSlice";
 const navigation = [
   { name: "Home", to: "/", current: true },
@@ -16,14 +16,15 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
-  const [user, setUser] = useState(false);
-  const userInfo = useSelector(state => state.auth.user);
-  console.log(user);
-  useEffect(() => {
-    if (userInfo !== null) {
-      setUser(true);
-    }
-  }, []);
+  const dispatch = useDispatch();
+
+  const { isActive, user } = useSelector(state => state.auth);
+
+  useEffect(() => {}, [isActive]);
+
+  const handleSignOut = () => {
+    dispatch(logout());
+  };
 
   return (
     <Disclosure as="nav" className="bg-white border">
@@ -58,23 +59,25 @@ export default function Navbar() {
 
                 {/* Desktop menu */}
                 <div className="hidden md:block lg:ml-[45rem]">
-                  <div className="flex space-x-4 ">
-                    {navigation.map(item => (
-                      <Link
-                        key={item.name}
-                        to={item.to}
-                        className={classNames(
-                          item.current
-                            ? "bg-blue-600 text-white"
-                            : "text-black hover:bg-blue-600 hover:text-white",
-                          "px-3 py-2 rounded-md text-sm font-medium"
-                        )}
-                        aria-current={item.current ? "page" : undefined}
-                      >
-                        {item.name}
-                      </Link>
-                    ))}
-                  </div>
+                  {!isActive && (
+                    <div className="flex space-x-4 ">
+                      {navigation.map(item => (
+                        <Link
+                          key={item.name}
+                          to={item.to}
+                          className={classNames(
+                            item.current
+                              ? "bg-blue-600 text-white"
+                              : "text-black hover:bg-blue-600 hover:text-white",
+                            "px-3 py-2 rounded-md text-sm font-medium"
+                          )}
+                          aria-current={item.current ? "page" : undefined}
+                        >
+                          {item.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -131,7 +134,7 @@ export default function Navbar() {
                         <Menu.Item>
                           {({ active }) => (
                             <button
-                              onClick={() => logout()}
+                              onClick={() => handleSignOut()}
                               className={classNames(
                                 active ? "bg-gray-100" : "",
                                 "block px-4 py-2 text-sm text-gray-700"
