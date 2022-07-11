@@ -1,5 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { login, register, googleLogin } from "./authAction";
+import {
+  login,
+  register,
+  googleLogin,
+  completeRegistration,
+} from "./authAction";
 
 const user = JSON.parse(localStorage.getItem("user"));
 
@@ -56,9 +61,20 @@ const authSlice = createSlice({
       state.isLoading = false;
       state.isActive = true;
       state.user = action.payload;
-      console.log(action.payload);
     },
     [googleLogin.rejected]: state => {
+      state.isLoading = false;
+      state.user = null;
+    },
+    [completeRegistration.pending]: state => {
+      state.isLoading = true;
+    },
+    [completeRegistration.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.isActive = true;
+      state.user = action.payload;
+    },
+    [completeRegistration.rejected]: state => {
       state.isLoading = false;
       state.user = null;
     },

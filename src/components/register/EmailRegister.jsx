@@ -57,7 +57,11 @@ const EmailRegister = () => {
           <GoogleLogin
             text="signup_with"
             onSuccess={credentialResponse => {
-              dispatch(googleLogin(credentialResponse.credential));
+              dispatch(googleLogin(credentialResponse.credential)).then(res =>
+                !res.payload.googlenew
+                  ? navigate("/user/complete/registration")
+                  : navigate("/")
+              );
             }}
             onError={() => {
               console.log("Login Failed");

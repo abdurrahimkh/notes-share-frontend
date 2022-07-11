@@ -55,7 +55,6 @@ export const googleLogin = createAsyncThunk("auth/google", async tokenId => {
         return null;
       } else {
         localStorage.setItem("user", JSON.stringify(result.data));
-        toast.success("Login Successfull");
         return result.data;
       }
     }
@@ -64,3 +63,31 @@ export const googleLogin = createAsyncThunk("auth/google", async tokenId => {
     toast.error(error.message);
   }
 });
+
+export const completeRegistration = createAsyncThunk(
+  "auth/google/complete",
+  async data => {
+    try {
+      const res = axios({
+        method: "POST",
+        url: "http://localhost:8000/api/users/google/complete",
+        data,
+      });
+      const result = await res;
+      console.log(result);
+      if (result.data) {
+        if (result.data.error) {
+          toast.error(result.data.error);
+          return null;
+        } else {
+          localStorage.setItem("user", JSON.stringify(result.data));
+          toast.success("Registration Complete");
+          return result.data;
+        }
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
+    }
+  }
+);
