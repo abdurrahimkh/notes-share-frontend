@@ -66,8 +66,7 @@ const Credentials = ({
             type="password"
             {...register("cpassword", {
               required: "confirm password is required",
-              validate: value =>
-                value === password || "The passwords do not match",
+              validate: value => value === password || "passwords do not match",
             })}
           />
           {formState.errors.cpassword && (

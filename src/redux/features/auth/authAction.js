@@ -91,3 +91,25 @@ export const completeRegistration = createAsyncThunk(
     }
   }
 );
+
+export const adminlogin = createAsyncThunk("auth/login", async userData => {
+  try {
+    const res = await axios.post(
+      "http://localhost:8000/api/admin/login",
+      userData
+    );
+    if (res.data) {
+      if (res.data.error) {
+        toast.error(res.data.error);
+        return null;
+      } else {
+        localStorage.setItem("user", JSON.stringify(res.data));
+        toast.success("Login Successfull");
+        return res.data;
+      }
+    }
+  } catch (error) {
+    console.log(error);
+    toast.error(error.message);
+  }
+});

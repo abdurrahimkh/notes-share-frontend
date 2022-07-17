@@ -4,6 +4,7 @@ import {
   register,
   googleLogin,
   completeRegistration,
+  adminlogin,
 } from "./authAction";
 
 const user = JSON.parse(localStorage.getItem("user"));
@@ -75,6 +76,20 @@ const authSlice = createSlice({
       state.user = action.payload;
     },
     [completeRegistration.rejected]: state => {
+      state.isLoading = false;
+      state.user = null;
+    },
+    [adminlogin.pending]: state => {
+      state.isLoading = true;
+    },
+    [adminlogin.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.user = action.payload;
+      if (action.payload !== null) {
+        state.isActive = true;
+      }
+    },
+    [adminlogin.rejected]: state => {
       state.isLoading = false;
       state.user = null;
     },
