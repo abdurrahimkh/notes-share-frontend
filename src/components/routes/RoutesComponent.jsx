@@ -1,18 +1,18 @@
 import { Routes, Route } from "react-router-dom";
-import Dashboard from "../admin/dashboard/Dashboard";
-import Forms from "../admin/forms/Forms";
-import Tables from "../admin/tables/Tables";
-// import AdminLogin from "../admin/login/AdminLogin";
-// import AdminPanel from "../admin/panel/AdminPanel";
+import Documents from "../admin/dashboard/Documents";
+import Settings from "../admin/dashboard/Settings";
+import Users from "../admin/dashboard/Users";
+import AdminLogin from "../admin/login/AdminLogin";
 import Upload from "../document/Upload";
 import CompleteRegistration from "../google-signin/CompleteRegistration";
 import Home from "../home/Home";
 import Login from "../login/Login";
 import EmailRegister from "../register/EmailRegister";
 import Register from "../register/Register";
-// import AdminLayout from "./AdminLayout";
 import Layout from "./Layout";
+import ProtectedRoutes from "./ProtectedRoutes";
 import NotFound from "./NotFound";
+import Dashboard from "../dashboard/Dashboard";
 
 const RoutesComponent = () => {
   return (
@@ -24,22 +24,19 @@ const RoutesComponent = () => {
           <Route path="/user/step" element={<Register />} />
           <Route path="/user/login" element={<Login />} />
           <Route path="/user/register" element={<EmailRegister />} />
-          <Route path="/document/upload" element={<Upload />} />
+          <Route element={<ProtectedRoutes />}>
+            <Route path="/document/upload" element={<Upload />} />
+          </Route>
           <Route
             path="/user/complete/registration"
             element={<CompleteRegistration />}
           />
         </Route>
-        {/* <Route path="/admin" element={<AdminLogin />} />
-         />
-        <Route element={<AdminLayout />}>
-          <Route path="/admin/dashboard" element={<Dashboard />} />
-        </Route> */}
+        <Route path="/admin" element={<AdminLogin />} />
+        <Route path="/admin/users" element={<Users />} />
+        <Route path="/admin/documents" element={<Documents />} />
+        <Route path="/admin/settings" element={<Settings />} />
         <Route path="/dashboard" element={<Dashboard />} />
-
-        <Route path="/forms" element={<Forms />} />
-
-        <Route path="/tables" element={<Tables />} />
       </Routes>
     </div>
   );

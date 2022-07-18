@@ -1,11 +1,11 @@
 import PropTypes from "prop-types";
-import { HomeIcon, TableIcon, DocumentTextIcon, CogIcon } from "@heroicons/react/outline";
+import { UserIcon, TableIcon, CogIcon } from "@heroicons/react/outline";
 import { ChipIcon } from "@heroicons/react/outline";
 import { Link, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
 function Header(props) {
-  const headerHeight = '72px';
+  const headerHeight = "72px";
 
   return (
     <div
@@ -32,7 +32,10 @@ function MenuItem(props) {
     <Link
       to={props.to}
       replace
-      className={"lg:mx-2 py-4 lg:py-2 lg:px-3 flex justify-center lg:justify-start space-x-4 items-center truncate " + activeClass}
+      className={
+        "lg:mx-2 py-4 lg:py-2 lg:px-3 flex justify-center lg:justify-start space-x-4 items-center truncate " +
+        activeClass
+      }
     >
       {props.children}
       <span className="hidden lg:inline">{props.title}</span>
@@ -45,27 +48,31 @@ function SideMenu(props) {
 
   const location = useLocation();
 
-  useEffect(() => [location])
+  // useEffect(() => [location])
 
   return (
     <div className="bg-gray-800 overflow-y-auto h-screen">
       <Header title="Admin" />
       <ul className="lg:mt-2 lg:space-y-2">
-        <MenuItem to="/dashboard" title="Dashboard" active={location.pathname === '/dashboard'}>
-          <HomeIcon className={itemIconClass} />
+        <MenuItem
+          to="/admin/users"
+          title="Users"
+          active={location.pathname === "/admin/users"}
+        >
+          <UserIcon className={itemIconClass} />
         </MenuItem>
-        <MenuItem to="/forms" title="Forms" active={location.pathname === '/forms'}>
-          <DocumentTextIcon className={itemIconClass} />
-        </MenuItem>
-        <MenuItem to="/tables" title="Tables" active={location.pathname === '/tables'}>
+        <MenuItem
+          to="/admin/documents"
+          title="Documents"
+          active={location.pathname === "/admin/documents"}
+        >
           <TableIcon className={itemIconClass} />
         </MenuItem>
-
-        <div>
-          <span className="my-3 lg:my-5 border-b border-gray-900 block"></span>
-        </div>
-
-        <MenuItem to="/" title="Settings">
+        <MenuItem
+          to="/admin/settings"
+          title="Settings"
+          active={location.pathname === "/admin/settings"}
+        >
           <CogIcon className={itemIconClass} />
         </MenuItem>
       </ul>

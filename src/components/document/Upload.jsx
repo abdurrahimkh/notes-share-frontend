@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { submitDocument } from "../../redux/features/document/documentApi";
+import { submitDocument } from "../../redux/features/document/documentAction";
 const Upload = () => {
   const dispatch = useDispatch();
   const {
