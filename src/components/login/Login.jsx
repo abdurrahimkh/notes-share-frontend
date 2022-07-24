@@ -1,12 +1,13 @@
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../redux/features/auth/authAction";
 
 const Login = () => {
+  const isActive = useSelector(state=> state.auth.isActive)
   const {
     register,
-    watch,
     formState: { isValid, errors },
     handleSubmit,
   } = useForm({
@@ -17,6 +18,14 @@ const Login = () => {
   const submitLogin = data => {
     dispatch(login(data)).then(res => res.payload && navigate("/"));
   };
+  useEffect(() => {
+    if(isActive){
+      navigate('/')
+    }
+  
+    
+  }, [isActive])
+  
   return (
     <div className="flex items-center min-h-[90vh] p-6 bg-gradient-to-b from-gray-50 to to-blue-200 dark:bg-gray-900">
       <div className="flex-1 h-full max-w-md mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800">
@@ -83,20 +92,20 @@ const Login = () => {
           </button>
 
           <p className="mt-4">
-            <a
+            <Link
+            to="/forgetpassword"
               className="text-sm font-medium text-blue-600 dark:text-purple-400 hover:underline"
-              href="#"
             >
               Forgot your password?
-            </a>
+            </Link>
           </p>
           <p className="mt-1">
-            <a
+            <Link
+              to="/user/register"
               className="text-sm font-medium text-blue-600 dark:text-purple-400 hover:underline"
-              href="./create-account.html"
             >
               Create account
-            </a>
+            </Link>
           </p>
         </div>
       </div>

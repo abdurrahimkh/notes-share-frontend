@@ -5,7 +5,9 @@ import {
   approvedDocuments,
   deleteUser,
   fetchDocuments,
+  likeDocument,
   reject,
+  submitDocument,
 } from "./documentAction";
 
 const initialState = {
@@ -20,6 +22,15 @@ const documentSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
+    [submitDocument.pending]: state => {
+      state.isLoading = true;
+    },
+    [submitDocument.fulfilled]: (state, action) => {
+      state.isLoading = false;
+    },
+    [submitDocument.rejected]: state => {
+      state.isLoading = false;
+    },
     [fetchDocuments.pending]: state => {
       state.isLoading = true;
     },
@@ -93,6 +104,21 @@ const documentSlice = createSlice({
       state.approved = action.payload;
     },
     [approvedDocuments.rejected]: state => {
+      state.isLoading = false;
+    },
+    [likeDocument.pending]: state => {
+      state.isLoading = true;
+    },
+    [likeDocument.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      console.log(state);
+      // state.approved.map(doc => {
+      //   if (!doc.likes.includes(action.payload._id)) {
+      //     doc.likes.push(action.payload._id);
+      //   }
+      // });
+    },
+    [likeDocument.rejected]: state => {
       state.isLoading = false;
     },
   },

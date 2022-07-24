@@ -1,6 +1,11 @@
+import { motion } from "framer-motion";
 const AcademicInfo = ({ register, formState, formSetup }) => {
   return (
-    <div className={formSetup === 2 ? "block" : "hidden"}>
+    <motion.div
+      initial={{ x: "50%" }}
+      animate={{ x: 0 }}
+      className={formSetup === 2 ? "block" : "hidden"}
+    >
       <div className="p-6">
         <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
           Academic Info
@@ -71,7 +76,7 @@ const AcademicInfo = ({ register, formState, formSetup }) => {
           </select>
         </label>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

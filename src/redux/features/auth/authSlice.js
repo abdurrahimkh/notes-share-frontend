@@ -5,6 +5,8 @@ import {
   googleLogin,
   completeRegistration,
   adminlogin,
+  newPassoword,
+  forgetPassword,
 } from "./authAction";
 
 const user = JSON.parse(localStorage.getItem("user"));
@@ -92,6 +94,26 @@ const authSlice = createSlice({
     [adminlogin.rejected]: state => {
       state.isLoading = false;
       state.user = null;
+    },
+    [forgetPassword.pending]: state => {
+      state.isLoading = true;
+    },
+    [forgetPassword.fulfilled]: (state) => {
+      state.isLoading = false  
+    },
+    [forgetPassword.rejected]: state => {
+      state.isLoading = false;
+     
+    },
+    [newPassoword.pending]: state => {
+      state.isLoading = true;
+    },
+    [newPassoword.fulfilled]: (state) => {
+      state.isLoading = false  
+    },
+    [newPassoword.rejected]: state => {
+      state.isLoading = false;
+     
     },
   },
 });

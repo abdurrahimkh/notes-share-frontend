@@ -13,6 +13,9 @@ import Layout from "./Layout";
 import ProtectedRoutes from "./ProtectedRoutes";
 import NotFound from "./NotFound";
 import Dashboard from "../dashboard/Dashboard";
+import ForgetPassword from "../login/ForgetPassword";
+import NewPassword from "../login/NewPassword";
+import Profile from "../profile/Profile";
 
 const RoutesComponent = () => {
   return (
@@ -24,19 +27,25 @@ const RoutesComponent = () => {
           <Route path="/user/step" element={<Register />} />
           <Route path="/user/login" element={<Login />} />
           <Route path="/user/register" element={<EmailRegister />} />
+          <Route path="/forgetpassword" element={<ForgetPassword />} />
+          <Route path="/forgetpassword/:token" element={<NewPassword />} />
+          <Route path="/dashboard/user/profile/:id" element={<Profile />} />
+
           <Route element={<ProtectedRoutes />}>
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/document/upload" element={<Upload />} />
+            <Route
+              path="/user/complete/registration"
+              element={<CompleteRegistration />}
+            />
           </Route>
-          <Route
-            path="/user/complete/registration"
-            element={<CompleteRegistration />}
-          />
         </Route>
         <Route path="/admin" element={<AdminLogin />} />
-        <Route path="/admin/users" element={<Users />} />
-        <Route path="/admin/documents" element={<Documents />} />
-        <Route path="/admin/settings" element={<Settings />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route element={<ProtectedRoutes />}>
+          <Route path="/admin/users" element={<Users />} />
+          <Route path="/admin/documents" element={<Documents />} />
+          <Route path="/admin/settings" element={<Settings />} />
+        </Route>
       </Routes>
     </div>
   );

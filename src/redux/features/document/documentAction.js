@@ -1,11 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-const token = JSON.parse(localStorage.getItem("user"));
 import { toast } from "react-hot-toast";
 
 export const submitDocument = createAsyncThunk(
   "documents/upload-document",
-  async uploadData => {
+  async (uploadData, { getState }) => {
+    console.log(uploadData.description);
+    const token = getState().auth.user.token;
     const { document } = uploadData;
     const data = new FormData();
     data.append("file", document);
@@ -28,7 +29,7 @@ export const submitDocument = createAsyncThunk(
               method: "post",
               headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${token.token}`,
+                Authorization: `Bearer ${token}`,
               },
               body: JSON.stringify({
                 title: uploadData.title,
@@ -43,6 +44,7 @@ export const submitDocument = createAsyncThunk(
           const resp2 = await res1.json();
           if (resp2.message) {
             toast.success("Posted");
+            return resp2;
           } else if (resp2.error) {
             toast.error(resp2.error);
           }
@@ -73,48 +75,57 @@ export const fetchDocuments = createAsyncThunk(
   }
 );
 
-export const approve = createAsyncThunk("documents/approve", async id => {
-  console.log(id);
-  try {
-    const res = await fetch(
-      `http://localhost:8000/api/documents/approve/${id}`,
-      {
-        method: "post",
-        headers: {
-          Authorization: `Bearer ${token.token}`,
-        },
+export const approve = createAsyncThunk(
+  "documents/approve",
+  async (id, { getState }) => {
+    console.log(id);
+    const token = getState().auth.user.token;
+    try {
+      const res = await fetch(
+        `http://localhost:8000/api/documents/approve/${id}`,
+        {
+          method: "post",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const result = await res.json();
+
+      if (result) {
+        return result;
       }
-    );
-    const result = await res.json();
-
-    if (result) {
-      return result;
+    } catch (error) {
+      console.log(error);
     }
-  } catch (error) {
-    console.log(error);
   }
-});
+);
 
-export const reject = createAsyncThunk("documents/approve", async id => {
-  try {
-    const res = await fetch(
-      `http://localhost:8000/api/documents/reject/${id}`,
-      {
-        method: "post",
-        headers: {
-          Authorization: `Bearer ${token.token}`,
-        },
+export const reject = createAsyncThunk(
+  "documents/reject",
+  async (id, { getState }) => {
+    const token = getState().auth.user.token;
+
+    try {
+      const res = await fetch(
+        `http://localhost:8000/api/documents/reject/${id}`,
+        {
+          method: "post",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const result = await res.json();
+
+      if (result) {
+        return result;
       }
-    );
-    const result = await res.json();
-
-    if (result) {
-      return result;
+    } catch (error) {
+      console.log(error);
     }
-  } catch (error) {
-    console.log(error);
   }
-});
+);
 
 export const allUsers = createAsyncThunk(
   "documents/users",
@@ -136,39 +147,69 @@ export const allUsers = createAsyncThunk(
   }
 );
 
-export const deleteUser = createAsyncThunk("documents/deleteuser", async id => {
-  try {
-    const res = await fetch(
-      `http://localhost:8000/api/admin/delete/user/${id}`,
-      {
-        method: "delete",
-        headers: {
-          Authorization: `Bearer ${token.token}`,
-        },
+export const deleteUser = createAsyncThunk(
+  "documents/deleteuser",
+  async (id, { getState }) => {
+    const token = getState().auth.user.token;
+    try {
+      const res = await fetch(
+        `http://localhost:8000/api/admin/delete/user/${id}`,
+        {
+          method: "delete",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const result = await res.json();
+      if (result) {
+        return result;
       }
-    );
-    const result = await res.json();
-    if (result) {
-      return result;
+    } catch (error) {
+      console.log(error);
     }
-  } catch (error) {
-    console.log(error);
   }
-});
+);
 
 export const approvedDocuments = createAsyncThunk(
   "documents/approved",
-  async () => {
+  async token => {
     try {
       const res = await fetch("http://localhost:8000/api/documents/approved", {
         method: "get",
         headers: {
-          Authorization: `Bearer ${token.token}`,
+          Authorization: `Bearer ${token}`,
         },
       });
       const result = await res.json();
 
       if (result) {
+        return result;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+export const likeDocument = createAsyncThunk(
+  "documents/like",
+  async (id, { getState }) => {
+    const token = getState().auth.user.token;
+    try {
+      const res = await fetch(
+        `http://localhost:8000/api/documents/like/${id}`,
+        {
+          method: "post",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const result = await res.json();
+
+      if (result) {
+        console.log(result)
         return result;
       }
     } catch (error) {

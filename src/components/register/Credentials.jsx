@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 const Credentials = ({
   setFormSetup,
   register,
@@ -7,7 +8,9 @@ const Credentials = ({
 }) => {
   const password = watch("password");
   return (
-    <div
+    <motion.div
+    initial={{ x: "50%" }}
+      animate={{ x: 0 }}
       className={formSetup === 0 ? "block" : "hidden"}
       onSubmit={() => setFormSetup(cur => cur + 1)}
     >
@@ -76,7 +79,7 @@ const Credentials = ({
           )}
         </label>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
