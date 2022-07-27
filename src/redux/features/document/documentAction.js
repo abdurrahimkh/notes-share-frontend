@@ -43,7 +43,9 @@ export const submitDocument = createAsyncThunk(
           );
           const resp2 = await res1.json();
           if (resp2.message) {
-            toast.success("Posted");
+            toast.success("Posted 🗒️ wait for admin approvel ", {
+              duration: 3000,
+            });
             return resp2;
           } else if (resp2.error) {
             toast.error(resp2.error);

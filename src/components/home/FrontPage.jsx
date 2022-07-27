@@ -1,6 +1,6 @@
 import React from "react";
 import DocumentsImage from "../../assets/images/front_page_image.svg";
-import BestNotes from "./BestNotes";
+import SectionTwo from "./SectionTwo";
 const FrontPage = () => {
   return (
     <>
@@ -15,8 +15,12 @@ const FrontPage = () => {
           <p className="text-md md:text-2xl">
             Study Notes Written by best students
           </p>
+          <button class="btn btn-primary mt-5 transition ease-in-out delay-150 bg-blue-700 border-none hover:-translate-y-1 hover:scale-110 hover:bg-green-500 duration-300">
+            Get Started
+          </button>
         </div>
       </div>
+      <SectionTwo />
     </>
   );
 };

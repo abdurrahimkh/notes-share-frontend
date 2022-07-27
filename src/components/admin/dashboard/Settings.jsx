@@ -1,4 +1,4 @@
-import UserAvater from "../template/profile.png";
+import AdminAvatar from "../../../assets/images/Admin_Pic.png";
 import { BriefcaseIcon } from "@heroicons/react/outline";
 import SideMenu from "../template/SideMenu";
 import NavBar from "../template/NavBar";
@@ -78,8 +78,8 @@ const Settings = () => {
                         </h2>
                         <img
                           className="rounded-full w-32 h-32"
-                          src={UserAvater}
-                          alt=""
+                          src={AdminAvatar}
+                          alt="admin_profile_pic"
                         />
                         <h4 className="text-lg font-medium mt-2">Admin</h4>
                         <div className="flex items-center text-gray-500">

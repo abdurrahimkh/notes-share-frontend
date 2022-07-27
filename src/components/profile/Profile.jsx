@@ -62,7 +62,7 @@ const Profile = () => {
                     <span className="text-gray-500">{data?.user.email}</span>
                   </div>
                   <hr />
-                  <div className="space-x-20">
+                  <div className="space-x-12">
                     <span className="font-bold text-md">Field of Study</span>
                     <span className="text-gray-500">
                       {data?.user.fieldofstudy}

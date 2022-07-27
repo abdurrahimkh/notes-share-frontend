@@ -68,6 +68,7 @@ const EmailRegister = () => {
           </button> */}
           <GoogleLogin
             text="signup_with"
+            width="400"
             onSuccess={credentialResponse => {
               dispatch(googleLogin(credentialResponse.credential)).then(res =>
                 !res.payload.googlenew

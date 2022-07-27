@@ -1,4 +1,4 @@
-import UserAvatar from "../../../assets/images/profile.png";
+import AdminAvatar from "../../../assets/images/Admin_Pic.png";
 import { SearchIcon, LogoutIcon, BellIcon } from "@heroicons/react/outline";
 import { Menu, Transition } from "@headlessui/react";
 import { Fragment } from "react";
@@ -46,7 +46,7 @@ const NavBar = () => {
       <Menu as="div" className="relative inline-block text-left">
         <div>
           <Menu.Button className="inline-flex justify-center w-full items-center text-gray-500 hover:text-gray-800 focus:outline-none">
-            <img className="rounded-full w-8 h-8" src={UserAvatar} alt="" />
+            <img className="rounded-full w-8 h-8" src={AdminAvatar} alt="" />
             <span className="font-medium ml-3 mr-1">Admin</span>
             <ChevronDownIcon className="w-5 h-5" aria-hidden="true" />
           </Menu.Button>

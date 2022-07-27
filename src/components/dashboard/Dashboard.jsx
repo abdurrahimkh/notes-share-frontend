@@ -88,7 +88,7 @@ const Dashboard = () => {
                   >
                     <Link to={`user/profile/${doc.postedBy._id}`}>
                       <img
-                        className="avatar w-10 h-10"
+                        className="avatar w-10 h-10 rounded-full"
                         src={doc.postedBy.pic}
                       />
                     </Link>
