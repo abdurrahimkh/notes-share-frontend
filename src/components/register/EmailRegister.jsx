@@ -8,11 +8,11 @@ const EmailRegister = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isActive = useSelector(state => state.auth.isActive);
-  useEffect(() => {
-    if (isActive) {
-      navigate("/");
-    }
-  }, [isActive]);
+  // useEffect(() => {
+  //   if (isActive) {
+  //     navigate("/");
+  //   }
+  // }, [isActive]);
   return (
     <div className="flex items-center min-h-[90vh] p-6 bg-gradient-to-b from-gray-50 to to-blue-200 dark:bg-gray-900">
       <motion.div
@@ -67,7 +67,6 @@ const EmailRegister = () => {
             Google
           </button> */}
           <GoogleLogin
-            width="400"
             text="signup_with"
             onSuccess={credentialResponse => {
               dispatch(googleLogin(credentialResponse.credential)).then(res =>

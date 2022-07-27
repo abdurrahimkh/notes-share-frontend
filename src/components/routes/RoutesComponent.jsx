@@ -32,14 +32,14 @@ const RoutesComponent = () => {
           <Route path="/forgetpassword/:token" element={<NewPassword />} />
           <Route path="/dashboard/user/profile/:id" element={<Profile />} />
           <Route path="/fpage" element={<FrontPage />} />
+          <Route
+            path="/user/complete/registration"
+            element={<CompleteRegistration />}
+          />
 
           <Route element={<ProtectedRoutes />}>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/document/upload" element={<Upload />} />
-            <Route
-              path="/user/complete/registration"
-              element={<CompleteRegistration />}
-            />
           </Route>
         </Route>
         <Route path="/admin" element={<AdminLogin />} />

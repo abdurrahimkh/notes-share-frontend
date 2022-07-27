@@ -6,7 +6,7 @@ export const documentApi = createApi({
     baseUrl: "http://localhost:8000/api/",
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth?.user.token;
-      if (!token === null) {
+      if (token) {
         headers.set("authorization", `Bearer ${token}`);
       }
 

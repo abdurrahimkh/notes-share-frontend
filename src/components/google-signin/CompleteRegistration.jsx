@@ -6,7 +6,7 @@ import { completeRegistration } from "../../redux/features/auth/authAction";
 const CompleteRegistration = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const _id = useSelector(state => state.auth.user._id);
+  const _id = useSelector(state => state.auth.user?._id);
   const {
     register,
     formState: { isValid, errors },

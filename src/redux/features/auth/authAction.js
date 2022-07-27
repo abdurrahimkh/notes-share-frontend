@@ -94,6 +94,7 @@ export const googleLogin = createAsyncThunk("auth/google", async tokenId => {
       data: { tokenId },
     });
     const result = await res;
+    console.log(result);
     if (result.data) {
       if (result.data.error) {
         toast.error(result.data.error);
