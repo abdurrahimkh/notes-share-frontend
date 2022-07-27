@@ -29,7 +29,7 @@ const CompleteRegistration = () => {
   };
   return (
     <div className="flex items-center min-h-[90vh] p-6 bg-gradient-to-b from-gray-50 to to-blue-200 dark:bg-gray-900">
-      <div className="flex-1 h-full max-w-md mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800">
+      <div className="flex-1 h-full max-w-md mx-auto  bg-white rounded-lg shadow-xl dark:bg-gray-800">
         <div className="p-6">
           <form onSubmit={handleSubmit(submitComplete)}>
             <h1 className="mb-4 whitespace-nowrap text-xl font-semibold text-gray-700 dark:text-gray-200 text-center ">

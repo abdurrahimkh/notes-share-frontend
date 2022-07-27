@@ -16,6 +16,7 @@ import Dashboard from "../dashboard/Dashboard";
 import ForgetPassword from "../login/ForgetPassword";
 import NewPassword from "../login/NewPassword";
 import Profile from "../profile/Profile";
+import FrontPage from "../home/FrontPage";
 
 const RoutesComponent = () => {
   return (
@@ -30,6 +31,7 @@ const RoutesComponent = () => {
           <Route path="/forgetpassword" element={<ForgetPassword />} />
           <Route path="/forgetpassword/:token" element={<NewPassword />} />
           <Route path="/dashboard/user/profile/:id" element={<Profile />} />
+          <Route path="/fpage" element={<FrontPage />} />
 
           <Route element={<ProtectedRoutes />}>
             <Route path="/dashboard" element={<Dashboard />} />

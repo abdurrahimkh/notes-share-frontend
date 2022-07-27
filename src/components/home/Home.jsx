@@ -4,7 +4,7 @@ import SearchSection from "./SearchSection";
 const Home = () => {
   const { data, error, isLoading } = useApprovedDocumentsQuery();
   return (
-    <div className="  h-screen bg-gradient-to-b from-gray-50 to to-blue-200 ">
+    <div className="  h-screen bg-gradient-to-b from-gray-100 to to-blue-300 ">
       <SearchSection data={data} />
     </div>
   );

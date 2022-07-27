@@ -1,22 +1,25 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
 import { useDispatch, useSelector } from "react-redux";
 import { googleLogin } from "../../redux/features/auth/authAction";
 import { useEffect } from "react";
+import { motion } from "framer-motion";
 const EmailRegister = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const isActive = useSelector(state=> state.auth.isActive)
+  const isActive = useSelector(state => state.auth.isActive);
   useEffect(() => {
-    if(isActive){
-      navigate('/')
+    if (isActive) {
+      navigate("/");
     }
-  
-    
-  }, [isActive])
+  }, [isActive]);
   return (
     <div className="flex items-center min-h-[90vh] p-6 bg-gradient-to-b from-gray-50 to to-blue-200 dark:bg-gray-900">
-      <div className="flex-1 h-full max-w-md mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800">
+      <motion.div
+        initial={{ x: "50%" }}
+        animate={{ x: 0 }}
+        className="flex-1 h-full max-w-md mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800"
+      >
         <div className="p-6">
           <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200 mx-36">
             Sign up
@@ -106,15 +109,15 @@ const EmailRegister = () => {
           </button>
           <hr className="my-4 " />
           <p className="mt-1">
-            <a
+            <Link
               className="text-sm font-medium text-blue-600 dark:text-purple-400 hover:underline"
-              href="./create-account.html"
+              to="/user/login"
             >
               Already have account? Login
-            </a>
+            </Link>
           </p>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

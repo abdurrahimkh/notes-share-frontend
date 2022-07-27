@@ -5,6 +5,7 @@ import {
   approvedDocuments,
   deleteUser,
   fetchDocuments,
+  getValues,
   likeDocument,
   reject,
   submitDocument,
@@ -14,6 +15,7 @@ const initialState = {
   documents: [],
   users: [],
   approved: [],
+  values: [],
   isLoading: false,
 };
 
@@ -119,6 +121,16 @@ const documentSlice = createSlice({
       // });
     },
     [likeDocument.rejected]: state => {
+      state.isLoading = false;
+    },
+    [getValues.pending]: state => {
+      state.isLoading = true;
+    },
+    [getValues.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.values = action.payload;
+    },
+    [getValues.rejected]: state => {
       state.isLoading = false;
     },
   },

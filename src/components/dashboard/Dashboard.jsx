@@ -10,19 +10,19 @@ import { useLikeDocumentsMutation } from "../../redux/features/document/document
 import { iconRender } from "./IconRender";
 const Dashboard = () => {
   const dispatch = useDispatch();
-  const { token, _id } = useSelector(state => state.auth.user);
+  const { token, _id, isLoading } = useSelector(state => state.auth.user);
   const documents = useSelector(state => state.documents.approved);
 
   console.log(documents);
   useEffect(() => {
-    dispatch(approvedDocuments(token));
+    dispatch(approvedDocuments());
   }, []);
 
   const handleLike = id => {
     dispatch(likeDocument(id)).then(res => dispatch(approvedDocuments(token)));
   };
 
-  function getSameValKey(arry, key) {
+  function getSameValKey(arry = [], key) {
     const set = new Set();
     arry.forEach(item => {
       set.add(item[key]);
@@ -31,7 +31,7 @@ const Dashboard = () => {
     return [...set];
   }
 
-  function sortData(arry, keys, key) {
+  function sortData(arry = [], keys, key) {
     const map = {};
     keys.forEach(key => {
       map[key] = [];
@@ -103,7 +103,7 @@ const Dashboard = () => {
                         {doc.likes?.includes(_id) ? (
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            class="h-5 w-5"
+                            className="h-5 w-5"
                             viewBox="0 0 20 20"
                             fill="currentColor"
                           >

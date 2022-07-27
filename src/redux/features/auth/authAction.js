@@ -25,7 +25,7 @@ export const login = createAsyncThunk("auth/login", async userData => {
       "http://localhost:8000/api/users/login",
       userData
     );
-    console.log(res)  
+    console.log(res);
     if (res.data) {
       if (res.data.error) {
         toast.error(res.data.error);
@@ -42,25 +42,28 @@ export const login = createAsyncThunk("auth/login", async userData => {
   }
 });
 
-export const forgetPassword = createAsyncThunk("auth/forgetpassword", async data => {
-  try {
-    const res = await axios.post(
-      "http://localhost:8000/api/users/forgetpassword",
-      data
-    );
-    if (res.data) {
-      if (res.data.error) {
-        toast.error(res.data.error);
-        return res.data;
-      } else {
-        toast.success(res.data.message);
+export const forgetPassword = createAsyncThunk(
+  "auth/forgetpassword",
+  async data => {
+    try {
+      const res = await axios.post(
+        "http://localhost:8000/api/users/forgetpassword",
+        data
+      );
+      if (res.data) {
+        if (res.data.error) {
+          toast.error(res.data.error);
+          return res.data;
+        } else {
+          toast.success(res.data.message);
+        }
       }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
     }
-  } catch (error) {
-    console.log(error);
-    toast.error(error.message);
   }
-});
+);
 
 export const newPassoword = createAsyncThunk("auth/newpassword", async data => {
   try {
@@ -69,7 +72,7 @@ export const newPassoword = createAsyncThunk("auth/newpassword", async data => {
       data
     );
     if (res.data) {
-      console.log(res.data)
+      console.log(res.data);
       if (res.data.error) {
         toast.error(res.data.error);
         return res.data;

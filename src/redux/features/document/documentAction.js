@@ -173,13 +173,10 @@ export const deleteUser = createAsyncThunk(
 
 export const approvedDocuments = createAsyncThunk(
   "documents/approved",
-  async token => {
+  async () => {
     try {
       const res = await fetch("http://localhost:8000/api/documents/approved", {
         method: "get",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
       });
       const result = await res.json();
 
@@ -209,8 +206,60 @@ export const likeDocument = createAsyncThunk(
       const result = await res.json();
 
       if (result) {
-        console.log(result)
+        console.log(result);
         return result;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+export const getValues = createAsyncThunk("documents/get-values", async () => {
+  try {
+    const result = await axios({
+      method: "get",
+      url: "http://localhost:8000/api/documents/values",
+    });
+    if (result) {
+      return result.data;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+export const addUniversity = createAsyncThunk(
+  "documents/add-uni",
+  async data => {
+    try {
+      console.log(data);
+      const result = await axios({
+        method: "put",
+        url: "http://localhost:8000/api/users/addvalue",
+        data,
+      });
+      if (result) {
+        console.log(result.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+export const addFieldOfStudy = createAsyncThunk(
+  "documents/add-field",
+  async data => {
+    console.log(data);
+    try {
+      const result = await axios({
+        method: "put",
+        url: "http://localhost:8000/api/users/addvalue",
+        data,
+      });
+      if (result) {
+        console.log(result.data);
       }
     } catch (error) {
       console.log(error);

@@ -63,10 +63,10 @@ const Profile = () => {
                   </div>
                   <hr />
                   <div className="space-x-20">
-                    <span className="font-bold text-md">
+                    <span className="font-bold text-md">Field of Study</span>
+                    <span className="text-gray-500">
                       {data?.user.fieldofstudy}
                     </span>
-                    <span className="text-gray-500">Computer Science</span>
                   </div>
                   <hr />
                 </div>

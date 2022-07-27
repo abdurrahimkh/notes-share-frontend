@@ -15,10 +15,14 @@ const SearchSection = ({ data }) => {
     }
   };
   return (
-    <div className="flex h-[calc(100vh_-_7rem)] justify-center items-center flex-col">
-      <h1 className="text-3xl md:text-7xl font-bold text-indigo-600">
+    <div className="flex pt-28 pb-10 justify-center items-center flex-col">
+      <motion.div
+        initial={{ y: "-100%" }}
+        animate={{ y: 0 }}
+        className="text-3xl md:text-7xl font-bold text-indigo-600"
+      >
         Notes Share
-      </h1>
+      </motion.div>
       <p className="text-md md:text-2xl">
         Study Notes Written by best students
       </p>
@@ -67,7 +71,7 @@ const SearchSection = ({ data }) => {
           to="/dashboard"
           className="bg-white font-bold px-5 py-2 md:px-10  md:py-3 rounded-lg  hover:bg-blue-700 hover:text-white"
         >
-          Documents
+          Explore
         </Link>
         <Link
           to="/document/upload"
