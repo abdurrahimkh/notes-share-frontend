@@ -5,7 +5,7 @@ import { toast } from "react-hot-toast";
 export const submitDocument = createAsyncThunk(
   "documents/upload-document",
   async (uploadData, { getState }) => {
-    console.log(uploadData.description);
+    console.log(uploadData);
     const token = getState().auth.user.token;
     const { document } = uploadData;
     const data = new FormData();
@@ -37,6 +37,7 @@ export const submitDocument = createAsyncThunk(
                 subject: uploadData.subject,
                 url: documentURL,
                 filetype: uploadData.document.type,
+                field: uploadData.field,
                 size,
               }),
             }
@@ -252,6 +253,25 @@ export const addUniversity = createAsyncThunk(
 
 export const addFieldOfStudy = createAsyncThunk(
   "documents/add-field",
+  async data => {
+    console.log(data);
+    try {
+      const result = await axios({
+        method: "put",
+        url: "http://localhost:8000/api/users/addvalue",
+        data,
+      });
+      if (result) {
+        console.log(result.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+export const addSubject = createAsyncThunk(
+  "documents/add-subject",
   async data => {
     console.log(data);
     try {

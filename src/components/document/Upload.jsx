@@ -1,26 +1,47 @@
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { submitDocument } from "../../redux/features/document/documentAction";
+import {
+  addSubject,
+  submitDocument,
+} from "../../redux/features/document/documentAction";
 import LoadingButton from "./LoadingButton";
+import CreatableSelect from "react-select/creatable";
+
 const Upload = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const isLoading = useSelector(state => state.documents.isLoading);
-  console.log(isLoading);
+  const { isLoading, values } = useSelector(state => state.documents);
+  const { fieldofstudy } = useSelector(state => state.auth.user);
+  const subjects = values[2]?.subjects;
+  console.log(subjects);
+
   const {
     register,
     watch,
+    control,
     formState: { errors },
     handleSubmit,
   } = useForm({
     mode: "onSubmit",
   });
+
   const handleUpload = data => {
+    console.log(data);
+    if (data.subject.__isNew__) {
+      dispatch(
+        addSubject({
+          id: "62e36574bca949a2bfca94ee",
+          newValue: data.subject.value,
+          field: fieldofstudy,
+        })
+      );
+    }
     const uploadData = {
       title: data.title,
-      subject: data.subject,
+      subject: data.subject.value,
       description: data.description,
+      field: fieldofstudy,
       document: data.file[0],
     };
     dispatch(submitDocument(uploadData)).then(
@@ -43,7 +64,7 @@ const Upload = () => {
                 Title
               </span>
               <input
-                className="block border rounded p-2 w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray"
+                className="block border rounded p-2 w-full  text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray"
                 {...register("title", {
                   required: "You must specify a title",
                 })}
@@ -55,10 +76,18 @@ const Upload = () => {
               )}
             </label>
             <label className="block text-sm mt-1">
-              <span className="text-gray-700 dark:text-gray-400 font-bold ">
+              <div className="text-gray-700 mb-1 dark:text-gray-400 font-bold ">
                 Subject
-              </span>
-              <input
+              </div>
+
+              <Controller
+                name="subject"
+                control={control}
+                render={({ field }) => (
+                  <CreatableSelect options={subjects} {...field} />
+                )}
+              />
+              {/* <input
                 className="block border rounded p-2 w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray"
                 {...register("subject", {
                   required: "You must specify a subject",
@@ -68,7 +97,7 @@ const Upload = () => {
                 <p className="text-red-600 text-sm mt-2">
                   {errors.subject.message}
                 </p>
-              )}
+              )} */}
             </label>
             <label className="block text-sm mt-1">
               <span className="text-gray-700 dark:text-gray-400 font-bold">

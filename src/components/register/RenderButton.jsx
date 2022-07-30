@@ -38,7 +38,7 @@ const RenderButton = ({
       name: data.name,
       gender: data.gender,
       username: data.username,
-      dicipline: data.dicipline,
+      dicipline: data.dicipline.value,
       fieldofstudy: data.fieldofstudy.value,
       institute: data.institute.value,
     };

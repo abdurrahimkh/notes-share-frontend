@@ -45,7 +45,9 @@ const Navbar = () => {
                 <NavLink to="/">Home</NavLink>
               </li>
               <li>
-                <NavLink to="/user/login">Login</NavLink>
+                <NavLink to="/user/login">
+                  <i className="bi bi-box-arrow-in-right"></i>Login
+                </NavLink>
               </li>
               <li>
                 <NavLink to="/user/register">SignUp</NavLink>
@@ -64,6 +66,7 @@ const Navbar = () => {
                   to="/"
                   className=" px-5 rounded-lg py-2  font-bold text-sm hover:bg-blue-600 hover:text-white"
                 >
+                  <i className="bi bi-house"></i>
                   Home
                 </NavLink>
               </li>
@@ -72,6 +75,7 @@ const Navbar = () => {
                   to="/user/login"
                   className="px-5 rounded-lg py-2  font-bold text-sm hover:bg-blue-600 hover:text-white"
                 >
+                  <i className="bi bi-box-arrow-in-right "></i>
                   Login
                 </NavLink>
               </li>
@@ -80,7 +84,17 @@ const Navbar = () => {
                   to="/user/register"
                   className="px-5 rounded-lg py-2  font-bold text-sm hover:bg-blue-600 hover:text-white"
                 >
+                  <i className="bi bi-person-plus"></i>
                   Signup
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/contact-us"
+                  className="px-5 rounded-lg py-2  font-bold text-sm hover:bg-blue-600 hover:text-white"
+                >
+                  <i className="bi bi-envelope"></i>
+                  Contact Us
                 </NavLink>
               </li>
             </ul>
@@ -88,27 +102,58 @@ const Navbar = () => {
         )}
         <div className="navbar-end mr-3">
           {user && (
-            <div className="dropdown dropdown-end">
-              <label tabIndex="0" className=" btn btn-ghost btn-circle avatar">
-                <div className="w-10 rounded-full">
-                  <img src={user.pic && user.pic} />
-                </div>
-              </label>
-              <ul
-                tabIndex="0"
-                className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-              >
-                <li>
-                  <Link to={`dashboard/user/profile/${user._id}`}>Profile</Link>
-                </li>
-                <li>
-                  <a>Settings</a>
-                </li>
-                <li>
-                  <button onClick={() => handleSignOut()}>Logout</button>
-                </li>
-              </ul>
-            </div>
+            <>
+              <div className="dropdown  mr-10">
+                <label tabIndex="0">
+                  <i className="btn btn-ghost bi bi-plus-square text-2xl"></i>
+                </label>
+                <ul
+                  tabIndex="0"
+                  className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-40"
+                >
+                  <li>
+                    <Link className="font-bold" to="/document/upload">
+                      <i className="bi bi-file-earmark-arrow-up"></i>Upload
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/" className="font-bold">
+                      <i className="bi bi-question-square "></i>Ask
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+              <div className="dropdown dropdown-end">
+                <label
+                  tabIndex="0"
+                  className=" btn btn-ghost btn-circle avatar online"
+                >
+                  <div className="w-24 rounded-full ring ring-offset-2">
+                    <img src={user.pic && user.pic} />
+                  </div>
+                </label>
+                <ul
+                  tabIndex="0"
+                  className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+                >
+                  <li>
+                    <Link to={`dashboard/user/profile/${user._id}`}>
+                      <i className="bi bi-person-square"></i>Profile
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/profile/settings">
+                      <i className="bi bi-gear"></i>Settings
+                    </Link>
+                  </li>
+                  <li>
+                    <button onClick={() => handleSignOut()}>
+                      <i className="bi bi-box-arrow-right"></i>Logout
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </>
           )}
         </div>
       </div>

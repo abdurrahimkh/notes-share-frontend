@@ -13,11 +13,13 @@ import Layout from "./Layout";
 import ProtectedRoutes from "./ProtectedRoutes";
 import NotFound from "./NotFound";
 import Dashboard from "../dashboard/Dashboard";
+import Dashboard1 from "../dashboard/Dashboard1";
 import ForgetPassword from "../login/ForgetPassword";
 import NewPassword from "../login/NewPassword";
 import Profile from "../profile/Profile";
 import FrontPage from "../home/FrontPage";
-
+import ContactUs from "../contact-us/ContactUs";
+import ProfileSettings from "../profile/ProfileSettings";
 const RoutesComponent = () => {
   return (
     <div>
@@ -25,6 +27,7 @@ const RoutesComponent = () => {
         <Route path="*" element={<NotFound />} />
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
+          <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/user/step" element={<Register />} />
           <Route path="/user/login" element={<Login />} />
           <Route path="/user/register" element={<EmailRegister />} />
@@ -39,7 +42,9 @@ const RoutesComponent = () => {
 
           <Route element={<ProtectedRoutes />}>
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard1" element={<Dashboard1 />} />
             <Route path="/document/upload" element={<Upload />} />
+            <Route path="/profile/settings" element={<ProfileSettings />} />
           </Route>
         </Route>
         <Route path="/admin" element={<AdminLogin />} />
