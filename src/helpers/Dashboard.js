@@ -22,7 +22,7 @@ export const sortData = (arry, keys, key) => {
 
 export const handleFieldChange = (selectedOption, setApproved) => {
   fetch(
-    `http://localhost:8000/api/documents/search?field=${selectedOption.value.toLowerCase()}`
+    `https://notes-share-fyp.herokuapp.com/api/documents/search?field=${selectedOption.value.toLowerCase()}`
   )
     .then(res => res.json())
     .then(result => setApproved(result));
@@ -30,7 +30,7 @@ export const handleFieldChange = (selectedOption, setApproved) => {
 
 export const handleSubjectChange = (selectedOption, setApproved) => {
   fetch(
-    `http://localhost:8000/api/documents/search?subject=${selectedOption.value}`
+    `https://notes-share-fyp.herokuapp.com/api/documents/search?subject=${selectedOption.value}`
   )
     .then(res => res.json())
     .then(result => setApproved(result));

@@ -28,7 +28,7 @@ const AcademicInfo = ({
   ];
 
   const loadOptions = () => {
-    return fetch(`http://localhost:8000/api/documents/values`)
+    return fetch(`https://notes-share-fyp.herokuapp.com/api/documents/values`)
       .then(res => res.json())
       .then(result => result[0].universities);
   };
