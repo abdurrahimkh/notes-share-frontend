@@ -1,5 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { login, register } from "./authAction";
+import {
+  login,
+  register,
+  googleLogin,
+  completeRegistration,
+  adminlogin,
+  newPassoword,
+  forgetPassword,
+} from "./authAction";
 
 const user = JSON.parse(localStorage.getItem("user"));
 
@@ -9,6 +17,7 @@ const initialState = {
   isSuccess: false,
   isLoading: false,
   message: "",
+  isActive: user ? true : false,
 };
 
 const authSlice = createSlice({
@@ -16,9 +25,9 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     logout: state => {
-      console.log("Logout Cliked");
       state.user = null;
       localStorage.removeItem("user");
+      state.isActive = false;
     },
   },
   extraReducers: {
@@ -27,6 +36,7 @@ const authSlice = createSlice({
     },
     [register.fulfilled]: (state, action) => {
       state.isLoading = false;
+      state.isActive = true;
       state.user = action.payload;
     },
     [register.rejected]: state => {
@@ -39,10 +49,71 @@ const authSlice = createSlice({
     [login.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.user = action.payload;
+      if (action.payload !== null) {
+        state.isActive = true;
+      }
     },
     [login.rejected]: state => {
       state.isLoading = false;
       state.user = null;
+    },
+    [googleLogin.pending]: state => {
+      state.isLoading = true;
+    },
+    [googleLogin.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.isActive = true;
+      state.user = action.payload;
+    },
+    [googleLogin.rejected]: state => {
+      state.isLoading = false;
+      state.user = null;
+    },
+    [completeRegistration.pending]: state => {
+      state.isLoading = true;
+    },
+    [completeRegistration.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.isActive = true;
+      state.user = action.payload;
+    },
+    [completeRegistration.rejected]: state => {
+      state.isLoading = false;
+      state.user = null;
+    },
+    [adminlogin.pending]: state => {
+      state.isLoading = true;
+    },
+    [adminlogin.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.user = action.payload;
+      if (action.payload !== null) {
+        state.isActive = true;
+      }
+    },
+    [adminlogin.rejected]: state => {
+      state.isLoading = false;
+      state.user = null;
+    },
+    [forgetPassword.pending]: state => {
+      state.isLoading = true;
+    },
+    [forgetPassword.fulfilled]: (state) => {
+      state.isLoading = false  
+    },
+    [forgetPassword.rejected]: state => {
+      state.isLoading = false;
+     
+    },
+    [newPassoword.pending]: state => {
+      state.isLoading = true;
+    },
+    [newPassoword.fulfilled]: (state) => {
+      state.isLoading = false  
+    },
+    [newPassoword.rejected]: state => {
+      state.isLoading = false;
+     
     },
   },
 });

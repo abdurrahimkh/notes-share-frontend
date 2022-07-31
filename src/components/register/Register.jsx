@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Credentials from "./Credentials";
 import PersonalInfo from "./PersonalInfo";
 import AcademicInfo from "./AcademicInfo";
@@ -7,8 +7,9 @@ import { useForm } from "react-hook-form";
 
 const Register = () => {
   const [formSetup, setFormSetup] = useState(0);
+  const [universities, setUniversities] = useState([]);
 
-  const { register, watch, formState, handleSubmit } = useForm({
+  const { register, watch, formState, handleSubmit, control } = useForm({
     mode: "all",
   });
   const maxSteps = 3;
@@ -20,9 +21,20 @@ const Register = () => {
     setFormSetup(current => current - 1);
   };
 
+  // useEffect(() => {
+  //   const fetchValues = async () => {
+  //     const res = await fetch("http://localhost:8000/api/documents/values", {
+  //       method: "get",
+  //     });
+  //     const result = await res.json();
+  //     setUniversities(result.universities);
+  //   };
+  //   fetchValues();
+  // }, []);
+
   return (
     <div className="flex items-center min-h-[90vh] p-6 bg-gradient-to-b from-gray-50 to to-blue-200 dark:bg-gray-900">
-      <div className="flex-1 h-full max-w-md mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800">
+      <div className="flex-1 h-full max-w-md mx-auto bg-white rounded-lg shadow-xl dark:bg-gray-800">
         <div>
           <div className="flex space-x-2 mt-2 ">
             {formSetup > 0 && (
@@ -31,7 +43,7 @@ const Register = () => {
                   <svg
                     stroke="currentColor"
                     fill="currentColor"
-                    stroke-width="0"
+                    strokeWidth="0"
                     viewBox="0 0 512 512"
                     height="1.3em"
                     width="1.3em"
@@ -39,15 +51,15 @@ const Register = () => {
                   >
                     <path
                       fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="32"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="32"
                       d="M249.38 336L170 256l79.38-80m-68.35 80H342"
                     ></path>
                     <path
                       fill="none"
-                      stroke-miterlimit="10"
-                      stroke-width="32"
+                      stroke-meterlimit="10"
+                      strokeWidth="32"
                       d="M448 256c0-106-86-192-192-192S64 150 64 256s86 192 192 192 192-86 192-192z"
                     ></path>
                   </svg>
@@ -78,6 +90,9 @@ const Register = () => {
               register={register}
               formState={formState}
               formSetup={formSetup}
+              watch={watch}
+              universities={universities}
+              control={control}
             />
           )}
           <RenderButton
@@ -85,6 +100,7 @@ const Register = () => {
             nextPage={nextPage}
             formState={formState}
             handleSubmit={handleSubmit}
+            universities={universities}
           />
         </div>
       </div>

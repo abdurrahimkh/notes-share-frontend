@@ -1,6 +1,11 @@
+import { motion } from "framer-motion";
 const PersonalInfo = ({ register, formState, formSetup }) => {
   return (
-    <div className={formSetup === 1 ? "block" : "hidden"}>
+    <motion.div
+      initial={{ x: "50%" }}
+      animate={{ x: 0 }}
+      className={formSetup === 1 ? "block" : "hidden"}
+    >
       <div className="p-6">
         <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
           Personal Info
@@ -14,6 +19,10 @@ const PersonalInfo = ({ register, formState, formSetup }) => {
               required: {
                 value: true,
                 message: "name is required",
+              },
+              pattern: {
+                value: /^[a-zA-Z]/,
+                message: "Invalid Name",
               },
             })}
           />
@@ -59,7 +68,7 @@ const PersonalInfo = ({ register, formState, formSetup }) => {
           )}
         </label>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

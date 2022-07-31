@@ -1,16 +1,49 @@
 import { register } from "../../redux/features/auth/authAction";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import {
+  addFieldOfStudy,
+  addUniversity,
+} from "../../redux/features/document/documentAction";
 const RenderButton = ({
   formSetup,
   nextPage,
   formState: { isValid },
+  universities,
   handleSubmit,
 }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const submitForm = data => {
-    dispatch(register(data)).then(() => navigate("/"));
+    console.log(data);
+    if (data.institute.__isNew__) {
+      dispatch(
+        addUniversity({
+          id: "62df6ccc14cb3a595f1c581d",
+          newValue: data.institute.value,
+        })
+      );
+    }
+    if (data.fieldofstudy.__isNew__) {
+      dispatch(
+        addFieldOfStudy({
+          id: "62e0de0f5a25e2cd79eec494",
+          newValue: data.fieldofstudy.value,
+        })
+      );
+    }
+    const sendData = {
+      email: data.email,
+      password: data.password,
+      name: data.name,
+      gender: data.gender,
+      username: data.username,
+      dicipline: data.dicipline.value,
+      fieldofstudy: data.fieldofstudy.value,
+      institute: data.institute.value,
+    };
+    console.log(sendData);
+    dispatch(register(sendData)).then(() => navigate("/"));
   };
   if (formSetup > 2) {
     return undefined;

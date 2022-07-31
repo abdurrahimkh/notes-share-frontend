@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 const Credentials = ({
   setFormSetup,
   register,
@@ -7,7 +8,9 @@ const Credentials = ({
 }) => {
   const password = watch("password");
   return (
-    <div
+    <motion.div
+    initial={{ x: "50%" }}
+      animate={{ x: 0 }}
       className={formSetup === 0 ? "block" : "hidden"}
       onSubmit={() => setFormSetup(cur => cur + 1)}
     >
@@ -66,8 +69,7 @@ const Credentials = ({
             type="password"
             {...register("cpassword", {
               required: "confirm password is required",
-              validate: value =>
-                value === password || "The passwords do not match",
+              validate: value => value === password || "passwords do not match",
             })}
           />
           {formState.errors.cpassword && (
@@ -77,7 +79,7 @@ const Credentials = ({
           )}
         </label>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -1,20 +1,40 @@
-const SearchSection = () => {
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+const SearchSection = ({ data }) => {
+  const [filteredData, setFilteredData] = useState([]);
+  const handleChange = e => {
+    const searchWord = e.target.value;
+    const newFilter = data.filter(value => {
+      return value.title.toLowerCase().includes(searchWord.toLowerCase());
+    });
+    if (searchWord === "") {
+      setFilteredData([]);
+    } else {
+      setFilteredData(newFilter);
+    }
+  };
   return (
-    <div className="flex h-[70vh] justify-center items-center flex-col">
-      <h1 className="text-3xl md:text-7xl font-bold text-indigo-600">
+    <div className="flex pt-28 pb-10 justify-center items-center flex-col">
+      <motion.div
+        initial={{ y: "-100%" }}
+        animate={{ y: 0 }}
+        className="text-3xl md:text-7xl font-bold text-indigo-600"
+      >
         Notes Share
-      </h1>
+      </motion.div>
       <p className="text-md md:text-2xl">
         Study Notes Written by best students
       </p>
-      <div className="flex items-center ">
+      <div className="flex items-center  relative">
         <input
-          className="mt-3 md:w-[40rem] h-12 rounded-md px-2 "
+          className="mt-3 md:w-[40rem] h-12 rounded-md px-2 focus:outline-none focus:shadow-xl   "
           placeholder="Search Notes"
+          onChange={handleChange}
         />
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="h-7 mt-2 w-7 "
+          className="h-7 mt-2 w-7  absolute right-4 "
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -27,9 +47,41 @@ const SearchSection = () => {
           />
         </svg>
       </div>
-      <p className="text-slate-500 md:mr-72 mt-2 hidden md:block">
-        create account and upload notes for other students
-      </p>
+      {filteredData.length !== 0 && (
+        <motion.div
+          initial={{ y: "30%" }}
+          animate={{ y: 0 }}
+          className="border w-96 mt-1 rounded-md bg-white p-2"
+        >
+          {filteredData.slice(0, 5).map((doc, key) => {
+            return (
+              <ul key={key} className="ml-3 ">
+                <li className="py-2 hover:bg-gray-300 hover:rounded-md">
+                  <a href={doc.url} target="_blank">
+                    <p className="ml-1">{doc.title}</p>
+                  </a>
+                </li>
+              </ul>
+            );
+          })}
+        </motion.div>
+      )}
+      <div className="flex gap-10 mt-8">
+        <Link
+          to="/dashboard"
+          className="bg-white font-bold px-5 py-2 md:px-10  md:py-3 rounded-lg  hover:bg-blue-700 hover:text-white"
+        >
+          <i className="bi bi-card-text mr-2"></i>
+          Explore
+        </Link>
+        <Link
+          to="/document/upload"
+          className="bg-white  font-bold px-5 py-2 md:px-10  md:py-3 rounded-lg  hover:bg-blue-700 hover:text-white"
+        >
+          <i className="bi bi-file-earmark-arrow-up mr-2"></i>
+          Upload
+        </Link>
+      </div>
     </div>
   );
 };

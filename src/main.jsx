@@ -5,14 +5,26 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import "bootstrap-icons/font/bootstrap-icons.css";
+import Test from "./Test";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Provider store={store}>
-        <App />
-      </Provider>
+      <GoogleOAuthProvider clientId="159965697116-t8suhldq94ikeggogj0bevifgqbtcvjj.apps.googleusercontent.com">
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </GoogleOAuthProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );
+
+// ReactDOM.render(
+//   <React.StrictMode>
+//     <Test />
+//   </React.StrictMode>,
+//   document.getElementById("root")
+// );
