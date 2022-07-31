@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import Test from "./Test";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -20,3 +21,10 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById("root")
 );
+
+// ReactDOM.render(
+//   <React.StrictMode>
+//     <Test />
+//   </React.StrictMode>,
+//   document.getElementById("root")
+// );

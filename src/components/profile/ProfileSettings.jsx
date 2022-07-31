@@ -1,7 +1,7 @@
 import React from "react";
 
 const ProfileSettings = () => {
-  return <div>ProfileSettings</div>;
+  return <div className="text-2xl">Under Construction</div>;
 };
 
 export default ProfileSettings;

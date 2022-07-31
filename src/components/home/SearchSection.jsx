@@ -68,7 +68,7 @@ const SearchSection = ({ data }) => {
       )}
       <div className="flex gap-10 mt-8">
         <Link
-          to="/dashboard1"
+          to="/dashboard"
           className="bg-white font-bold px-5 py-2 md:px-10  md:py-3 rounded-lg  hover:bg-blue-700 hover:text-white"
         >
           <i className="bi bi-card-text mr-2"></i>

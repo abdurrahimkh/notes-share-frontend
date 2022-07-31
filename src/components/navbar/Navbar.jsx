@@ -42,15 +42,28 @@ const Navbar = () => {
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <NavLink to="/">Home</NavLink>
-              </li>
-              <li>
-                <NavLink to="/user/login">
-                  <i className="bi bi-box-arrow-in-right"></i>Login
+                <NavLink to="/">
+                  <i className="bi bi-house"></i>Home
                 </NavLink>
               </li>
+              {!user && (
+                <>
+                  <li>
+                    <NavLink to="/user/login">
+                      <i className="bi bi-box-arrow-in-right"></i>Login
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/user/register">
+                      <i className="bi bi-person-plus"></i>SignUp
+                    </NavLink>
+                  </li>{" "}
+                </>
+              )}
               <li>
-                <NavLink to="/user/register">SignUp</NavLink>
+                <NavLink to="/contact-us">
+                  <i className="bi bi-envelope"></i>Contact Us
+                </NavLink>
               </li>
             </ul>
           </div>
@@ -64,7 +77,7 @@ const Navbar = () => {
               <li>
                 <NavLink
                   to="/"
-                  className=" px-5 rounded-lg py-2  font-bold text-sm hover:bg-blue-600 hover:text-white"
+                  className=" px-5 border rounded-lg py-2  font-bold text-sm hover:bg-blue-600 hover:text-white"
                 >
                   <i className="bi bi-house"></i>
                   Home
@@ -73,7 +86,7 @@ const Navbar = () => {
               <li>
                 <NavLink
                   to="/user/login"
-                  className="px-5 rounded-lg py-2  font-bold text-sm hover:bg-blue-600 hover:text-white"
+                  className="px-5 border rounded-lg py-2  font-bold text-sm hover:bg-blue-600 hover:text-white"
                 >
                   <i className="bi bi-box-arrow-in-right "></i>
                   Login
@@ -82,7 +95,7 @@ const Navbar = () => {
               <li>
                 <NavLink
                   to="/user/register"
-                  className="px-5 rounded-lg py-2  font-bold text-sm hover:bg-blue-600 hover:text-white"
+                  className="px-5 border rounded-lg py-2  font-bold text-sm hover:bg-blue-600 hover:text-white"
                 >
                   <i className="bi bi-person-plus"></i>
                   Signup
@@ -91,7 +104,7 @@ const Navbar = () => {
               <li>
                 <NavLink
                   to="/contact-us"
-                  className="px-5 rounded-lg py-2  font-bold text-sm hover:bg-blue-600 hover:text-white"
+                  className="px-5 border rounded-lg py-2  font-bold text-sm hover:bg-blue-600 hover:text-white"
                 >
                   <i className="bi bi-envelope"></i>
                   Contact Us

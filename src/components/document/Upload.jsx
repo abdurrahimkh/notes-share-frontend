@@ -14,7 +14,6 @@ const Upload = () => {
   const { isLoading, values } = useSelector(state => state.documents);
   const { fieldofstudy } = useSelector(state => state.auth.user);
   const subjects = values[2]?.subjects;
-  console.log(subjects);
 
   const {
     register,
@@ -87,17 +86,6 @@ const Upload = () => {
                   <CreatableSelect options={subjects} {...field} />
                 )}
               />
-              {/* <input
-                className="block border rounded p-2 w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray"
-                {...register("subject", {
-                  required: "You must specify a subject",
-                })}
-              />
-              {errors.subject && (
-                <p className="text-red-600 text-sm mt-2">
-                  {errors.subject.message}
-                </p>
-              )} */}
             </label>
             <label className="block text-sm mt-1">
               <span className="text-gray-700 dark:text-gray-400 font-bold">

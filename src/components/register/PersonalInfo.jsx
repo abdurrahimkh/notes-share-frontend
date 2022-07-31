@@ -20,6 +20,10 @@ const PersonalInfo = ({ register, formState, formSetup }) => {
                 value: true,
                 message: "name is required",
               },
+              pattern: {
+                value: /^[a-zA-Z]/,
+                message: "Invalid Name",
+              },
             })}
           />
           {formState.errors.name && (

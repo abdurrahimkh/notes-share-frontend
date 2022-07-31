@@ -1,12 +1,9 @@
-import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useUserProfileQuery } from "../../redux/features/document/documentApi";
-import UserDocuments from "./UserDocuments";
 import { iconRender } from "../dashboard/IconRender";
 
 const Profile = () => {
   const { id } = useParams();
-  // const id = useSelector(state => state.auth.user._id);
   const { data, isFetching } = useUserProfileQuery(id);
   console.log(data);
   return (
@@ -27,7 +24,7 @@ const Profile = () => {
                   className="w-full object-cover object-center rounded-lg shadow-md"
                 />
 
-                <div className="relative px-4 -mt-16  ">
+                <div className="relative px-4 -mt-8  ">
                   <div className="bg-white p-6 rounded-lg shadow-lg">
                     <div className="flex items-baseline">
                       <span className="bg-teal-200 text-teal-800 text-xs px-2 inline-block rounded-full  uppercase font-semibold tracking-wide">
@@ -105,7 +102,7 @@ const Profile = () => {
                 </span>
                 <hr />
                 <div className="flex gap-5 p-2 flex-wrap">
-                  {data?.length > 0 ? (
+                  {data?.documents.length > 0 ? (
                     data?.documents.map(doc => (
                       <div
                         key={doc._id}

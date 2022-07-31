@@ -27,6 +27,11 @@ const AcademicInfo = ({
     { label: "Phd", value: "phd" },
   ];
 
+  const loadOptions = () => {
+    return fetch(`http://localhost:8000/api/documents/values`)
+      .then(res => res.json())
+      .then(result => result[0].universities);
+  };
   return (
     <motion.div
       initial={{ x: "50%" }}
