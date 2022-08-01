@@ -5,7 +5,7 @@ import { toast } from "react-hot-toast";
 export const register = createAsyncThunk("auth/register", async userData => {
   try {
     const res = await axios.post(
-      "https://notes-share-fyp.herokuapp.com/api/users/register",
+      "http://localhost:8000/api/users/register",
       userData
     );
     if (res.data) {
@@ -22,7 +22,7 @@ export const register = createAsyncThunk("auth/register", async userData => {
 export const login = createAsyncThunk("auth/login", async userData => {
   try {
     const res = await axios.post(
-      "https://notes-share-fyp.herokuapp.com/api/users/login",
+      "http://localhost:8000/api/users/login",
       userData
     );
     console.log(res);
@@ -47,7 +47,7 @@ export const forgetPassword = createAsyncThunk(
   async data => {
     try {
       const res = await axios.post(
-        "https://notes-share-fyp.herokuapp.com/api/users/forgetpassword",
+        "http://localhost:8000/api/users/forgetpassword",
         data
       );
       if (res.data) {
@@ -68,7 +68,7 @@ export const forgetPassword = createAsyncThunk(
 export const newPassoword = createAsyncThunk("auth/newpassword", async data => {
   try {
     const res = await axios.post(
-      "https://notes-share-fyp.herokuapp.com/api/users/newpassword",
+      "http://localhost:8000/api/users/newpassword",
       data
     );
     if (res.data) {
@@ -90,7 +90,7 @@ export const googleLogin = createAsyncThunk("auth/google", async tokenId => {
   try {
     const res = axios({
       method: "POST",
-      url: "https://notes-share-fyp.herokuapp.com/api/users/google",
+      url: "http://localhost:8000/api/users/google",
       data: { tokenId },
     });
     const result = await res;
@@ -116,7 +116,7 @@ export const completeRegistration = createAsyncThunk(
     try {
       const res = axios({
         method: "POST",
-        url: "https://notes-share-fyp.herokuapp.com/api/users/google/complete",
+        url: "http://localhost:8000/api/users/google/complete",
         data,
       });
       const result = await res;
@@ -141,7 +141,7 @@ export const completeRegistration = createAsyncThunk(
 export const adminlogin = createAsyncThunk("auth/login", async userData => {
   try {
     const res = await axios.post(
-      "https://notes-share-fyp.herokuapp.com/api/admin/login",
+      "http://localhost:8000/api/admin/login",
       userData
     );
     if (res.data) {

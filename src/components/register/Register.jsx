@@ -23,7 +23,7 @@ const Register = () => {
 
   // useEffect(() => {
   //   const fetchValues = async () => {
-  //     const res = await fetch("https://notes-share-fyp.herokuapp.com/api/documents/values", {
+  //     const res = await fetch("http://localhost:8000/api/documents/values", {
   //       method: "get",
   //     });
   //     const result = await res.json();

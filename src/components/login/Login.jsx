@@ -17,11 +17,11 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const submitLogin = data => {
-    dispatch(login(data)).then(res => res.payload && navigate("/"));
+    dispatch(login(data)).then(res => res.payload && navigate("/home"));
   };
   useEffect(() => {
     if (isActive) {
-      navigate("/");
+      navigate("/home");
     }
   }, [isActive]);
 

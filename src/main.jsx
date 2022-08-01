@@ -8,6 +8,7 @@ import { store } from "./redux/store";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import Test from "./Test";
+import FrontPage from "./components/home/FrontPage";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -24,7 +25,7 @@ ReactDOM.render(
 
 // ReactDOM.render(
 //   <React.StrictMode>
-//     <Test />
+//     <FrontPage />
 //   </React.StrictMode>,
 //   document.getElementById("root")
 // );

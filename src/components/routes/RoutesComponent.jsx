@@ -26,7 +26,7 @@ const RoutesComponent = () => {
       <Routes>
         <Route path="*" element={<NotFound />} />
         <Route element={<Layout />}>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<FrontPage />} />
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/user/step" element={<Register />} />
           <Route path="/user/login" element={<Login />} />
@@ -34,6 +34,7 @@ const RoutesComponent = () => {
           <Route path="/forgetpassword" element={<ForgetPassword />} />
           <Route path="/forgetpassword/:token" element={<NewPassword />} />
           <Route path="/dashboard/user/profile/:id" element={<Profile />} />
+          <Route path="/home/user/profile/:id" element={<Profile />} />
           <Route path="/fpage" element={<FrontPage />} />
           <Route
             path="/user/complete/registration"
@@ -41,6 +42,7 @@ const RoutesComponent = () => {
           />
 
           <Route element={<ProtectedRoutes />}>
+            <Route path="/home" element={<Home />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/dashboard1" element={<Dashboard1 />} />
             <Route path="/document/upload" element={<Upload />} />

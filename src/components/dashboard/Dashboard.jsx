@@ -6,7 +6,7 @@ import {
 } from "../../redux/features/document/documentAction";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { iconRender } from "./IconRender";
+import { iconRender } from "../../helpers/IconRender";
 import Select from "react-select";
 import { useState } from "react";
 import { getSameValKey, sortData } from "../../helpers/Dashboard";
@@ -34,7 +34,7 @@ const Dashboard = () => {
 
   const handleFieldChange = selectedOption => {
     fetch(
-      `https://notes-share-fyp.herokuapp.com/api/documents/search?field=${selectedOption.value}`
+      `http://localhost:8000/api/documents/search?field=${selectedOption.value}`
     )
       .then(res => res.json())
       .then(result => setApproved(result));
@@ -42,7 +42,7 @@ const Dashboard = () => {
 
   const handleSubjectChange = selectedOption => {
     fetch(
-      `https://notes-share-fyp.herokuapp.com/api/documents/search?subject=${selectedOption.value}`
+      `http://localhost:8000/api/documents/search?subject=${selectedOption.value}`
     )
       .then(res => res.json())
       .then(result => setApproved(result));

@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useUserProfileQuery } from "../../redux/features/document/documentApi";
-import { iconRender } from "../dashboard/IconRender";
+import { iconRender } from "../../helpers/IconRender";
 
 const Profile = () => {
   const { id } = useParams();

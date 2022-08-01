@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+
 const SearchSection = ({ data }) => {
   const [filteredData, setFilteredData] = useState([]);
   const handleChange = e => {
@@ -14,22 +15,21 @@ const SearchSection = ({ data }) => {
       setFilteredData(newFilter);
     }
   };
+
   return (
-    <div className="flex pt-28 pb-10 justify-center items-center flex-col">
+    <div className="flex pt-16 pb-10 justify-center items-center flex-col">
       <motion.div
         initial={{ y: "-100%" }}
         animate={{ y: 0 }}
-        className="text-3xl md:text-7xl font-bold text-indigo-600"
+        className="text-3xl  md:text-6xl font-bold "
       >
-        Notes Share
+        SEARCH NOTES
       </motion.div>
-      <p className="text-md md:text-2xl">
-        Study Notes Written by best students
-      </p>
+
       <div className="flex items-center  relative">
         <input
           className="mt-3 md:w-[40rem] h-12 rounded-md px-2 focus:outline-none focus:shadow-xl   "
-          placeholder="Search Notes"
+          placeholder="Type..."
           onChange={handleChange}
         />
         <svg
