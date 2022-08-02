@@ -7,6 +7,7 @@ import {
   adminlogin,
   newPassoword,
   forgetPassword,
+  updatePicture,
 } from "./authAction";
 
 const user = JSON.parse(localStorage.getItem("user"));
@@ -98,22 +99,30 @@ const authSlice = createSlice({
     [forgetPassword.pending]: state => {
       state.isLoading = true;
     },
-    [forgetPassword.fulfilled]: (state) => {
-      state.isLoading = false  
+    [forgetPassword.fulfilled]: state => {
+      state.isLoading = false;
     },
     [forgetPassword.rejected]: state => {
       state.isLoading = false;
-     
     },
     [newPassoword.pending]: state => {
       state.isLoading = true;
     },
-    [newPassoword.fulfilled]: (state) => {
-      state.isLoading = false  
+    [newPassoword.fulfilled]: state => {
+      state.isLoading = false;
     },
     [newPassoword.rejected]: state => {
       state.isLoading = false;
-     
+    },
+    [updatePicture.pending]: state => {
+      state.isLoading = true;
+    },
+    [updatePicture.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.user.pic = action.payload;
+    },
+    [updatePicture.rejected]: state => {
+      state.isLoading = false;
     },
   },
 });

@@ -4,7 +4,9 @@ import { iconRender } from "../../helpers/IconRender";
 
 const Profile = () => {
   const { id } = useParams();
-  const { data, isFetching } = useUserProfileQuery(id);
+  const { data, isFetching } = useUserProfileQuery(id, {
+    refetchOnMountOrArgChange: true,
+  });
   console.log(data);
   return (
     <>

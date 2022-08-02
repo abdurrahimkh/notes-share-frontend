@@ -16,7 +16,7 @@ const RecentNotes = ({ data }) => {
               alt="file_icon"
             />
             <div className="p-6 flex flex-col justify-start">
-              <span className="text-gray-700 text-sm bg-yellow-50 rounded-md px-2 font-bold mb-4">
+              <span className="text-gray-700 text-sm bg-yellow-100 rounded-md px-2 font-bold mb-4">
                 {doc.subject}
               </span>
               <h5
@@ -25,11 +25,13 @@ const RecentNotes = ({ data }) => {
               >
                 {doc.title}
               </h5>
+
               <Link
-                className="hover:font-bold mb-1"
+                className="hover:font-bold mb-1 flex items-center gap-2"
                 to={`user/profile/${doc.postedBy._id}`}
               >
-                {doc.postedBy.name}
+                <i className="bi bi-person-circle"></i>
+                <p className="text-gray-600 ">{doc.postedBy.name}</p>
               </Link>
               <div className="flex items-center gap-2">
                 <i className="bi bi-calendar"></i>

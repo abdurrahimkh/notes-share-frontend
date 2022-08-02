@@ -6,4 +6,7 @@
   .btn-def {
     @apply block w-full rounded-md px-4 py-2 cursor-pointer  text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-blue-600 border border-transparent  active:bg-blue-600 hover:bg-blue-700;
   }
+  .input-update {
+    @apply block border rounded p-2 w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700  focus:outline-blue-400  dark:text-gray-300;
+  }
 }

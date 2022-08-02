@@ -159,3 +159,83 @@ export const adminlogin = createAsyncThunk("auth/login", async userData => {
     toast.error(error.message);
   }
 });
+
+export const updatePicture = createAsyncThunk(
+  "user/update-pic",
+  async (pic, { getState }) => {
+    const _id = getState().auth.user._id;
+    const data = new FormData();
+    data.append("file", pic);
+    data.append("upload_preset", "fyp-project");
+    data.append("cloud_name", "fypproject07");
+    try {
+      if (document) {
+        const res = await axios({
+          method: "post",
+          url: "https://api.cloudinary.com/v1_1/fypproject07/image/upload",
+          data,
+        });
+        const result = await res.data;
+        const picURL = result.secure_url;
+        console.log(picURL);
+        if (picURL) {
+          const res1 = await fetch(
+            `http://localhost:8000/api/users/profile/picupdate/${_id}`,
+            {
+              method: "put",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                pic: picURL,
+              }),
+            }
+          );
+          const resp2 = await res1.json();
+          console.log(resp2);
+          if (resp2.pic) {
+            toast.success("Update Successfull", {
+              duration: 3000,
+            });
+            return resp2.pic;
+          } else if (resp2.error) {
+            toast.error(resp2.error);
+          }
+        }
+      } else {
+        toast.error("Error");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+export const updateInfo = createAsyncThunk(
+  "user/update-profile",
+  async (updateInfo, { getState }) => {
+    const token = getState().auth.user.token;
+    console.log(updateInfo);
+    console.log(token);
+    try {
+      const res = await fetch(
+        "http://localhost:8000/api/users/profile/update",
+        {
+          method: "put",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          body: { name: "Yahya Khan" },
+        }
+      );
+      const result = await res.json();
+      console.log(result);
+
+      if (result) {
+        return result;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);

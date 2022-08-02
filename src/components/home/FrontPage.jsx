@@ -23,9 +23,9 @@ const FrontPage = () => {
         </div>
       </div> */}
       <div className="bg-gradient-to-b from-gray-100 to to-blue-300">
-        <div class="container px-8 md:px-12 xl:max-w-5xl mx-auto lg:px-7 xl:px-0">
-          <div class="md:flex md:gap-12 pt-40 lg:py-40">
-            <div class="md:w-6/12">
+        <div className="container px-8 md:px-12 xl:max-w-5xl mx-auto lg:px-7 xl:px-0">
+          <div className="md:flex md:gap-12 pt-40 lg:py-40">
+            <div className="md:w-6/12">
               <motion.div
                 initial={{ y: "-100%" }}
                 animate={{ y: 0 }}
@@ -36,7 +36,7 @@ const FrontPage = () => {
               <p className="text-md md:text-2xl">
                 Study Notes Written by best students
               </p>
-              <div class="md:-mr-32">
+              <div className="md:-mr-32">
                 <Link
                   to="/home"
                   className="btn btn-primary mt-5 transition ease-in-out delay-150 bg-blue-700 border-none hover:-translate-y-1 hover:scale-110 hover:bg-green-500 duration-300"
@@ -45,7 +45,7 @@ const FrontPage = () => {
                 </Link>
               </div>
             </div>
-            <div class="mt-12 h-56 mr-0 md:-mr-24 overflow-hidden sm:h-72 md:h-auto md:mt-0 lg:mr-0 lg:-mt-12 md:w-7/12">
+            <div className="mt-12 h-56 mr-0 md:-mr-24 overflow-hidden sm:h-72 md:h-auto md:mt-0 lg:mr-0 lg:-mt-12 md:w-7/12">
               <img src={DocumentsImage} alt="" />
             </div>
           </div>

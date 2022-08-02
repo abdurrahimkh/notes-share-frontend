@@ -28,7 +28,7 @@ const SearchSection = ({ data }) => {
 
       <div className="flex items-center  relative">
         <input
-          className="mt-3 md:w-[40rem] h-12 rounded-md px-2 focus:outline-none focus:shadow-xl   "
+          className="mt-3 md:w-[40rem] border h-12 rounded-md px-2 focus:outline-none focus:shadow-xl   "
           placeholder="Type..."
           onChange={handleChange}
         />
@@ -69,14 +69,14 @@ const SearchSection = ({ data }) => {
       <div className="flex gap-10 mt-8">
         <Link
           to="/dashboard"
-          className="bg-white font-bold px-5 py-2 md:px-10  md:py-3 rounded-lg  hover:bg-blue-700 hover:text-white"
+          className="bg-white border font-bold px-5 py-2 md:px-10  md:py-3 rounded-lg  hover:bg-blue-700 hover:text-white"
         >
           <i className="bi bi-card-text mr-2"></i>
           Explore
         </Link>
         <Link
           to="/document/upload"
-          className="bg-white  font-bold px-5 py-2 md:px-10  md:py-3 rounded-lg  hover:bg-blue-700 hover:text-white"
+          className="bg-white border  font-bold px-5 py-2 md:px-10  md:py-3 rounded-lg  hover:bg-blue-700 hover:text-white"
         >
           <i className="bi bi-file-earmark-arrow-up mr-2"></i>
           Upload

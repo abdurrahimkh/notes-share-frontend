@@ -27,11 +27,6 @@ const AcademicInfo = ({
     { label: "Phd", value: "phd" },
   ];
 
-  const loadOptions = () => {
-    return fetch(`http://localhost:8000/api/documents/values`)
-      .then(res => res.json())
-      .then(result => result[0].universities);
-  };
   return (
     <motion.div
       initial={{ x: "50%" }}
@@ -65,7 +60,8 @@ const AcademicInfo = ({
               <CreatableSelect options={dicipline} {...field} />
             )}
           />
-          {/* <select
+        </label>
+        {/* <select
             className="  w-full p-2  text-gray-700 bg-white border border-solid  rounded  focus:text-gray-700 focus:bg-white focus:border-purple-400 focus:outline-none"
             aria-label="Select Dicipline"
             {...register("dicipline", {
@@ -81,7 +77,6 @@ const AcademicInfo = ({
             <option value="ms">Master</option>
             <option value="phd">PhD</option>
           </select> */}
-        </label>
         <label className="block mt-4 text-sm">
           <span className="text-gray-700 dark:text-gray-400">
             Field Of Study
