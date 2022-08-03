@@ -8,10 +8,10 @@ const RecentNotes = ({ data }) => {
     <div className="flex flex-col gap-2">
       {data?.slice(0, 5).map((doc, index) => (
         <div key={index} className="flex justify-center ">
-          <div className="flex flex-col md:flex-row md:min-w-[40rem] md:max-h-48 rounded-lg bg-white shadow-lg">
+          <div className="flex items-center w-80 flex-col md:flex-row md:min-w-[40rem] md:max-h-48 rounded-lg bg-white shadow-lg">
             <img
               onClick={() => window.open(doc.url, "_blank")}
-              className=" md:w-24 md:h-24 md:mt-7 md:ml-10 hover:cursor-pointer"
+              className="h-10 w-10 mt-2 md:w-24 md:h-24 md:mt-7 md:ml-10 hover:cursor-pointer"
               src={iconRender(doc.filetype)}
               alt="file_icon"
             />

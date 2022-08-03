@@ -20,7 +20,7 @@ const ProfilePasswordChange = ({
     }
   };
   return (
-    <div className="p-1 mt-2 md:p-5 md:w-96 border rounded-md">
+    <div className="p-1 mt-4 md:mt-0 md:p-5 md:w-96 border rounded-md">
       <h1 className="mb-4 text-xl font-light  tracking-widest text-gray-700 dark:text-gray-200 ">
         Password Information
       </h1>

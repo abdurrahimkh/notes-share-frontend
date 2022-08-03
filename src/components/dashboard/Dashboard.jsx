@@ -52,13 +52,13 @@ const Dashboard = () => {
     <div className="p-3">
       <div className="flex gap-2">
         <Select
-          className="w-48"
+          className="w:44 md:w-48"
           placeholder="Filter By Field"
           options={fieldofstudyOptions}
           onChange={handleFieldChange}
         />
         <Select
-          className="w-48"
+          className="w:44 md:w-48"
           placeholder="Filter By Subject"
           options={subjectsOptions}
           onChange={handleSubjectChange}

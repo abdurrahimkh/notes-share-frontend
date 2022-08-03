@@ -31,7 +31,7 @@ const ProfileSettingsInput = ({ data }) => {
 
   return (
     <form onSubmit={handleSubmit(submitChanges)}>
-      <div className="border rounded-md">
+      <div className="mt-4 md:mt-0 border rounded-md">
         <div className="flex flex-col md:flex-row gap-1 ">
           <div className="p-1 md:p-5 md:w-96 ">
             <h1 className="mb-4 font-light text-xl tracking-widest  text-gray-700 dark:text-gray-200">
@@ -107,7 +107,7 @@ const ProfileSettingsInput = ({ data }) => {
               )}
             </label>
           </div>
-          <div className="p-1 md:p-5 md:w-96">
+          <div className="p-1 mt-4 md:mt-0  md:p-5 md:w-96">
             <h1 className="mb-4 font-light text-xl tracking-widest  text-gray-700 dark:text-gray-200">
               Academic Information
             </h1>
