@@ -22,7 +22,7 @@ const FrontPage = () => {
           </button>
         </div>
       </div> */}
-      <div className="bg-gradient-to-b from-gray-100 to to-blue-300">
+      <div className="h-screen bg-gradient-to-b from-gray-100 to to-blue-300">
         <div className="container px-8 md:px-12 xl:max-w-5xl mx-auto lg:px-7 xl:px-0">
           <div className="md:flex md:gap-12 pt-40 lg:py-40">
             <div className="md:w-6/12">

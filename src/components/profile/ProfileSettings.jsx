@@ -11,7 +11,7 @@ const ProfileSettings = () => {
 
   return (
     <div className="w-screen h-screen">
-      <div className="container pl-28 pt-10 flex ">
+      <div className="container px-4 md:pl-28 pt-3 md:pt-10 md:flex ">
         <ProfileSettingsPic data={data} />
         <div className="divider divider-horizontal"></div>
         <ProfileSettingsInput data={data} />

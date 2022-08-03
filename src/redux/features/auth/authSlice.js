@@ -8,6 +8,8 @@ import {
   newPassoword,
   forgetPassword,
   updatePicture,
+  updateInfo,
+  updatePassword,
 } from "./authAction";
 
 const user = JSON.parse(localStorage.getItem("user"));
@@ -123,6 +125,24 @@ const authSlice = createSlice({
     },
     [updatePicture.rejected]: state => {
       state.isLoading = false;
+    },
+    [updateInfo.pending]: state => {
+      state.isInfoLoading = true;
+    },
+    [updateInfo.fulfilled]: state => {
+      state.isInfoLoading = false;
+    },
+    [updateInfo.rejected]: state => {
+      state.isInfoLoading = false;
+    },
+    [updatePassword.pending]: state => {
+      state.isPasswordLoading = true;
+    },
+    [updatePassword.fulfilled]: state => {
+      state.isPasswordLoading = false;
+    },
+    [updatePassword.rejected]: state => {
+      state.isPasswordLoading = false;
     },
   },
 });

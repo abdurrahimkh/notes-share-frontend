@@ -5,7 +5,7 @@ import { toast } from "react-hot-toast";
 export const register = createAsyncThunk("auth/register", async userData => {
   try {
     const res = await axios.post(
-      "http://localhost:8000/api/users/register",
+      "https://notes-share-fyp.herokuapp.com/api/users/register",
       userData
     );
     if (res.data) {
@@ -22,7 +22,7 @@ export const register = createAsyncThunk("auth/register", async userData => {
 export const login = createAsyncThunk("auth/login", async userData => {
   try {
     const res = await axios.post(
-      "http://localhost:8000/api/users/login",
+      "https://notes-share-fyp.herokuapp.com/api/users/login",
       userData
     );
     console.log(res);
@@ -47,7 +47,7 @@ export const forgetPassword = createAsyncThunk(
   async data => {
     try {
       const res = await axios.post(
-        "http://localhost:8000/api/users/forgetpassword",
+        "https://notes-share-fyp.herokuapp.com/api/users/forgetpassword",
         data
       );
       if (res.data) {
@@ -68,7 +68,7 @@ export const forgetPassword = createAsyncThunk(
 export const newPassoword = createAsyncThunk("auth/newpassword", async data => {
   try {
     const res = await axios.post(
-      "http://localhost:8000/api/users/newpassword",
+      "https://notes-share-fyp.herokuapp.com/api/users/newpassword",
       data
     );
     if (res.data) {
@@ -90,7 +90,7 @@ export const googleLogin = createAsyncThunk("auth/google", async tokenId => {
   try {
     const res = axios({
       method: "POST",
-      url: "http://localhost:8000/api/users/google",
+      url: "https://notes-share-fyp.herokuapp.com/api/users/google",
       data: { tokenId },
     });
     const result = await res;
@@ -116,7 +116,7 @@ export const completeRegistration = createAsyncThunk(
     try {
       const res = axios({
         method: "POST",
-        url: "http://localhost:8000/api/users/google/complete",
+        url: "https://notes-share-fyp.herokuapp.com/api/users/google/complete",
         data,
       });
       const result = await res;
@@ -141,7 +141,7 @@ export const completeRegistration = createAsyncThunk(
 export const adminlogin = createAsyncThunk("auth/login", async userData => {
   try {
     const res = await axios.post(
-      "http://localhost:8000/api/admin/login",
+      "https://notes-share-fyp.herokuapp.com/api/admin/login",
       userData
     );
     if (res.data) {
@@ -180,7 +180,7 @@ export const updatePicture = createAsyncThunk(
         console.log(picURL);
         if (picURL) {
           const res1 = await fetch(
-            `http://localhost:8000/api/users/profile/picupdate/${_id}`,
+            `https://notes-share-fyp.herokuapp.com/api/users/profile/picupdate/${_id}`,
             {
               method: "put",
               headers: {
@@ -218,24 +218,51 @@ export const updateInfo = createAsyncThunk(
     console.log(updateInfo);
     console.log(token);
     try {
-      const res = await fetch(
-        "http://localhost:8000/api/users/profile/update",
+      const res = await axios.put(
+        "https://notes-share-fyp.herokuapp.com/api/users/profile/update",
+        updateInfo,
         {
-          method: "put",
           headers: {
             Authorization: `Bearer ${token}`,
           },
-          body: { name: "Yahya Khan" },
         }
       );
-      const result = await res.json();
-      console.log(result);
-
-      if (result) {
-        return result;
+      if (res.data) {
+        console.log(res.data);
+        toast.success("Update Sucessfully");
       }
     } catch (error) {
       console.log(error);
+      toast.error(error.message);
+    }
+  }
+);
+
+export const updatePassword = createAsyncThunk(
+  "user/update-password",
+  async (updateInfo, { getState }) => {
+    const token = getState().auth.user.token;
+    console.log(updateInfo);
+    console.log(token);
+    try {
+      const res = await axios.put(
+        "https://notes-share-fyp.herokuapp.com/api/users/profile/passwordupdate",
+        updateInfo,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(res.data);
+      if (res.data.message) {
+        toast.success(res.data.message);
+      } else {
+        toast.error(res.data.error);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
     }
   }
 );

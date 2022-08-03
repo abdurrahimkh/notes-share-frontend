@@ -7,21 +7,16 @@ import { motion } from "framer-motion";
 const EmailRegister = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const isActive = useSelector(state => state.auth.isActive);
-  // useEffect(() => {
-  //   if (isActive) {
-  //     navigate("/");
-  //   }
-  // }, [isActive]);
+
   return (
-    <div className="flex items-center min-h-[90vh] p-6 bg-gradient-to-b from-gray-50 to to-blue-200 dark:bg-gray-900">
+    <div className="flex  md:mt-0 md:items-center  min-h-screen p-6 bg-gradient-to-b from-gray-50 to to-blue-200 dark:bg-gray-900">
       <motion.div
         initial={{ x: "50%" }}
         animate={{ x: 0 }}
-        className="flex-1 h-full max-w-md mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800"
+        className="flex-1 h-full mt-44 md:mt-0 max-w-md mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800"
       >
-        <div className="p-6">
-          <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200 mx-36">
+        <div className=" p-6">
+          <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200 mx-36 whitespace-nowrap">
             Sign up
           </h1>
           {/* <button className="flex items-center space-x-1 justify-center w-full px-4 py-2 text-sm font-medium leading-5 text-gray-700 transition-colors duration-150 border border-gray-300 rounded-lg dark:text-gray-400 active:bg-transparent hover:border-gray-500 focus:border-gray-500 active:text-gray-500 focus:outline-none focus:shadow-outline-gray">
@@ -68,7 +63,7 @@ const EmailRegister = () => {
           </button> */}
           <GoogleLogin
             text="signup_with"
-            width="400"
+            width="290"
             onSuccess={credentialResponse => {
               dispatch(googleLogin(credentialResponse.credential)).then(res =>
                 !res.payload.googlenew
@@ -80,7 +75,6 @@ const EmailRegister = () => {
               console.log("Login Failed");
             }}
           />
-
           <hr className="my-4 " />
           <button
             onClick={() => navigate("/user/step")}

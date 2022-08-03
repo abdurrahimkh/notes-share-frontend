@@ -68,7 +68,7 @@ const Profile = () => {
                 INFORMATION
               </span>
               <div className="mt-2  rounded-md md:border  md:shadow-md ">
-                <table className="table w-full border  shadow-md font-mono  ">
+                <table className="table w-full border  shadow-md   ">
                   <tbody>
                     <tr>
                       <th>Name</th>

@@ -15,7 +15,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="   bg-gradient-to-b from-gray-100 to to-blue-300 ">
+    <div className="bg-gradient-to-b from-gray-100 to to-blue-300 ">
       <SearchSection data={data} isFetching={isFetching} />
       <div className="divider mx-40 text-xl font-bold "> Recent Documents</div>
       <RecentNotes data={data} />
