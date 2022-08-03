@@ -13,7 +13,7 @@ const EmailRegister = () => {
       <motion.div
         initial={{ x: "50%" }}
         animate={{ x: 0 }}
-        className="flex-1 h-full mt-44 md:mt-0 max-w-md mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800"
+        className="flex-1 h-full mt-32 md:mt-0 max-w-md mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800"
       >
         <div className=" p-6">
           <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200 mx-36 whitespace-nowrap">
@@ -63,7 +63,7 @@ const EmailRegister = () => {
           </button> */}
           <GoogleLogin
             text="signup_with"
-            width="290"
+            width="200"
             onSuccess={credentialResponse => {
               dispatch(googleLogin(credentialResponse.credential)).then(res =>
                 !res.payload.googlenew
