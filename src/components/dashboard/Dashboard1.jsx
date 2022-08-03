@@ -53,7 +53,7 @@ const Dashboard = () => {
 
   const handleFieldChange = selectedOption => {
     fetch(
-      `http://localhost:8000/api/documents/search?field=${selectedOption.value.toLowerCase()}`
+      `https://notes-share-fyp.herokuapp.com/api/documents/search?field=${selectedOption.value.toLowerCase()}`
     )
       .then(res => res.json())
       .then(result => setApproved(result));
@@ -61,7 +61,7 @@ const Dashboard = () => {
 
   const handleSubjectChange = selectedOption => {
     fetch(
-      `http://localhost:8000/api/documents/search?subject=${selectedOption.value}`
+      `https://notes-share-fyp.herokuapp.com/api/documents/search?subject=${selectedOption.value}`
     )
       .then(res => res.json())
       .then(result => setApproved(result));
