@@ -5,7 +5,6 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
-import { GoogleOAuthProvider } from "@react-oauth/google";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import Test from "./Test";
 import FrontPage from "./components/home/FrontPage";
@@ -13,11 +12,9 @@ import FrontPage from "./components/home/FrontPage";
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <GoogleOAuthProvider clientId="159965697116-t8suhldq94ikeggogj0bevifgqbtcvjj.apps.googleusercontent.com">
-        <Provider store={store}>
-          <App />
-        </Provider>
-      </GoogleOAuthProvider>
+      <Provider store={store}>
+        <App />
+      </Provider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")

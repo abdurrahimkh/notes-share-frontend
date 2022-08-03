@@ -3,7 +3,9 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { login } from "../../redux/features/auth/authAction";
+import { googleLogin, login } from "../../redux/features/auth/authAction";
+import { auth, provider } from "../../firebase-config";
+import { signInWithPopup } from "firebase/auth";
 
 const Login = () => {
   const isActive = useSelector(state => state.auth.isActive);
@@ -18,6 +20,18 @@ const Login = () => {
   const navigate = useNavigate();
   const submitLogin = data => {
     dispatch(login(data)).then(res => res.payload && navigate("/home"));
+  };
+
+  const signInWithGoogle = () => {
+    signInWithPopup(auth, provider).then(res =>
+      dispatch(
+        googleLogin({
+          name: res.user.displayName,
+          email: res.user.email,
+          picture: res.user.photoURL,
+        })
+      )
+    );
   };
   useEffect(() => {
     if (isActive) {
@@ -86,7 +100,10 @@ const Login = () => {
             Log in
           </button>
           <div className="divider">OR</div>
-          <button className="flex items-center justify-center w-full px-4 py-2 text-sm font-medium leading-5 text-gray-700 transition-colors duration-150 border border-gray-300 rounded-lg dark:text-gray-400 active:bg-transparent hover:border-gray-500 focus:border-gray-500 active:text-gray-500 focus:outline-none focus:shadow-outline-gray">
+          <button
+            onClick={signInWithGoogle}
+            className="flex items-center justify-center w-full px-4 py-2 text-sm font-medium leading-5 text-gray-700 transition-colors duration-150 border border-gray-300 rounded-lg dark:text-gray-400 active:bg-transparent hover:border-gray-500 focus:border-gray-500 active:text-gray-500 focus:outline-none focus:shadow-outline-gray"
+          >
             <svg
               className="mr-1"
               stroke="currentColor"

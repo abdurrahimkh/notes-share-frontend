@@ -1,13 +1,28 @@
 import { Link, useNavigate } from "react-router-dom";
-import { GoogleLogin } from "@react-oauth/google";
 import { useDispatch, useSelector } from "react-redux";
 import { googleLogin } from "../../redux/features/auth/authAction";
-import { useEffect } from "react";
 import { motion } from "framer-motion";
+import { auth, provider } from "../../firebase-config";
+import { signInWithPopup } from "firebase/auth";
 const EmailRegister = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const signInWithGoogle = () => {
+    signInWithPopup(auth, provider).then(res =>
+      dispatch(
+        googleLogin({
+          name: res.user.displayName,
+          email: res.user.email,
+          picture: res.user.photoURL,
+        })
+      ).then(res =>
+        !res.payload.googlenew
+          ? navigate("/user/complete/registration")
+          : navigate("/")
+      )
+    );
+  };
   return (
     <div className="flex  md:mt-0 md:items-center  min-h-screen p-6 bg-gradient-to-b from-gray-50 to to-blue-200 dark:bg-gray-900">
       <motion.div
@@ -19,7 +34,10 @@ const EmailRegister = () => {
           <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200 mx-36 whitespace-nowrap">
             Sign up
           </h1>
-          {/* <button className="flex items-center space-x-1 justify-center w-full px-4 py-2 text-sm font-medium leading-5 text-gray-700 transition-colors duration-150 border border-gray-300 rounded-lg dark:text-gray-400 active:bg-transparent hover:border-gray-500 focus:border-gray-500 active:text-gray-500 focus:outline-none focus:shadow-outline-gray">
+          <button
+            onClick={signInWithGoogle}
+            className="flex items-center space-x-1 justify-center w-full px-4 py-2 text-sm font-medium leading-5 text-gray-700 transition-colors duration-150 border border-gray-300 rounded-lg dark:text-gray-400 active:bg-transparent hover:border-gray-500 focus:border-gray-500 active:text-gray-500 focus:outline-none focus:shadow-outline-gray"
+          >
             <span>Sign In With</span>
             <div>
               <svg
@@ -60,21 +78,7 @@ const EmailRegister = () => {
               </svg>
             </div>
             Google
-          </button> */}
-          <GoogleLogin
-            text="signup_with"
-            width="200"
-            onSuccess={credentialResponse => {
-              dispatch(googleLogin(credentialResponse.credential)).then(res =>
-                !res.payload.googlenew
-                  ? navigate("/user/complete/registration")
-                  : navigate("/")
-              );
-            }}
-            onError={() => {
-              console.log("Login Failed");
-            }}
-          />
+          </button>
           <hr className="my-4 " />
           <button
             onClick={() => navigate("/user/step")}
