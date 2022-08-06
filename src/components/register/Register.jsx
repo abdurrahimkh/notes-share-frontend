@@ -56,7 +56,11 @@ const Register = () => {
               </button>
             )}
             <p className="text-sm text-gray-600 ml-2">
-              Step {formSetup + 1} of {maxSteps}
+              Step{" "}
+              <span className="bg-green-300 px-1  rounded-full">
+                {formSetup + 1}
+              </span>{" "}
+              of {maxSteps}
             </p>
           </div>
           {formSetup >= 0 && (

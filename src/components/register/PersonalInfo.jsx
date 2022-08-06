@@ -35,7 +35,7 @@ const PersonalInfo = ({ register, formState, formSetup }) => {
         <label className="block mt-4 text-sm">
           <span className="text-gray-700 dark:text-gray-400">Gender</span>
           <div className="flex ">
-            <div className="xl:w-[25rem]">
+            <div className="w-full xl:w-[25rem]">
               <select
                 className="  w-full p-2  text-gray-700 bg-white border border-solid  rounded  focus:text-gray-700 focus:bg-white focus:border-purple-400 focus:outline-none"
                 aria-label="Select Gender"

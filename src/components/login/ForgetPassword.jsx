@@ -14,16 +14,19 @@ const ForgetPassword = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const submitLogin = data => {
-    dispatch(forgetPassword(data)).then(res =>  navigate("/user/login"))
-};
+    dispatch(forgetPassword(data)).then(res => navigate("/user/login"));
+  };
   return (
-    <div className="flex items-center min-h-[90vh] p-6 bg-gradient-to-b from-gray-50 to to-blue-200 dark:bg-gray-900">
-      <div className="flex-1 h-full max-w-md mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800">
+    <div className="flex md:items-center   min-h-screen md:min-h-[90vh] p-6 bg-gradient-to-b from-gray-50 to to-blue-200 dark:bg-gray-900">
+      <div className="flex-1 h-full mt-16 md:mt-0 max-w-md mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800">
         <div className="p-6">
           <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
             Reset Your Password
           </h1>
-          <p className = "text-gray-500">Lost your password? please enter your email address . You will receive a link to create a new password via email</p>
+          <p className="text-gray-500">
+            Lost your password? please enter your email address . You will
+            receive a link to create a new password via email
+          </p>
           <label className="block text-md mt-2">
             <span className="text-gray-700 font-bold dark:text-gray-400">
               Email<span className="text-red-600 pl-1">*</span>

@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import Documents from "../admin/dashboard/Documents";
 import Settings from "../admin/dashboard/Settings";
 import Users from "../admin/dashboard/Users";
+import Values from "../admin/dashboard/Values";
 import AdminLogin from "../admin/login/AdminLogin";
 import Upload from "../document/Upload";
 import CompleteRegistration from "../google-signin/CompleteRegistration";
@@ -13,7 +14,6 @@ import Layout from "./Layout";
 import ProtectedRoutes from "./ProtectedRoutes";
 import NotFound from "./NotFound";
 import Dashboard from "../dashboard/Dashboard";
-import Dashboard1 from "../dashboard/Dashboard1";
 import ForgetPassword from "../login/ForgetPassword";
 import NewPassword from "../login/NewPassword";
 import Profile from "../profile/Profile";
@@ -44,7 +44,6 @@ const RoutesComponent = () => {
           <Route element={<ProtectedRoutes />}>
             <Route path="/home" element={<Home />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/dashboard1" element={<Dashboard1 />} />
             <Route path="/document/upload" element={<Upload />} />
             <Route path="/profile/settings" element={<ProfileSettings />} />
           </Route>
@@ -54,6 +53,7 @@ const RoutesComponent = () => {
           <Route path="/admin/users" element={<Users />} />
           <Route path="/admin/documents" element={<Documents />} />
           <Route path="/admin/settings" element={<Settings />} />
+          <Route path="/admin/values" element={<Values />} />
         </Route>
       </Routes>
     </div>

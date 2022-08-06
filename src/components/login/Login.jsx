@@ -44,7 +44,7 @@ const Login = () => {
       <motion.div
         initial={{ x: "50%" }}
         animate={{ x: 0 }}
-        className="flex-1 h-full mt-28 md:mt-0 max-w-md mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800"
+        className="flex-1 h-full mt-16 md:mt-0 max-w-md mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800"
       >
         <div className="p-6">
           <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">

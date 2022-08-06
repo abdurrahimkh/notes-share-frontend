@@ -1,9 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
+  addFieldOfStudy,
+  addSubject,
+  addUniversity,
   allUsers,
   approve,
   approvedDocuments,
   deleteUser,
+  deleteValue,
   fetchDocuments,
   getValues,
   likeDocument,
@@ -131,6 +135,46 @@ const documentSlice = createSlice({
       state.values = action.payload;
     },
     [getValues.rejected]: state => {
+      state.isLoading = false;
+    },
+    [deleteValue.pending]: state => {
+      state.isLoading = true;
+    },
+    [deleteValue.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.values = action.payload;
+    },
+    [deleteValue.rejected]: state => {
+      state.isLoading = false;
+    },
+    [addUniversity.pending]: state => {
+      state.isLoading = true;
+    },
+    [addUniversity.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.values[0].universities = action.payload;
+    },
+    [addUniversity.rejected]: state => {
+      state.isLoading = false;
+    },
+    [addFieldOfStudy.pending]: state => {
+      state.isLoading = true;
+    },
+    [addFieldOfStudy.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.values[1].fieldofstudy = action.payload;
+    },
+    [addFieldOfStudy.rejected]: state => {
+      state.isLoading = false;
+    },
+    [addSubject.pending]: state => {
+      state.isLoading = true;
+    },
+    [addSubject.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.values[2].subjects = action.payload;
+    },
+    [addSubject.rejected]: state => {
       state.isLoading = false;
     },
   },

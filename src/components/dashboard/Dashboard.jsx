@@ -15,17 +15,22 @@ const Dashboard = () => {
   const dispatch = useDispatch();
   const [approved, setApproved] = useState([]);
 
-  const { _id } = useSelector(state => state.auth.user);
+  const {
+    user: { _id },
+    isLoading,
+  } = useSelector(state => state.auth);
   const { values } = useSelector(state => state.documents);
   const subjectsOptions = values[2]?.subjects;
   const fieldofstudyOptions = values[1]?.fieldofstudy;
-
+  console.log(isLoading);
   useEffect(() => {
     dispatch(approvedDocuments()).then(res => setApproved(res.payload));
   }, []);
 
   const handleLike = id => {
-    dispatch(likeDocument(id)).then(res => dispatch(approvedDocuments(token)));
+    dispatch(likeDocument(id)).then(() =>
+      dispatch(approvedDocuments()).then(res => setApproved(res.payload))
+    );
   };
 
   const key = "subject";
@@ -34,7 +39,7 @@ const Dashboard = () => {
 
   const handleFieldChange = selectedOption => {
     fetch(
-      `https://notes-share-fyp.herokuapp.com/api/documents/search?field=${selectedOption.value}`
+      `http://localhost:8000/api/documents/search?field=${selectedOption.value}`
     )
       .then(res => res.json())
       .then(result => setApproved(result));
@@ -42,7 +47,7 @@ const Dashboard = () => {
 
   const handleSubjectChange = selectedOption => {
     fetch(
-      `https://notes-share-fyp.herokuapp.com/api/documents/search?subject=${selectedOption.value}`
+      `http://localhost:8000/api/documents/search?subject=${selectedOption.value}`
     )
       .then(res => res.json())
       .then(result => setApproved(result));
@@ -66,7 +71,7 @@ const Dashboard = () => {
       </div>
       {keys.length <= 0 ? (
         <div className="font-bold text-2xl pt-10 text-center">
-          😕 No Documents Found
+          {isLoading ? "Loading... " : "😕 No Documents Found"}
         </div>
       ) : (
         keys.map((res, index) => (

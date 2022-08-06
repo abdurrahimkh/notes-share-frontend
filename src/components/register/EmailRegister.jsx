@@ -31,8 +31,8 @@ const EmailRegister = () => {
         className="flex-1 h-full mt-40 md:mt-0 max-w-md mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800"
       >
         <div className=" p-6">
-          <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200 mx-36 whitespace-nowrap">
-            Sign up
+          <h1 className="mb-4  text-xl font-semibold text-gray-700 dark:text-gray-200 mx-14 md:mx-28 whitespace-nowrap">
+            Create An Account
           </h1>
           <button
             onClick={signInWithGoogle}

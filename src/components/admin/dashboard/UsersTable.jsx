@@ -36,7 +36,7 @@ const TableRow = ({ data }) => {
           onClick={() => handleDelete(data._id)}
           className="bg-red-100 px-3 py-2 rounded text-red-600 hover:text-red-800"
         >
-          Delete
+          <i className="bi bi-trash"></i>
         </button>
       </td>
     </tr>

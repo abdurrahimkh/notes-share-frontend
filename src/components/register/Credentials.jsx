@@ -15,7 +15,7 @@ const Credentials = ({
       onSubmit={() => setFormSetup(cur => cur + 1)}
     >
       <div className="p-6">
-        <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200 mx-36">
+        <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200  md:mx-36">
           Register
         </h1>
 

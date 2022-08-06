@@ -2,7 +2,6 @@ import PropTypes from "prop-types";
 import { UserIcon, TableIcon, CogIcon } from "@heroicons/react/outline";
 import { ChipIcon } from "@heroicons/react/outline";
 import { Link, useLocation } from "react-router-dom";
-import { useEffect } from "react";
 
 function Header(props) {
   const headerHeight = "72px";
@@ -48,8 +47,6 @@ function SideMenu(props) {
 
   const location = useLocation();
 
-  // useEffect(() => [location])
-
   return (
     <div className="bg-gray-800 overflow-y-auto h-screen">
       <Header title="Admin" />
@@ -67,6 +64,13 @@ function SideMenu(props) {
           active={location.pathname === "/admin/documents"}
         >
           <TableIcon className={itemIconClass} />
+        </MenuItem>
+        <MenuItem
+          to="/admin/values"
+          title="Values"
+          active={location.pathname === "/admin/values"}
+        >
+          <CogIcon className={itemIconClass} />
         </MenuItem>
         <MenuItem
           to="/admin/settings"

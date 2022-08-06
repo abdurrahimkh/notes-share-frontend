@@ -8,6 +8,7 @@ export const submitDocument = createAsyncThunk(
     console.log(uploadData);
     const token = getState().auth.user.token;
     const { document } = uploadData;
+
     const data = new FormData();
     data.append("file", document);
     data.append("upload_preset", "fyp-project");
@@ -24,7 +25,7 @@ export const submitDocument = createAsyncThunk(
         const size = result.bytes;
         if (documentURL) {
           const res1 = await fetch(
-            "https://notes-share-fyp.herokuapp.com/api/documents/upload",
+            "http://localhost:8000/api/documents/upload",
             {
               method: "post",
               headers: {
@@ -66,7 +67,7 @@ export const fetchDocuments = createAsyncThunk(
   async () => {
     try {
       const res = await axios.get(
-        "https://notes-share-fyp.herokuapp.com/api/documents/documents"
+        "http://localhost:8000/api/documents/documents"
       );
       if (res.data) {
         return res.data;
@@ -85,7 +86,7 @@ export const approve = createAsyncThunk(
     const token = getState().auth.user.token;
     try {
       const res = await fetch(
-        `https://notes-share-fyp.herokuapp.com/api/documents/approve/${id}`,
+        `http://localhost:8000/api/documents/approve/${id}`,
         {
           method: "post",
           headers: {
@@ -111,7 +112,7 @@ export const reject = createAsyncThunk(
 
     try {
       const res = await fetch(
-        `https://notes-share-fyp.herokuapp.com/api/documents/reject/${id}`,
+        `http://localhost:8000/api/documents/reject/${id}`,
         {
           method: "post",
           headers: {
@@ -134,15 +135,12 @@ export const allUsers = createAsyncThunk(
   "documents/users",
   async adminToken => {
     try {
-      const res = await fetch(
-        "https://notes-share-fyp.herokuapp.com/api/users/allusers",
-        {
-          method: "get",
-          headers: {
-            Authorization: `Bearer ${adminToken}`,
-          },
-        }
-      );
+      const res = await fetch("http://localhost:8000/api/users/allusers", {
+        method: "get",
+        headers: {
+          Authorization: `Bearer ${adminToken}`,
+        },
+      });
       const result = await res.json();
       if (result) {
         return result;
@@ -159,7 +157,7 @@ export const deleteUser = createAsyncThunk(
     const token = getState().auth.user.token;
     try {
       const res = await fetch(
-        `https://notes-share-fyp.herokuapp.com/api/admin/delete/user/${id}`,
+        `http://localhost:8000/api/admin/delete/user/${id}`,
         {
           method: "delete",
           headers: {
@@ -181,12 +179,9 @@ export const approvedDocuments = createAsyncThunk(
   "documents/approved",
   async () => {
     try {
-      const res = await fetch(
-        "https://notes-share-fyp.herokuapp.com/api/documents/approved",
-        {
-          method: "get",
-        }
-      );
+      const res = await fetch("http://localhost:8000/api/documents/approved", {
+        method: "get",
+      });
       const result = await res.json();
 
       if (result) {
@@ -204,7 +199,7 @@ export const likeDocument = createAsyncThunk(
     const token = getState().auth.user.token;
     try {
       const res = await fetch(
-        `https://notes-share-fyp.herokuapp.com/api/documents/like/${id}`,
+        `http://localhost:8000/api/documents/like/${id}`,
         {
           method: "post",
           headers: {
@@ -228,7 +223,7 @@ export const getValues = createAsyncThunk("documents/get-values", async () => {
   try {
     const result = await axios({
       method: "get",
-      url: "https://notes-share-fyp.herokuapp.com/api/documents/values",
+      url: "http://localhost:8000/api/documents/values",
     });
     if (result) {
       return result.data;
@@ -245,11 +240,11 @@ export const addUniversity = createAsyncThunk(
       console.log(data);
       const result = await axios({
         method: "put",
-        url: "https://notes-share-fyp.herokuapp.com/api/users/addvalue",
+        url: "http://localhost:8000/api/users/addvalue",
         data,
       });
       if (result) {
-        console.log(result.data);
+        return result.data.universities;
       }
     } catch (error) {
       console.log(error);
@@ -264,11 +259,11 @@ export const addFieldOfStudy = createAsyncThunk(
     try {
       const result = await axios({
         method: "put",
-        url: "https://notes-share-fyp.herokuapp.com/api/users/addvalue",
+        url: "http://localhost:8000/api/users/addvalue",
         data,
       });
       if (result) {
-        console.log(result.data);
+        return result.data.fieldofstudy;
       }
     } catch (error) {
       console.log(error);
@@ -283,11 +278,31 @@ export const addSubject = createAsyncThunk(
     try {
       const result = await axios({
         method: "put",
-        url: "https://notes-share-fyp.herokuapp.com/api/users/addvalue",
+        url: "http://localhost:8000/api/users/addvalue",
+        data,
+      });
+      if (result) {
+        return result.data.subjects;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+export const deleteValue = createAsyncThunk(
+  "documents/delete-subject",
+  async data => {
+    console.log(data);
+    try {
+      const result = await axios({
+        method: "put",
+        url: "http://localhost:8000/api/users/deletevalue",
         data,
       });
       if (result) {
         console.log(result.data);
+        return result.data;
       }
     } catch (error) {
       console.log(error);

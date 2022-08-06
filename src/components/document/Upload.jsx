@@ -48,7 +48,7 @@ const Upload = () => {
     );
   };
   const file = watch("file");
-  const filename = file ? file[0].name : "";
+  const filename = file && file[0]?.name;
 
   return (
     <div className="flex items-center min-h-[90vh] p-6 bg-gradient-to-b from-gray-50 to to-blue-200 dark:bg-gray-900 ">
@@ -106,8 +106,8 @@ const Upload = () => {
             <div className="flex justify-center mt-2 ">
               <div className="max-w-2xl rounded-lg shadow-xl">
                 <div className="m-2">
-                  <div className="flex items-center justify-center w-full">
-                    <label className="flex flex-col w-full h-32 border-4 border-blue-200 border-dashed  hover:bg-gray-100 hover:border-gray-300">
+                  <div className="flex items-center px-2 md:px-0   justify-center w-full">
+                    <label className="flex flex-col  w-full h-32 border-4 border-blue-200 border-dashed  hover:bg-gray-100 hover:border-gray-300">
                       <div className="flex flex-col items-center justify-center pt-7">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -140,14 +140,22 @@ const Upload = () => {
                         className="opacity-0"
                         {...register("file", {
                           required: "select a file",
-                          validate: value =>
-                            value[0].size <= 100000000 || "Size is too large",
+                          validate: {
+                            lessThan10MB: files =>
+                              files[0]?.size < 10000000 || "Max 10MB",
+                            acceptedFormats: files =>
+                              [
+                                "application/pdf",
+                                "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                                "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+                              ].includes(files[0]?.type) || "Invalid File Type",
+                          },
                         })}
                       />
                     </label>
                   </div>
                   {errors.file && (
-                    <p className="text-red-600 text-sm mt-2">
+                    <p className="text-red-600 text-bold mt-2 text-center bg-red-100 rounded-md font-mono ">
                       {errors.file.message}
                     </p>
                   )}

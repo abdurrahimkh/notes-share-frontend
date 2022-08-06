@@ -14,6 +14,7 @@ const TableHeader = ({ title }) => {
       {title}
     </th>
   );
+  S;
 };
 
 //Function for render Table
@@ -38,9 +39,14 @@ const TableRow = ({ data }) => {
   };
   return (
     <tr>
-      <td className="px-6 py-4 whitespace-nowrap text-sm">{data.title}</td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm">{data.subject}</td>
-      <td className=" ">
+      <td className="px-3 py-4 whitespace-nowrap text-sm">{data.title}</td>
+      <td className="px-3 py-4 whitespace-nowrap text-sm">{data.subject}</td>
+      <td className="px-3 py-4 whitespace-nowrap text-sm">
+        <div className="tooltip" data-tip={data.postedBy.email}>
+          {data.postedBy.name}
+        </div>
+      </td>
+      <td>
         <div
           onClick={() => window.open(data.url, "_blank")}
           className="flex justify-center  hover:border hover:bg-gray-50"
@@ -51,6 +57,7 @@ const TableRow = ({ data }) => {
           </button>
         </div>
       </td>
+
       <td className="px-6 py-4 whitespace-nowrap">
         <span
           className={
@@ -66,7 +73,7 @@ const TableRow = ({ data }) => {
           onClick={() => handleApprove(data._id)}
           className="bg-green-100 px-3 py-1 rounded text-green-600 hover:text-green-800"
         >
-          Aprove
+          <i className="bi bi-check-square"></i>
         </button>
       </td>
       <td className=" whitespace-nowrap text-sm font-medium">
@@ -74,7 +81,7 @@ const TableRow = ({ data }) => {
           onClick={() => handleReject(data._id)}
           className="bg-red-100 px-3 py-1 rounded text-red-600 hover:text-red-800"
         >
-          Reject
+          <i className="bi bi-x-square"></i>
         </button>
       </td>
     </tr>
@@ -83,6 +90,7 @@ const TableRow = ({ data }) => {
 
 const DocumentsTable = () => {
   const documents = useSelector(state => state.documents.documents);
+  console.log(documents);
 
   return (
     <div className="flex flex-col space-y-2">
@@ -93,6 +101,7 @@ const DocumentsTable = () => {
             <tr>
               <TableHeader title="Title" />
               <TableHeader title="Subject" />
+              <TableHeader title="By" />
               <TableHeader title="File" />
               <th
                 scope="col"
