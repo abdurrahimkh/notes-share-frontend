@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const documentApi = createApi({
   reducerPath: "documentsApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://notes-share-fyp.herokuapp.com/api/",
+    baseUrl: "http://localhost:8000/api/",
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth?.user.token;
       if (token) {
@@ -32,6 +32,13 @@ export const documentApi = createApi({
       }),
       invalidatesTags: ["Document"],
     }),
+    filterByField: builder.mutation({
+      query: selectedOption => ({
+        url: `/documents/search?field=${selectedOption}`,
+        method: "GET",
+      }),
+      invalidatesTags: ["Document"],
+    }),
   }),
 });
 
@@ -40,4 +47,5 @@ export const {
   useUserProfileQuery,
   useUserDocumentsQuery,
   useLikeDocumentsMutation,
+  useFilterByFieldMutation,
 } = documentApi;

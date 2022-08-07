@@ -51,31 +51,31 @@ const Upload = () => {
   const filename = file && file[0]?.name;
 
   return (
-    <div className="flex items-center min-h-[90vh] p-6 bg-gradient-to-b from-gray-50 to to-blue-200 dark:bg-gray-900 ">
-      <div className="flex-1 h-full max-w-md mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800">
+    <div className="mt-6 flex min-h-[70vh] items-center  dark:bg-gray-900 ">
+      <div className="mx-auto h-full max-w-md flex-1 overflow-hidden rounded-lg border bg-white shadow-xl dark:bg-gray-800">
         <form onSubmit={handleSubmit(handleUpload)}>
           <div className="p-5">
             <p className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
               Upload File
             </p>
             <label className="block text-sm">
-              <span className="text-gray-700 dark:text-gray-400 font-bold">
+              <span className="font-bold text-gray-700 dark:text-gray-400">
                 Title
               </span>
               <input
-                className="block border rounded p-2 w-full  text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray"
+                className="focus:shadow-outline-purple dark:focus:shadow-outline-gray block w-full rounded  border p-2 text-sm focus:border-purple-400 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300"
                 {...register("title", {
                   required: "You must specify a title",
                 })}
               />
               {errors.title && (
-                <p className="text-red-600 text-sm mt-2">
+                <p className="mt-2 text-sm text-red-600">
                   {errors.title.message}
                 </p>
               )}
             </label>
-            <label className="block text-sm mt-1">
-              <div className="text-gray-700 mb-1 dark:text-gray-400 font-bold ">
+            <label className="mt-1 block text-sm">
+              <div className="mb-1 font-bold text-gray-700 dark:text-gray-400 ">
                 Subject
               </div>
 
@@ -87,31 +87,31 @@ const Upload = () => {
                 )}
               />
             </label>
-            <label className="block text-sm mt-1">
-              <span className="text-gray-700 dark:text-gray-400 font-bold">
+            <label className="mt-1 block text-sm">
+              <span className="font-bold text-gray-700 dark:text-gray-400">
                 Discription
               </span>
               <textarea
-                className="block border rounded h-24 resize-none p-1 w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray"
+                className="focus:shadow-outline-purple dark:focus:shadow-outline-gray mt-1 block h-24 w-full resize-none rounded border p-1 text-sm focus:border-purple-400 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300"
                 {...register("description", {
                   required: "You must specify a discription",
                 })}
               />
               {errors.discription && (
-                <p className="text-red-600 text-sm mt-2">
+                <p className="mt-2 text-sm text-red-600">
                   {errors.discription.message}
                 </p>
               )}
             </label>
-            <div className="flex justify-center mt-2 ">
+            <div className="mt-2 flex justify-center ">
               <div className="max-w-2xl rounded-lg shadow-xl">
                 <div className="m-2">
-                  <div className="flex items-center px-2 md:px-0   justify-center w-full">
-                    <label className="flex flex-col  w-full h-32 border-4 border-blue-200 border-dashed  hover:bg-gray-100 hover:border-gray-300">
+                  <div className="flex w-full items-center justify-center   px-2 md:px-0">
+                    <label className="flex h-32  w-full flex-col border-4 border-dashed border-blue-200  hover:border-gray-300 hover:bg-gray-100">
                       <div className="flex flex-col items-center justify-center pt-7">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          className="w-8 h-8 text-gray-400 group-hover:text-gray-600"
+                          className="h-8 w-8 text-gray-400 group-hover:text-gray-600"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
@@ -155,7 +155,7 @@ const Upload = () => {
                     </label>
                   </div>
                   {errors.file && (
-                    <p className="text-red-600 text-bold mt-2 text-center bg-red-100 rounded-md font-mono ">
+                    <p className="text-bold mt-2 rounded-md bg-red-100 text-center font-mono text-red-600 ">
                       {errors.file.message}
                     </p>
                   )}
@@ -166,7 +166,7 @@ const Upload = () => {
               {isLoading ? (
                 <LoadingButton />
               ) : (
-                <button className=" flex px-4 py-2 mt-4  text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-green-600 border border-transparent rounded-lg active:bg-green-600 hover:bg-green-700 focus:outline-none focus:shadow-outline-purple">
+                <button className=" focus:shadow-outline-purple mt-4 flex rounded-lg  border border-transparent bg-green-600 px-4 py-2 text-center text-sm font-medium leading-5 text-white transition-colors duration-150 hover:bg-green-700 focus:outline-none active:bg-green-600">
                   <svg
                     width="20"
                     height="20"

@@ -42,7 +42,7 @@ const RenderButton = ({
       institute: data.institute.value,
     };
     console.log(sendData);
-    dispatch(register(sendData)).then(() => navigate("/"));
+    dispatch(register(sendData)).then(res => res.payload && navigate("/"));
   };
   if (formSetup > 2) {
     return undefined;

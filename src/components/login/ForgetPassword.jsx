@@ -17,8 +17,8 @@ const ForgetPassword = () => {
     dispatch(forgetPassword(data)).then(res => navigate("/user/login"));
   };
   return (
-    <div className="flex md:items-center   min-h-screen md:min-h-[90vh] p-6 bg-gradient-to-b from-gray-50 to to-blue-200 dark:bg-gray-900">
-      <div className="flex-1 h-full mt-16 md:mt-0 max-w-md mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800">
+    <div className="flex min-h-screen p-6 dark:bg-gray-900 md:min-h-[90vh] md:items-center">
+      <div className="mx-auto mt-16 h-full max-w-md flex-1 overflow-hidden rounded-lg bg-white shadow-xl dark:bg-gray-800 md:mt-0">
         <div className="p-6">
           <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
             Reset Your Password
@@ -27,12 +27,12 @@ const ForgetPassword = () => {
             Lost your password? please enter your email address . You will
             receive a link to create a new password via email
           </p>
-          <label className="block text-md mt-2">
-            <span className="text-gray-700 font-bold dark:text-gray-400">
-              Email<span className="text-red-600 pl-1">*</span>
+          <label className="text-md mt-2 block">
+            <span className="font-bold text-gray-700 dark:text-gray-400">
+              Email<span className="pl-1 text-red-600">*</span>
             </span>
             <input
-              className="block border rounded p-2 w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+              className="focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input mt-1 block w-full rounded border p-2 text-sm focus:border-purple-400 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300"
               placeholder="example@email.com"
               {...register("email", {
                 required: "You must specify an email",
@@ -43,7 +43,7 @@ const ForgetPassword = () => {
               })}
             />
             {errors.email && (
-              <p className="text-red-600 text-sm mt-2">
+              <p className="mt-2 text-sm text-red-600">
                 {errors.email.message}
               </p>
             )}
@@ -51,7 +51,7 @@ const ForgetPassword = () => {
 
           <button
             disabled={!isValid}
-            className="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-purple disabled:bg-gray-500 hover:cursor-pointer"
+            className="focus:shadow-outline-purple mt-4 block w-full rounded-lg border border-transparent bg-blue-600 px-4 py-2 text-center text-sm font-medium leading-5 text-white transition-colors duration-150 hover:cursor-pointer hover:bg-blue-700 focus:outline-none active:bg-blue-600 disabled:bg-gray-500"
             onClick={handleSubmit(submitLogin)}
           >
             Reset Password

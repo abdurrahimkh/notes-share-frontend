@@ -14,8 +14,8 @@ const AcademicInfo = ({
 }) => {
   const dispatch = useDispatch();
   const values = useSelector(state => state.documents.values);
-  const universities = values[0]?.universities;
-  const fieldofstudy = values[1]?.fieldofstudy;
+  const universities = values && values[0]?.universities;
+  const fieldofstudy = values && values[1]?.fieldofstudy;
 
   useEffect(() => {
     dispatch(getValues());
@@ -61,22 +61,6 @@ const AcademicInfo = ({
             )}
           />
         </label>
-        {/* <select
-            className="  w-full p-2  text-gray-700 bg-white border border-solid  rounded  focus:text-gray-700 focus:bg-white focus:border-purple-400 focus:outline-none"
-            aria-label="Select Dicipline"
-            {...register("dicipline", {
-              required: {
-                value: true,
-                message: "dicipline is required",
-              },
-            })}
-          >
-            <option value="bs" defaultValue>
-              Bachlor
-            </option>
-            <option value="ms">Master</option>
-            <option value="phd">PhD</option>
-          </select> */}
         <label className="block mt-4 text-sm">
           <span className="text-gray-700 dark:text-gray-400">
             Field Of Study

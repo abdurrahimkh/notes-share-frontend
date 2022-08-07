@@ -28,21 +28,21 @@ const CompleteRegistration = () => {
     ).then(res => res.payload && navigate("/"));
   };
   return (
-    <div className="flex items-center min-h-[90vh] p-6 bg-gradient-to-b from-gray-50 to to-blue-200 dark:bg-gray-900">
-      <div className="flex-1 h-full max-w-md mx-auto  bg-white rounded-lg shadow-xl dark:bg-gray-800">
+    <div className="flex min-h-[90vh] items-center p-6  dark:bg-gray-900">
+      <div className="mx-auto h-full max-w-md flex-1  rounded-lg bg-white shadow-xl dark:bg-gray-800">
         <div className="p-6">
           <form onSubmit={handleSubmit(submitComplete)}>
-            <h1 className="mb-4 whitespace-nowrap text-xl font-semibold text-gray-700 dark:text-gray-200 text-center ">
+            <h1 className="mb-4 whitespace-nowrap text-center text-xl font-semibold text-gray-700 dark:text-gray-200 ">
               Complete Registration
             </h1>
 
             <hr className="my-4 " />
-            <label className="block mt-4 text-sm">
-              <span className="text-gray-700 font-bold dark:text-gray-400">
+            <label className="mt-4 block text-sm">
+              <span className="font-bold text-gray-700 dark:text-gray-400">
                 Username
               </span>
               <input
-                className="border rounded p-2 block w-full mt-1 text-sm  dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                className="focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input mt-1 block w-full rounded  border p-2 text-sm focus:border-purple-400 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300"
                 placeholder="eg: elonmusk01"
                 {...register("username", {
                   required: {
@@ -52,19 +52,19 @@ const CompleteRegistration = () => {
                 })}
               />
               {errors.username && (
-                <p className="text-red-600 text-sm mt-2">
+                <p className="mt-2 text-sm text-red-600">
                   {errors.username.message}
                 </p>
               )}
             </label>
-            <label className="block mt-4 text-sm">
-              <span className="text-gray-700 font-bold dark:text-gray-400">
+            <label className="mt-4 block text-sm">
+              <span className="font-bold text-gray-700 dark:text-gray-400">
                 Gender
               </span>
               <div className="flex ">
                 <div className="xl:w-[25rem]">
                   <select
-                    className="  w-full p-2  text-gray-700 bg-white border border-solid  rounded  focus:text-gray-700 focus:bg-white focus:border-purple-400 focus:outline-none"
+                    className="  w-full rounded  border border-solid bg-white p-2  text-gray-700  focus:border-purple-400 focus:bg-white focus:text-gray-700 focus:outline-none"
                     aria-label="Select Gender"
                     {...register("gender")}
                   >
@@ -76,12 +76,12 @@ const CompleteRegistration = () => {
                 </div>
               </div>
             </label>
-            <label className="block text-sm mt-4">
-              <span className="text-gray-700 font-bold dark:text-gray-400">
+            <label className="mt-4 block text-sm">
+              <span className="font-bold text-gray-700 dark:text-gray-400">
                 Institute
               </span>
               <input
-                className="block border rounded p-2 w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                className="focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input mt-1 block w-full rounded border p-2 text-sm focus:border-purple-400 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300"
                 placeholder="eg: University of Swabi"
                 {...register("institute", {
                   required: {
@@ -91,17 +91,17 @@ const CompleteRegistration = () => {
                 })}
               />
               {errors.institute && (
-                <p className="text-red-600 text-sm mt-2">
+                <p className="mt-2 text-sm text-red-600">
                   {errors.institute.message}
                 </p>
               )}
             </label>
-            <label className="block mt-4 text-sm">
-              <span className="text-gray-700 font-bold dark:text-gray-400">
+            <label className="mt-4 block text-sm">
+              <span className="font-bold text-gray-700 dark:text-gray-400">
                 Dicipline
               </span>
               <select
-                className="  w-full p-2  text-gray-700 bg-white border border-solid  rounded  focus:text-gray-700 focus:bg-white focus:border-purple-400 focus:outline-none"
+                className="  w-full rounded  border border-solid bg-white p-2  text-gray-700  focus:border-purple-400 focus:bg-white focus:text-gray-700 focus:outline-none"
                 aria-label="Select Dicipline"
                 {...register("dicipline", {
                   required: {
@@ -117,12 +117,12 @@ const CompleteRegistration = () => {
                 <option value="phd">PhD</option>
               </select>
             </label>
-            <label className="block mt-4 text-sm">
-              <span className="text-gray-700  font-bold dark:text-gray-400">
+            <label className="mt-4 block text-sm">
+              <span className="font-bold  text-gray-700 dark:text-gray-400">
                 Field Of Study
               </span>
               <select
-                className="  w-full p-2  text-gray-700 bg-white border border-solid  rounded  focus:text-gray-700 focus:bg-white focus:border-purple-400 focus:outline-none"
+                className="  w-full rounded  border border-solid bg-white p-2  text-gray-700  focus:border-purple-400 focus:bg-white focus:text-gray-700 focus:outline-none"
                 aria-label="Select Field"
                 {...register("fieldofstudy", {
                   required: {
@@ -148,7 +148,7 @@ const CompleteRegistration = () => {
               </select>
             </label>
             <button
-              className="block mt-2 rounded w-full px-4 py-2  text-sm font-me dium leading-5 text-center text-white transition-colors duration-150 bg-blue-600 border border-transparent disabled:bg-gray-400   active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-purple"
+              className="font-me dium focus:shadow-outline-purple mt-2 block w-full  rounded border border-transparent bg-blue-600 px-4 py-2 text-center text-sm leading-5 text-white transition-colors duration-150   hover:bg-blue-700 focus:outline-none active:bg-blue-600 disabled:bg-gray-400"
               type="submit"
               disabled={!isValid}
             >

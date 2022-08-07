@@ -39,8 +39,10 @@ const authSlice = createSlice({
     },
     [register.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.isActive = true;
       state.user = action.payload;
+      if (action.payload !== null) {
+        state.isActive = true;
+      }
     },
     [register.rejected]: state => {
       state.isLoading = false;

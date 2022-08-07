@@ -18,7 +18,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="navbar border-b">
+      <div className="navbar border-b bg-base-100">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex="0" className="btn btn-ghost lg:hidden">
@@ -39,7 +39,7 @@ const Navbar = () => {
             </label>
             <ul
               tabIndex="0"
-              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+              className="dropdown-content menu rounded-box menu-compact mt-3 w-52 bg-base-100 p-2 shadow"
             >
               <li>
                 <NavLink to="/">
@@ -67,17 +67,17 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
-          <Link to="/" className="btn btn-ghost normal-case text-xl">
+          <Link to="/" className="btn btn-ghost text-xl normal-case">
             Notes Share
           </Link>
         </div>
         {!user && (
           <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal space-x-3 ml-96">
+            <ul className="menu menu-horizontal ml-96 space-x-3">
               <li>
                 <NavLink
                   to="/"
-                  className=" px-5 border rounded-lg py-2  font-bold text-sm hover:bg-blue-600 hover:text-white"
+                  className=" rounded-lg border px-5 py-2  text-sm font-bold hover:bg-blue-600 hover:text-white"
                 >
                   <i className="bi bi-house"></i>
                   Home
@@ -86,7 +86,7 @@ const Navbar = () => {
               <li>
                 <NavLink
                   to="/user/login"
-                  className="px-5 border rounded-lg py-2  font-bold text-sm hover:bg-blue-600 hover:text-white"
+                  className="rounded-lg border px-5 py-2  text-sm font-bold hover:bg-blue-600 hover:text-white"
                 >
                   <i className="bi bi-box-arrow-in-right "></i>
                   Login
@@ -95,7 +95,7 @@ const Navbar = () => {
               <li>
                 <NavLink
                   to="/user/register"
-                  className="px-5 border rounded-lg py-2  font-bold text-sm hover:bg-blue-600 hover:text-white"
+                  className="rounded-lg border px-5 py-2  text-sm font-bold hover:bg-blue-600 hover:text-white"
                 >
                   <i className="bi bi-person-plus"></i>
                   Signup
@@ -104,7 +104,7 @@ const Navbar = () => {
               <li>
                 <NavLink
                   to="/contact-us"
-                  className="px-5 border rounded-lg py-2  font-bold text-sm hover:bg-blue-600 hover:text-white"
+                  className="rounded-lg border px-5 py-2  text-sm font-bold hover:bg-blue-600 hover:text-white"
                 >
                   <i className="bi bi-envelope"></i>
                   Contact Us
@@ -118,11 +118,11 @@ const Navbar = () => {
             <>
               <div className="dropdown  mr-10">
                 <label tabIndex="0">
-                  <i className="btn btn-ghost bi bi-plus-square text-2xl"></i>
+                  <i className="bi bi-plus-square btn btn-ghost text-2xl"></i>
                 </label>
                 <ul
                   tabIndex="0"
-                  className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-40"
+                  className="dropdown-content menu rounded-box menu-compact mt-3 w-40 bg-base-100 p-2 shadow"
                 >
                   <li>
                     <Link className="font-bold" to="/document/upload">
@@ -139,7 +139,7 @@ const Navbar = () => {
               <div className="dropdown dropdown-end">
                 <label
                   tabIndex="0"
-                  className=" btn btn-ghost btn-circle avatar online"
+                  className=" avatar btn btn-ghost btn-circle online"
                 >
                   <div className="w-24 rounded-full ring ring-offset-2">
                     <img src={user.pic && user.pic} />
@@ -147,7 +147,7 @@ const Navbar = () => {
                 </label>
                 <ul
                   tabIndex="0"
-                  className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+                  className="dropdown-content menu rounded-box menu-compact mt-3 w-52 bg-base-100 p-2 shadow"
                 >
                   <li>
                     <Link to={`dashboard/user/profile/${user._id}`}>

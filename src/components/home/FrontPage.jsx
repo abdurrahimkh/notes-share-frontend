@@ -22,14 +22,14 @@ const FrontPage = () => {
           </button>
         </div>
       </div> */}
-      <div className="h-screen bg-gradient-to-b from-gray-100 to to-blue-300">
-        <div className="container px-8 md:px-12 xl:max-w-5xl mx-auto lg:px-7 xl:px-0">
-          <div className="md:flex md:gap-12 pt-40 lg:py-40">
+      <div className="h-screen  ">
+        <div className="container mx-auto px-8 md:px-12 lg:px-7 xl:max-w-5xl xl:px-0">
+          <div className="pt-40 md:flex md:gap-12 lg:py-40">
             <div className="md:w-6/12">
               <motion.div
                 initial={{ y: "-100%" }}
                 animate={{ y: 0 }}
-                className="text-3xl md:text-7xl font-bold text-indigo-600"
+                className="text-3xl font-bold text-indigo-600 md:text-7xl"
               >
                 Notes Share
               </motion.div>
@@ -39,13 +39,13 @@ const FrontPage = () => {
               <div className="md:-mr-32">
                 <Link
                   to="/home"
-                  className="btn btn-primary mt-5 transition ease-in-out delay-150 bg-blue-700 border-none hover:-translate-y-1 hover:scale-110 hover:bg-green-500 duration-300"
+                  className="btn btn-primary mt-5 border-none bg-blue-700 transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-green-500"
                 >
                   Get Started
                 </Link>
               </div>
             </div>
-            <div className="mt-12 h-56 mr-0 md:-mr-24 overflow-hidden sm:h-72 md:h-auto md:mt-0 lg:mr-0 lg:-mt-12 md:w-7/12">
+            <div className="mt-12 mr-0 h-56 overflow-hidden sm:h-72 md:-mr-24 md:mt-0 md:h-auto md:w-7/12 lg:mr-0 lg:-mt-12">
               <img src={DocumentsImage} alt="" />
             </div>
           </div>

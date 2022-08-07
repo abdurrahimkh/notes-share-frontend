@@ -31,14 +31,14 @@ const ProfileSettingsInput = ({ data }) => {
 
   return (
     <form onSubmit={handleSubmit(submitChanges)}>
-      <div className="mt-4 md:mt-0 border rounded-md">
-        <div className="flex flex-col md:flex-row gap-1 ">
-          <div className="p-1 md:p-5 md:w-96 ">
-            <h1 className="mb-4 font-light text-xl tracking-widest  text-gray-700 dark:text-gray-200">
+      <div className="mt-4 rounded-md border md:mt-0">
+        <div className="flex flex-col gap-1 md:flex-row ">
+          <div className="p-1 md:w-96 md:p-5 ">
+            <h1 className="mb-4 text-xl font-light tracking-widest  text-gray-700 dark:text-gray-200">
               Personal Information
             </h1>
             <label className="block text-sm">
-              <span className="text-gray-700 dark:text-gray-400 font-bold">
+              <span className="font-bold text-gray-700 dark:text-gray-400">
                 Name
               </span>
               <input
@@ -52,12 +52,12 @@ const ProfileSettingsInput = ({ data }) => {
                 })}
               />
               {formState.errors.name && (
-                <p className="text-red-600 text-sm mt-2">
+                <p className="mt-2 text-sm text-red-600">
                   {formState.errors.name.message}
                 </p>
               )}
             </label>
-            <label className="block mt-4 text-sm">
+            <label className="mt-4 block text-sm">
               <span className="text-gray-700 dark:text-gray-400">Email</span>
               <input
                 className="input-update "
@@ -70,13 +70,13 @@ const ProfileSettingsInput = ({ data }) => {
                 })}
               />
               {formState.errors.email && (
-                <p className="text-red-600 text-sm mt-2">
+                <p className="mt-2 text-sm text-red-600">
                   {formState.errors.email.message}
                 </p>
               )}
             </label>
-            <label className="block mt-4 text-sm">
-              <span className="text-gray-700 dark:text-gray-400 font-bold">
+            <label className="mt-4 block text-sm">
+              <span className="font-bold text-gray-700 dark:text-gray-400">
                 Gender
               </span>
               <Controller
@@ -91,8 +91,8 @@ const ProfileSettingsInput = ({ data }) => {
                 )}
               />
             </label>
-            <label className="block mt-4 text-sm">
-              <span className="text-gray-700 dark:text-gray-400 font-bold">
+            <label className="mt-4 block text-sm">
+              <span className="font-bold text-gray-700 dark:text-gray-400">
                 Username
               </span>
               <input
@@ -101,18 +101,18 @@ const ProfileSettingsInput = ({ data }) => {
                 {...register("username")}
               />
               {formState.errors.username && (
-                <p className="text-red-600 text-sm mt-2">
+                <p className="mt-2 text-sm text-red-600">
                   {formState.errors.username.message}
                 </p>
               )}
             </label>
           </div>
-          <div className="p-1 mt-4 md:mt-0  md:p-5 md:w-96">
-            <h1 className="mb-4 font-light text-xl tracking-widest  text-gray-700 dark:text-gray-200">
+          <div className="mt-4 p-1 md:mt-0  md:w-96 md:p-5">
+            <h1 className="mb-4 text-xl font-light tracking-widest  text-gray-700 dark:text-gray-200">
               Academic Information
             </h1>
-            <label className="block mt-4 text-sm">
-              <span className="text-gray-700 dark:text-gray-400 font-bold">
+            <label className="mt-4 block text-sm">
+              <span className="font-bold text-gray-700 dark:text-gray-400">
                 Institute
               </span>
               <Controller
@@ -127,8 +127,8 @@ const ProfileSettingsInput = ({ data }) => {
                 )}
               />
             </label>
-            <label className="block mt-4 text-sm">
-              <span className="text-gray-700 dark:text-gray-400 font-bold">
+            <label className="mt-4 block text-sm">
+              <span className="font-bold text-gray-700 dark:text-gray-400">
                 Dicipline
               </span>
               <Controller
@@ -143,8 +143,8 @@ const ProfileSettingsInput = ({ data }) => {
                 )}
               />
             </label>
-            <label className="block mt-4 text-sm ">
-              <span className="text-gray-700 dark:text-gray-400 font-bold">
+            <label className="mt-4 block text-sm ">
+              <span className="font-bold text-gray-700 dark:text-gray-400">
                 Field Of Study
               </span>
               <Controller

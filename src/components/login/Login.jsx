@@ -40,22 +40,22 @@ const Login = () => {
   }, [isActive]);
 
   return (
-    <div className="flex md:items-center min-h-screen md:min-h-[90vh] p-6 bg-gradient-to-b from-gray-50 to to-blue-200 dark:bg-gray-900">
+    <div className="flex min-h-screen p-6 dark:bg-gray-900 md:min-h-[90vh] md:items-center">
       <motion.div
         initial={{ x: "50%" }}
         animate={{ x: 0 }}
-        className="flex-1 h-full mt-16 md:mt-0 max-w-md mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800"
+        className="mx-auto mt-16 h-full max-w-md flex-1 overflow-hidden rounded-lg border bg-base-100 shadow-xl dark:bg-gray-800 md:mt-0"
       >
         <div className="p-6">
           <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
             Login
           </h1>
           <label className="block text-sm">
-            <span className="text-gray-700 dark:text-gray-400 font-bold">
+            <span className="font-bold text-gray-700 dark:text-gray-400">
               Email
             </span>
             <input
-              className="block border rounded p-2 w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+              className="focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input mt-1 block w-full rounded border p-2 text-sm focus:border-purple-400 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300"
               placeholder="example@email.com"
               {...register("email", {
                 required: "You must specify an email",
@@ -66,17 +66,17 @@ const Login = () => {
               })}
             />
             {errors.email && (
-              <p className="text-red-600 text-sm mt-2">
+              <p className="mt-2 text-sm text-red-600">
                 {errors.email.message}
               </p>
             )}
           </label>
-          <label className="block mt-4 text-sm">
-            <span className="text-gray-700 dark:text-gray-400 font-bold">
+          <label className="mt-4 block text-sm">
+            <span className="font-bold text-gray-700 dark:text-gray-400">
               Password
             </span>
             <input
-              className="border rounded p-2 block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+              className="focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input mt-1 block w-full rounded border p-2 text-sm focus:border-purple-400 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300"
               placeholder="***************"
               type="password"
               {...register("password", {
@@ -87,14 +87,14 @@ const Login = () => {
               })}
             />
             {errors.password && (
-              <p className="text-red-600 text-sm mt-2">
+              <p className="mt-2 text-sm text-red-600">
                 {errors.password.message}
               </p>
             )}
           </label>
           <button
             disabled={!isValid}
-            className="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-purple disabled:bg-gray-500 hover:cursor-pointer"
+            className="focus:shadow-outline-purple mt-4 block w-full rounded-lg border border-transparent bg-blue-600 px-4 py-2 text-center text-sm font-medium leading-5 text-white transition-colors duration-150 hover:cursor-pointer hover:bg-blue-700 focus:outline-none active:bg-blue-600 disabled:bg-gray-500"
             onClick={handleSubmit(submitLogin)}
           >
             Log in
@@ -102,7 +102,7 @@ const Login = () => {
           <div className="divider">OR</div>
           <button
             onClick={signInWithGoogle}
-            className="flex items-center justify-center w-full px-4 py-2 text-sm font-medium leading-5 text-gray-700 transition-colors duration-150 border border-gray-300 rounded-lg dark:text-gray-400 active:bg-transparent hover:border-gray-500 focus:border-gray-500 active:text-gray-500 focus:outline-none focus:shadow-outline-gray"
+            className="focus:shadow-outline-gray flex w-full items-center justify-center rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium leading-5 text-gray-700 transition-colors duration-150 hover:border-gray-500 focus:border-gray-500 focus:outline-none active:bg-transparent active:text-gray-500 dark:text-gray-400"
           >
             <svg
               className="mr-1"
@@ -146,7 +146,7 @@ const Login = () => {
           <p className="mt-4">
             <Link
               to="/forgetpassword"
-              className="text-sm font-medium text-blue-600 dark:text-purple-400 hover:underline"
+              className="text-sm font-medium text-blue-600 hover:underline dark:text-purple-400"
             >
               Forgot your password?
             </Link>
@@ -154,7 +154,7 @@ const Login = () => {
           <p className="mt-1">
             <Link
               to="/user/register"
-              className="text-sm font-medium text-blue-600 dark:text-purple-400 hover:underline"
+              className="text-sm font-medium text-blue-600 hover:underline dark:text-purple-400"
             >
               Create account
             </Link>

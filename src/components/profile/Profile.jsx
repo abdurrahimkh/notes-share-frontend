@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useUserProfileQuery } from "../../redux/features/document/documentApi";
 import { iconRender } from "../../helpers/IconRender";
+import Loader from "../loader/Loader";
 
 const Profile = () => {
   const { id } = useParams();
@@ -11,43 +12,43 @@ const Profile = () => {
   return (
     <>
       {isFetching ? (
-        <div className=" h-[calc(100vh_-_6rem)] flex justify-center items-center">
-          <p className="btn loading">Loading </p>
+        <div className=" flex h-[calc(100vh_-_6rem)] items-center justify-center">
+          <Loader />
         </div>
       ) : (
-        <div className="container  mx-auto my-5 p-5">
-          <div className="md:flex md:ml-5 md:gap-10 no-wrap md:-mx-2 ">
+        <div className="container  mx-auto my-5 p-4">
+          <div className="no-wrap md:-mx-3 md:ml-2 md:flex md:gap-12 ">
             {/* <!-- Left Side --> */}
-            <div className="w-full md:w-3/12 md:mx-2  ">
+            <div className="w-full md:w-3/12  ">
               <div>
                 <img
                   src={data?.user.pic}
                   alt="user_profile_pic"
-                  className="w-full object-cover object-center rounded-lg shadow-md"
+                  className="w-full rounded-lg object-cover object-center shadow-md"
                 />
 
-                <div className="relative px-4 -mt-8  ">
-                  <div className="bg-white p-6 rounded-lg shadow-lg">
+                <div className="relative -mt-8 px-4  ">
+                  <div className="rounded-lg bg-white p-6 shadow-lg">
                     <div className="flex items-baseline">
-                      <span className="bg-teal-200 text-teal-800 text-xs px-2 inline-block rounded-full  uppercase font-semibold tracking-wide">
+                      <span className="inline-block rounded-full bg-teal-200 px-2 text-xs font-semibold  uppercase tracking-wide text-teal-800">
                         New
                       </span>
-                      <div className="ml-2 text-gray-600 uppercase text-xs font-semibold tracking-wider">
-                        2 likes &bull; {data.documents.length} documents
+                      <div className="ml-2 text-xs font-semibold uppercase tracking-wider text-gray-600">
+                        {data.documents.length} documents
                       </div>
                     </div>
 
-                    <h4 className="mt-1 text-xl font-semibold uppercase leading-tight truncate">
+                    <h4 className="mt-1 truncate text-xl font-semibold uppercase leading-tight">
                       {data?.user.name}
                     </h4>
 
                     <div className="mt-1">
-                      <span className="text-gray-600 text-sm">
+                      <span className="text-sm text-gray-600">
                         {data?.user.username}
                       </span>
                     </div>
                     <div className="mt-4">
-                      <span className="text-teal-600 text-md font-semibold">
+                      <span className="text-md font-semibold text-teal-600">
                         {data?.user.institute}
                       </span>
                       <span className="text-sm text-gray-600">
@@ -64,7 +65,7 @@ const Profile = () => {
               {/* <!-- Profile tab -->
                 <!-- About Section --> */}
               <i className="bi bi-info-square "></i>
-              <span className="font-light text-xl tracking-widest ml-2 ">
+              <span className="ml-2 text-xl font-light tracking-widest ">
                 INFORMATION
               </span>
               <div className="mt-2  rounded-md md:border  md:shadow-md ">
@@ -97,29 +98,29 @@ const Profile = () => {
               <div className="my-4"></div>
 
               {/* <!-- Experience and education --> */}
-              <div className="bg-white py-3 shadow-sm rounded-sm">
+              <div className="rounded-sm bg-white py-3 shadow-sm">
                 <i className="bi bi-file-earmark-medical text-xl"></i>
-                <span className="font-light text-xl mb-2 ml-2 tracking-widest">
+                <span className="mb-2 ml-2 text-xl font-light tracking-widest">
                   Uploaded Documents
                 </span>
                 <hr />
-                <div className="flex gap-5 p-2 flex-wrap">
+                <div className="flex flex-wrap gap-5 p-2">
                   {data?.documents.length > 0 ? (
                     data?.documents.map(doc => (
                       <div
                         key={doc._id}
-                        className="card card-compact border w-38 bg-base-100 shadow-lg"
+                        className="w-38 card card-compact border bg-base-100 shadow-lg"
                       >
                         <figure>
                           <img
-                            className="w-12 h-12 mt-2"
+                            className="mt-2 h-12 w-12"
                             src={iconRender(doc.filetype)}
                             alt="document"
                           />
                         </figure>
                         <div className="card-body">
-                          <h2 className="font-bold text-lg">{doc.title}</h2>
-                          <div className="flex gap-2 justify-center items-center"></div>
+                          <h2 className="text-lg font-bold">{doc.title}</h2>
+                          <div className="flex items-center justify-center gap-2"></div>
                           <div className="card-actions justify-end">
                             <div className="flex gap-6 ">
                               <div className="flex items-center ">
@@ -161,7 +162,7 @@ const Profile = () => {
                       </div>
                     ))
                   ) : (
-                    <span className="text-xl font-bold mx-auto mt-2">
+                    <span className="mx-auto mt-2 text-xl font-bold">
                       😕 No Documents Uploaded Yet
                     </span>
                   )}

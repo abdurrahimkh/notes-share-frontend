@@ -17,24 +17,24 @@ const SearchSection = ({ data }) => {
   };
 
   return (
-    <div className="flex pt-16 pb-10 justify-center items-center flex-col">
+    <div className="flex h-[50vh] w-screen flex-col items-center justify-center bg-gray-50 pt-16 pb-10 ">
       <motion.div
         initial={{ y: "-100%" }}
         animate={{ y: 0 }}
-        className="text-3xl  md:text-6xl font-bold "
+        className="text-3xl  font-bold md:text-6xl "
       >
         SEARCH NOTES
       </motion.div>
 
-      <div className="flex items-center  relative">
+      <div className="relative flex  items-center">
         <input
-          className="mt-3 md:w-[40rem] border h-12 rounded-md px-2 focus:outline-none focus:shadow-xl   "
+          className="mt-3 h-12 rounded-md border px-2 focus:shadow-xl focus:outline-none md:w-[40rem]   "
           placeholder="Type..."
           onChange={handleChange}
         />
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="h-7 mt-2 w-7  absolute right-4 "
+          className="absolute right-4 mt-2  h-7 w-7 "
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -51,12 +51,12 @@ const SearchSection = ({ data }) => {
         <motion.div
           initial={{ y: "30%" }}
           animate={{ y: 0 }}
-          className="border w-96 mt-1 rounded-md bg-white p-2"
+          className="mt-1 w-96 rounded-md border bg-white p-2"
         >
           {filteredData.slice(0, 5).map((doc, key) => {
             return (
               <ul key={key} className="ml-3 ">
-                <li className="py-2 hover:bg-gray-300 hover:rounded-md">
+                <li className="py-2 hover:rounded-md hover:bg-gray-300">
                   <a href={doc.url} target="_blank">
                     <p className="ml-1">{doc.title}</p>
                   </a>
@@ -66,17 +66,17 @@ const SearchSection = ({ data }) => {
           })}
         </motion.div>
       )}
-      <div className="flex gap-10 mt-8">
+      <div className="mt-8 flex gap-10">
         <Link
           to="/dashboard"
-          className="bg-white border font-bold px-5 py-2 md:px-10  md:py-3 rounded-lg  hover:bg-blue-700 hover:text-white"
+          className="rounded-lg border bg-white px-5 py-2 font-bold  hover:bg-blue-700 hover:text-white  md:px-10 md:py-3"
         >
           <i className="bi bi-card-text mr-2"></i>
           Explore
         </Link>
         <Link
           to="/document/upload"
-          className="bg-white border  font-bold px-5 py-2 md:px-10  md:py-3 rounded-lg  hover:bg-blue-700 hover:text-white"
+          className="rounded-lg border  bg-white px-5 py-2 font-bold  hover:bg-blue-700 hover:text-white  md:px-10 md:py-3"
         >
           <i className="bi bi-file-earmark-arrow-up mr-2"></i>
           Upload

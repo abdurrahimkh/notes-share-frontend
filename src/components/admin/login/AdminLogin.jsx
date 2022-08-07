@@ -19,7 +19,7 @@ const Admin = () => {
     );
   };
   return (
-    <div className="flex items-center min-h-screen p-6 bg-gradient-to-b from-gray-50 to to-blue-200 dark:bg-gray-900">
+    <div className="flex items-center min-h-screen p-6 bg-gray-100 dark:bg-gray-900">
       <div className="flex-1 h-full max-w-md mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800">
         <div className="p-6">
           <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">

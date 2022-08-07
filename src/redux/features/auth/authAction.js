@@ -5,24 +5,33 @@ import { toast } from "react-hot-toast";
 export const register = createAsyncThunk("auth/register", async userData => {
   try {
     const res = await axios.post(
-      "https://notes-share-fyp.herokuapp.com/api/users/register",
+      "http://localhost:8000/api/users/register",
       userData
     );
     if (res.data) {
-      localStorage.setItem("user", JSON.stringify(res.data));
-      toast.success("Registration Successful");
+      if (res.data.error) {
+        toast.error(res.data.error);
+        return null;
+      } else {
+        localStorage.setItem("user", JSON.stringify(res.data));
+        toast.success("Registration Successfull");
+        return res.data;
+      }
     }
-    return res.data;
   } catch (error) {
     console.log(error);
-    toast.error(error.message);
+    if (error.code === 11000) {
+      toast.error("Username already exists");
+    } else {
+      toast.error(error.message);
+    }
   }
 });
 
 export const login = createAsyncThunk("auth/login", async userData => {
   try {
     const res = await axios.post(
-      "https://notes-share-fyp.herokuapp.com/api/users/login",
+      "http://localhost:8000/api/users/login",
       userData
     );
     console.log(res);
@@ -47,7 +56,7 @@ export const forgetPassword = createAsyncThunk(
   async data => {
     try {
       const res = await axios.post(
-        "https://notes-share-fyp.herokuapp.com/api/users/forgetpassword",
+        "http://localhost:8000/api/users/forgetpassword",
         data
       );
       if (res.data) {
@@ -68,7 +77,7 @@ export const forgetPassword = createAsyncThunk(
 export const newPassoword = createAsyncThunk("auth/newpassword", async data => {
   try {
     const res = await axios.post(
-      "https://notes-share-fyp.herokuapp.com/api/users/newpassword",
+      "http://localhost:8000/api/users/newpassword",
       data
     );
     if (res.data) {
@@ -90,7 +99,7 @@ export const googleLogin = createAsyncThunk("auth/google", async userInfo => {
   try {
     const res = axios({
       method: "POST",
-      url: "https://notes-share-fyp.herokuapp.com/api/users/google",
+      url: "http://localhost:8000/api/users/google",
       data: userInfo,
     });
     const result = await res;
@@ -116,7 +125,7 @@ export const completeRegistration = createAsyncThunk(
     try {
       const res = axios({
         method: "POST",
-        url: "https://notes-share-fyp.herokuapp.com/api/users/google/complete",
+        url: "http://localhost:8000/api/users/google/complete",
         data,
       });
       const result = await res;
@@ -141,7 +150,7 @@ export const completeRegistration = createAsyncThunk(
 export const adminlogin = createAsyncThunk("auth/login", async userData => {
   try {
     const res = await axios.post(
-      "https://notes-share-fyp.herokuapp.com/api/admin/login",
+      "http://localhost:8000/api/admin/login",
       userData
     );
     if (res.data) {
@@ -180,7 +189,7 @@ export const updatePicture = createAsyncThunk(
         console.log(picURL);
         if (picURL) {
           const res1 = await fetch(
-            `https://notes-share-fyp.herokuapp.com/api/users/profile/picupdate/${_id}`,
+            `http://localhost:8000/api/users/profile/picupdate/${_id}`,
             {
               method: "put",
               headers: {
@@ -219,7 +228,7 @@ export const updateInfo = createAsyncThunk(
     console.log(token);
     try {
       const res = await axios.put(
-        "https://notes-share-fyp.herokuapp.com/api/users/profile/update",
+        "http://localhost:8000/api/users/profile/update",
         updateInfo,
         {
           headers: {
@@ -246,7 +255,7 @@ export const updatePassword = createAsyncThunk(
     console.log(token);
     try {
       const res = await axios.put(
-        "https://notes-share-fyp.herokuapp.com/api/users/profile/passwordupdate",
+        "http://localhost:8000/api/users/profile/passwordupdate",
         updateInfo,
         {
           headers: {

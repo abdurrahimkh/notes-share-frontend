@@ -39,7 +39,7 @@ const Dashboard = () => {
 
   const handleFieldChange = selectedOption => {
     fetch(
-      `https://notes-share-fyp.herokuapp.com/api/documents/search?field=${selectedOption.value}`
+      `http://localhost:8000/api/documents/search?field=${selectedOption.value}`
     )
       .then(res => res.json())
       .then(result => setApproved(result));
@@ -47,7 +47,7 @@ const Dashboard = () => {
 
   const handleSubjectChange = selectedOption => {
     fetch(
-      `https://notes-share-fyp.herokuapp.com/api/documents/search?subject=${selectedOption.value}`
+      `http://localhost:8000/api/documents/search?subject=${selectedOption.value}`
     )
       .then(res => res.json())
       .then(result => setApproved(result));
@@ -70,17 +70,17 @@ const Dashboard = () => {
         />
       </div>
       {keys.length <= 0 ? (
-        <div className="font-bold text-2xl pt-10 text-center">
+        <div className="pt-10 text-center text-2xl font-bold">
           {isLoading ? "Loading... " : "😕 No Documents Found"}
         </div>
       ) : (
         keys.map((res, index) => (
-          <div className="border rounded-md mt-2" key={index}>
-            <h1 className="font-mono font-bold text-xl px-3 py-5 ">
+          <div className="mt-2 rounded-md border" key={index}>
+            <h1 className="px-3 py-5 font-mono text-xl font-bold ">
               {res.toUpperCase()}
             </h1>
-            <span className="font-mono px-3">Documents</span>
-            <div className="flex gap-5 p-2 flex-wrap">
+            <span className="px-3 font-mono">Documents</span>
+            <div className="flex flex-wrap gap-5 p-2">
               {result[`${res}`].map(doc => (
                 <motion.div
                   whileHover={{
@@ -88,12 +88,12 @@ const Dashboard = () => {
                     transition: { duration: 0.4 },
                   }}
                   key={doc._id}
-                  className="card card-compact  border w-44  bg-blue-50 shadow-lg hover:cursor-pointer"
+                  className="card card-compact  w-44 border  bg-blue-50 shadow-lg hover:cursor-pointer"
                 >
                   <figure>
                     <img
                       onClick={() => window.open(doc.url, "_blank")}
-                      className="w-12 h-12 mt-2"
+                      className="mt-2 h-12 w-12"
                       src={iconRender(doc.filetype)}
                       alt="document"
                     />
@@ -101,7 +101,7 @@ const Dashboard = () => {
                   <div className="card-body">
                     <h2
                       onClick={() => window.open(doc.url, "_blank")}
-                      className="font-bold  text-lg hover:text-gray-500"
+                      className="text-lg  font-bold hover:text-gray-500"
                     >
                       {doc.title}
                     </h2>
@@ -110,11 +110,11 @@ const Dashboard = () => {
                         scale: 1.2,
                         transition: { duration: 0.4 },
                       }}
-                      className="flex gap-2 justify-center items-center"
+                      className="flex items-center justify-center gap-2"
                     >
                       <Link to={`user/profile/${doc.postedBy._id}`}>
                         <img
-                          className="avatar w-10 h-10 rounded-full"
+                          className="avatar h-10 w-10 rounded-full"
                           src={doc.postedBy.pic}
                         />
                       </Link>
