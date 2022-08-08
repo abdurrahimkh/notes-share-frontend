@@ -20,6 +20,7 @@ import Profile from "../profile/Profile";
 import FrontPage from "../home/FrontPage";
 import ContactUs from "../contact-us/ContactUs";
 import ProfileSettings from "../profile/ProfileSettings";
+import QuestionsList from "../Ask/QuestionsList";
 const RoutesComponent = () => {
   return (
     <div>
@@ -46,6 +47,7 @@ const RoutesComponent = () => {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/document/upload" element={<Upload />} />
             <Route path="/profile/settings" element={<ProfileSettings />} />
+            <Route path="/questions/list" element={<QuestionsList />} />
           </Route>
         </Route>
         <Route path="/admin" element={<AdminLogin />} />

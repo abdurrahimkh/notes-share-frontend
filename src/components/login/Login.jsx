@@ -6,9 +6,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { googleLogin, login } from "../../redux/features/auth/authAction";
 import { auth, provider } from "../../firebase-config";
 import { signInWithPopup } from "firebase/auth";
+import LoaderSm from "../loader/LoaderSm";
 
 const Login = () => {
-  const isActive = useSelector(state => state.auth.isActive);
+  const { isActive, isLoading } = useSelector(state => state.auth);
+
   const {
     register,
     formState: { isValid, errors },
@@ -44,7 +46,7 @@ const Login = () => {
       <motion.div
         initial={{ x: "50%" }}
         animate={{ x: 0 }}
-        className="mx-auto mt-16 h-full max-w-md flex-1 overflow-hidden rounded-lg border bg-base-100 shadow-xl dark:bg-gray-800 md:mt-0"
+        className="mx-auto mt-16 h-full max-w-md flex-1 overflow-hidden rounded-lg border border-blue-300 bg-base-100 shadow-xl dark:bg-gray-800 md:mt-0"
       >
         <div className="p-6">
           <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
@@ -97,7 +99,7 @@ const Login = () => {
             className="focus:shadow-outline-purple mt-4 block w-full rounded-lg border border-transparent bg-blue-600 px-4 py-2 text-center text-sm font-medium leading-5 text-white transition-colors duration-150 hover:cursor-pointer hover:bg-blue-700 focus:outline-none active:bg-blue-600 disabled:bg-gray-500"
             onClick={handleSubmit(submitLogin)}
           >
-            Log in
+            {isLoading ? <LoaderSm /> : "Log in"}
           </button>
           <div className="divider">OR</div>
           <button
@@ -140,9 +142,8 @@ const Login = () => {
 	              c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"
               ></path>
             </svg>
-            Google
+            Continue with Google
           </button>
-
           <p className="mt-4">
             <Link
               to="/forgetpassword"

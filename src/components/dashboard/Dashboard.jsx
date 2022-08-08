@@ -10,21 +10,24 @@ import { iconRender } from "../../helpers/IconRender";
 import Select from "react-select";
 import { useState } from "react";
 import { getSameValKey, sortData } from "../../helpers/Dashboard";
+import Loader from "../loader/Loader";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
   const [approved, setApproved] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const {
-    user: { _id },
-    isLoading,
-  } = useSelector(state => state.auth);
+  const { _id } = useSelector(state => state.auth.user);
   const { values } = useSelector(state => state.documents);
   const subjectsOptions = values[2]?.subjects;
   const fieldofstudyOptions = values[1]?.fieldofstudy;
   console.log(isLoading);
   useEffect(() => {
-    dispatch(approvedDocuments()).then(res => setApproved(res.payload));
+    setIsLoading(true);
+    dispatch(approvedDocuments()).then(res => {
+      setIsLoading(false);
+      setApproved(res.payload);
+    });
   }, []);
 
   const handleLike = id => {
@@ -38,19 +41,27 @@ const Dashboard = () => {
   const result = sortData(approved, keys, key);
 
   const handleFieldChange = selectedOption => {
+    setIsLoading(true);
     fetch(
       `http://localhost:8000/api/documents/search?field=${selectedOption.value}`
     )
       .then(res => res.json())
-      .then(result => setApproved(result));
+      .then(result => {
+        setIsLoading(false);
+        setApproved(result);
+      });
   };
 
   const handleSubjectChange = selectedOption => {
+    setIsLoading(true);
     fetch(
       `http://localhost:8000/api/documents/search?subject=${selectedOption.value}`
     )
       .then(res => res.json())
-      .then(result => setApproved(result));
+      .then(result => {
+        setIsLoading(false);
+        setApproved(result);
+      });
   };
 
   return (
@@ -69,9 +80,9 @@ const Dashboard = () => {
           onChange={handleSubjectChange}
         />
       </div>
-      {keys.length <= 0 ? (
+      {keys.length === 0 ? (
         <div className="pt-10 text-center text-2xl font-bold">
-          {isLoading ? "Loading... " : "😕 No Documents Found"}
+          {isLoading ? <Loader /> : "😕 No Documents Found"}
         </div>
       ) : (
         keys.map((res, index) => (

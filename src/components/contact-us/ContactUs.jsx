@@ -18,7 +18,7 @@ const ContactUs = () => {
       <motion.div
         initial={{ x: "50%" }}
         animate={{ x: 0 }}
-        className="mx-auto mt-36 h-full max-w-md flex-1 overflow-hidden rounded-lg border bg-white shadow-xl dark:bg-gray-800    md:mt-0"
+        className="mx-auto mt-36 h-full max-w-md flex-1 overflow-hidden rounded-lg border border-blue-300 bg-white shadow-xl dark:bg-gray-800    md:mt-0"
       >
         <div className="p-6">
           <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">

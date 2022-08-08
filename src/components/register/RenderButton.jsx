@@ -1,10 +1,11 @@
 import { register } from "../../redux/features/auth/authAction";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
   addFieldOfStudy,
   addUniversity,
 } from "../../redux/features/document/documentAction";
+import LoaderSm from "../loader/LoaderSm";
 const RenderButton = ({
   formSetup,
   nextPage,
@@ -13,6 +14,8 @@ const RenderButton = ({
 }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { isLoading } = useSelector(state => state.auth);
+
   const submitForm = data => {
     console.log(data);
     if (data.institute.__isNew__) {
@@ -52,7 +55,7 @@ const RenderButton = ({
         onClick={() => nextPage()}
         type="button"
         disabled={!isValid}
-        className="block w-full px-4 py-2  text-sm font-me dium leading-5 text-center text-white transition-colors duration-150 bg-blue-600 border border-transparent disabled:bg-gray-400   active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-purple"
+        className="font-me dium focus:shadow-outline-purple block  w-full border border-transparent bg-blue-600 px-4 py-2 text-center text-sm leading-5 text-white transition-colors duration-150   hover:bg-blue-700 focus:outline-none active:bg-blue-600 disabled:bg-gray-400"
       >
         Next
       </button>
@@ -63,9 +66,9 @@ const RenderButton = ({
         type="button"
         disabled={!isValid}
         onClick={handleSubmit(submitForm)}
-        className="block w-full px-4 py-2  text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-blue-600 border border-transparent  active:bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400  focus:outline-none focus:shadow-outline-purple"
+        className="focus:shadow-outline-purple block w-full border  border-transparent bg-blue-600 px-4 py-2 text-center text-sm font-medium leading-5 text-white transition-colors  duration-150 hover:bg-blue-700 focus:outline-none  active:bg-blue-600 disabled:bg-gray-400"
       >
-        Create Account
+        {isLoading ? <LoaderSm /> : "Create Account"}
       </button>
     );
   } else {
@@ -74,7 +77,7 @@ const RenderButton = ({
         type="button"
         disabled={!isValid}
         onClick={() => nextPage()}
-        className="block w-full px-4 py-2 cursor-pointer  text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-blue-600 border border-transparent  active:bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 focus:outline-none focus:shadow-outline-purple"
+        className="focus:shadow-outline-purple block w-full cursor-pointer border  border-transparent bg-blue-600 px-4 py-2 text-center text-sm font-medium leading-5 text-white transition-colors  duration-150 hover:bg-blue-700 focus:outline-none active:bg-blue-600 disabled:bg-gray-400"
       >
         Continue
       </button>

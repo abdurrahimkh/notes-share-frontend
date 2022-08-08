@@ -21,7 +21,7 @@ const NewPassword = () => {
   };
   return (
     <div className="flex min-h-[90vh] items-center p-6  dark:bg-gray-900">
-      <div className="mx-auto h-full max-w-md flex-1 overflow-hidden rounded-lg bg-white shadow-xl dark:bg-gray-800">
+      <div className="mx-auto h-full max-w-md flex-1 overflow-hidden rounded-lg border border-blue-300 bg-white shadow-xl dark:bg-gray-800">
         <div className="p-6">
           <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
             Reset Password

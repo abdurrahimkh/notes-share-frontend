@@ -5,8 +5,8 @@ import {
   addSubject,
   submitDocument,
 } from "../../redux/features/document/documentAction";
-import LoadingButton from "./LoadingButton";
 import CreatableSelect from "react-select/creatable";
+import Loader from "../loader/Loader";
 
 const Upload = () => {
   const dispatch = useDispatch();
@@ -52,7 +52,7 @@ const Upload = () => {
 
   return (
     <div className="mt-6 flex min-h-[70vh] items-center  dark:bg-gray-900 ">
-      <div className="mx-auto h-full max-w-md flex-1 overflow-hidden rounded-lg border bg-white shadow-xl dark:bg-gray-800">
+      <div className="mx-auto h-full max-w-md flex-1 overflow-hidden rounded-lg border border-blue-300 bg-white shadow-xl dark:bg-gray-800">
         <form onSubmit={handleSubmit(handleUpload)}>
           <div className="p-5">
             <p className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
@@ -162,21 +162,12 @@ const Upload = () => {
                 </div>
               </div>
             </div>
-            <div className="flex justify-center space-x-3">
+            <div className="mt-2 flex justify-center space-x-3">
               {isLoading ? (
-                <LoadingButton />
+                <Loader />
               ) : (
-                <button className=" focus:shadow-outline-purple mt-4 flex rounded-lg  border border-transparent bg-green-600 px-4 py-2 text-center text-sm font-medium leading-5 text-white transition-colors duration-150 hover:bg-green-700 focus:outline-none active:bg-green-600">
-                  <svg
-                    width="20"
-                    height="20"
-                    fill="currentColor"
-                    className="mr-2"
-                    viewBox="0 0 1792 1792"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M1344 1472q0-26-19-45t-45-19-45 19-19 45 19 45 45 19 45-19 19-45zm256 0q0-26-19-45t-45-19-45 19-19 45 19 45 45 19 45-19 19-45zm128-224v320q0 40-28 68t-68 28h-1472q-40 0-68-28t-28-68v-320q0-40 28-68t68-28h427q21 56 70.5 92t110.5 36h256q61 0 110.5-36t70.5-92h427q40 0 68 28t28 68zm-325-648q-17 40-59 40h-256v448q0 26-19 45t-45 19h-256q-26 0-45-19t-19-45v-448h-256q-42 0-59-40-17-39 14-69l448-448q18-19 45-19t45 19l448 448q31 30 14 69z"></path>
-                  </svg>
+                <button className="btn btn-success btn-sm mt-2 flex gap-2">
+                  <i className="bi bi-file-earmark-arrow-up"></i>
                   Upload
                 </button>
               )}

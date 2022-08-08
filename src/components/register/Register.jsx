@@ -23,7 +23,7 @@ const Register = () => {
 
   return (
     <div className="flex min-h-screen p-6 dark:bg-gray-900  md:mt-0  md:min-h-[90vh]  md:items-center">
-      <div className="mx-auto mt-32 h-full w-36 flex-1 rounded-lg border bg-white shadow-xl dark:bg-gray-800 md:mt-0 md:max-w-md ">
+      <div className="mx-auto mt-32 h-full w-36 flex-1 rounded-lg border border-blue-300 bg-white shadow-xl dark:bg-gray-800 md:mt-0 md:max-w-md ">
         <div>
           <div className="mt-2 flex space-x-2 ">
             {formSetup > 0 && (

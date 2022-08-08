@@ -28,17 +28,44 @@ const EmailRegister = () => {
       <motion.div
         initial={{ x: "50%" }}
         animate={{ x: 0 }}
-        className="mx-auto mt-16 h-full max-w-md flex-1 overflow-hidden rounded-lg border bg-white shadow-xl dark:bg-gray-800 md:mt-0"
+        className="mx-auto mt-16 h-full max-w-md flex-1 overflow-hidden rounded-lg border border-blue-300 bg-white shadow-xl dark:bg-gray-800 md:mt-0"
       >
         <div className=" p-6">
           <h1 className="mx-14  mb-4 whitespace-nowrap text-xl font-semibold text-gray-700 dark:text-gray-200 md:mx-28">
             Create An Account
           </h1>
           <button
+            onClick={() => navigate("/user/step")}
+            className="focus:shadow-outline-gray flex w-full items-center justify-center space-x-1 rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium leading-5 text-gray-700 transition-colors duration-150 hover:border-gray-500 focus:border-gray-500 focus:outline-none active:bg-transparent active:text-gray-500 dark:text-gray-400"
+          >
+            <span>Sign Up With</span>
+            <div className=" pr-1">
+              <svg
+                stroke="currentColor"
+                fill="none"
+                strokeWidth="0"
+                viewBox="0 0 24 24"
+                height="1.4em"
+                width="1.4em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                ></path>
+              </svg>
+            </div>
+            Email
+          </button>
+
+          <div className="divider text-gray-400">or</div>
+          <button
             onClick={signInWithGoogle}
             className="focus:shadow-outline-gray flex w-full items-center justify-center space-x-1 rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium leading-5 text-gray-700 transition-colors duration-150 hover:border-gray-500 focus:border-gray-500 focus:outline-none active:bg-transparent active:text-gray-500 dark:text-gray-400"
           >
-            <span>Sign In With</span>
+            <span>Sign Up With</span>
             <div>
               <svg
                 className="mr-1"
@@ -78,32 +105,6 @@ const EmailRegister = () => {
               </svg>
             </div>
             Google
-          </button>
-          <hr className="my-4 " />
-          <button
-            onClick={() => navigate("/user/step")}
-            className="focus:shadow-outline-gray flex w-full items-center justify-center space-x-1 rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium leading-5 text-gray-700 transition-colors duration-150 hover:border-gray-500 focus:border-gray-500 focus:outline-none active:bg-transparent active:text-gray-500 dark:text-gray-400"
-          >
-            <span>Sign Up With</span>
-            <div className=" pr-1">
-              <svg
-                stroke="currentColor"
-                fill="none"
-                strokeWidth="0"
-                viewBox="0 0 24 24"
-                height="1.4em"
-                width="1.4em"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                ></path>
-              </svg>
-            </div>
-            Email
           </button>
           <hr className="my-4 " />
           <p className="mt-1">

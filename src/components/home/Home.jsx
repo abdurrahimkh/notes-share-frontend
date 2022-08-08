@@ -4,6 +4,7 @@ import { getValues } from "../../redux/features/document/documentAction";
 import { useApprovedDocumentsQuery } from "../../redux/features/document/documentApi";
 import RecentNotes from "./RecentNotes";
 import SearchSection from "./SearchSection";
+import Loader from "../loader/Loader";
 const Home = () => {
   console.log("HOME RENDER");
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ const Home = () => {
     <div>
       <SearchSection data={data} isFetching={isFetching} />
       <div className="divider mx-40 text-xl font-bold "> Recent Documents</div>
-      <RecentNotes data={data} />
+      {isFetching ? <Loader /> : <RecentNotes data={data} />}
     </div>
   );
 };

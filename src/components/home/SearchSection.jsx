@@ -81,6 +81,13 @@ const SearchSection = ({ data }) => {
           <i className="bi bi-file-earmark-arrow-up mr-2"></i>
           Upload
         </Link>
+        <Link
+          to="/document/upload"
+          className="rounded-lg border  bg-white px-5 py-2 font-bold  hover:bg-blue-700 hover:text-white  md:px-10 md:py-3"
+        >
+          <i className="bi bi-file-earmark-arrow-up mr-2"></i>
+          Answers
+        </Link>
       </div>
     </div>
   );
