@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { format } from "timeago.js";
 const QuestionCard = ({ question }) => {
   return (
@@ -28,7 +29,10 @@ const QuestionCard = ({ question }) => {
           </p>
           <div className="divider"></div>
           <div className="mt-4 flex items-center">
-            <div className="btn btn-success flex gap-2">
+            <Link
+              to={`question/${question._id}`}
+              className="btn btn-success flex gap-2  "
+            >
               {question.answers.length}{" "}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -46,7 +50,7 @@ const QuestionCard = ({ question }) => {
               </svg>
               Answer
               {question.answers.length > 1 ? "s" : ""}
-            </div>
+            </Link>
           </div>
         </div>
       </div>

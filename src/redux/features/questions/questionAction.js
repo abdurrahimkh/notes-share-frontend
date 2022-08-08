@@ -42,3 +42,17 @@ export const addQuestion = createAsyncThunk(
     }
   }
 );
+
+export const questionDetails = createAsyncThunk(
+  "question/question-details",
+  async id => {
+    try {
+      const res = await axios.get(`http://localhost:8000/api/question/${id}`);
+      if (res.data) {
+        return res.data;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);

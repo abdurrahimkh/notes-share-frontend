@@ -22,6 +22,7 @@ import ContactUs from "../contact-us/ContactUs";
 import ProfileSettings from "../profile/ProfileSettings";
 import QuestionsList from "../Ask/QuestionsList";
 import AskQuestion from "../Ask/AskQuestion";
+import QuestionDetails from "../Ask/QuestionDetails";
 const RoutesComponent = () => {
   return (
     <div>
@@ -50,6 +51,10 @@ const RoutesComponent = () => {
             <Route path="/profile/settings" element={<ProfileSettings />} />
             <Route path="/questions/list" element={<QuestionsList />} />
             <Route path="/questions/ask" element={<AskQuestion />} />
+            <Route
+              path="questions/list/question/:id"
+              element={<QuestionDetails />}
+            />
           </Route>
         </Route>
         <Route path="/admin" element={<AdminLogin />} />

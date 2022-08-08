@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addQuestion, fetchQuestions } from "./questionAction";
+import { addQuestion, fetchQuestions, questionDetails } from "./questionAction";
 
 const initialState = {
   questions: [],
+  eachQuestion: {},
   isLoading: false,
 };
 
@@ -28,6 +29,16 @@ const documentSlice = createSlice({
       state.isLoading = false;
     },
     [addQuestion.rejected]: state => {
+      state.isLoading = false;
+    },
+    [questionDetails.pending]: state => {
+      state.isLoading = true;
+    },
+    [questionDetails.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.eachQuestion = action.payload;
+    },
+    [questionDetails.rejected]: state => {
       state.isLoading = false;
     },
   },
