@@ -113,7 +113,7 @@ const Profile = () => {
                       >
                         <figure>
                           <img
-                            className="mt-2 h-12 w-12"
+                            className="mt-2 h-12 w-12 "
                             src={iconRender(doc.filetype)}
                             alt="document"
                           />

@@ -26,9 +26,9 @@ const ProfileSettingsPic = ({ data }) => {
     }
   };
   return (
-    <div className="flex flex-col relative ">
+    <div className="relative flex flex-col ">
       <img
-        className="h-48 md:w-48 md:h-48 object-cover "
+        className="h-48 object-cover md:h-48 md:w-48 "
         src={preview ? preview : data?.user.pic}
       />
       <button
@@ -46,7 +46,7 @@ const ProfileSettingsPic = ({ data }) => {
       />
       <button onClick={updatePic} className="btn btn-success mt-2">
         {isLoading ? (
-          <i className="bi bi-arrow-clockwise"></i>
+          <i className="bi bi-arrow-clockwise animate-spin"></i>
         ) : (
           <i className="bi bi-image mr-2"></i>
         )}

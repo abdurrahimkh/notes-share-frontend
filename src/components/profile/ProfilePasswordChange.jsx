@@ -20,12 +20,12 @@ const ProfilePasswordChange = ({
     }
   };
   return (
-    <div className="p-1 mt-4 md:mt-0 md:p-5 md:w-96 border rounded-md">
+    <div className="mt-4 rounded-md border p-1 md:mt-0 md:w-96 md:p-5">
       <h1 className="mb-4 text-xl font-light  tracking-widest text-gray-700 dark:text-gray-200 ">
         Password Information
       </h1>
       <label className="block text-sm">
-        <span className="text-gray-700 dark:text-gray-400 font-bold">
+        <span className="font-bold text-gray-700 dark:text-gray-400">
           Current Password
         </span>
         <input
@@ -36,7 +36,7 @@ const ProfilePasswordChange = ({
         />
       </label>
       <label className="block text-sm">
-        <span className="text-gray-700 dark:text-gray-400 font-bold">
+        <span className="font-bold text-gray-700 dark:text-gray-400">
           New Password
         </span>
         <input
@@ -51,7 +51,7 @@ const ProfilePasswordChange = ({
           })}
         />
         {formState.errors.newpassword && (
-          <p className="text-red-600 text-sm mt-2">
+          <p className="mt-2 text-sm text-red-600">
             {formState.errors.newpassword.message}
           </p>
         )}
@@ -63,7 +63,7 @@ const ProfilePasswordChange = ({
           className="btn btn-success mt-5 "
         >
           {isPasswordLoading ? (
-            <i className="bi bi-arrow-clockwise"></i>
+            <i className="bi bi-arrow-clockwise animate-spin"></i>
           ) : (
             <i className="bi bi-key mr-2"></i>
           )}

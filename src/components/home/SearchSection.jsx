@@ -17,7 +17,7 @@ const SearchSection = ({ data }) => {
   };
 
   return (
-    <div className="flex h-[50vh] w-screen flex-col items-center justify-center bg-gray-50 pt-16 pb-10 ">
+    <div className="flex h-[90vh] w-screen flex-col items-center justify-center bg-gray-50 pt-16 pb-10 ">
       <motion.div
         initial={{ y: "-100%" }}
         animate={{ y: 0 }}
@@ -66,13 +66,22 @@ const SearchSection = ({ data }) => {
           })}
         </motion.div>
       )}
+      <div className="divider mt-10 px-40">OR</div>
+      <div className="text-lg font-bold tracking-wider">EXPLORE</div>
       <div className="mt-8 flex gap-10">
         <Link
           to="/dashboard"
           className="rounded-lg border bg-white px-5 py-2 font-bold  hover:bg-blue-700 hover:text-white  md:px-10 md:py-3"
         >
           <i className="bi bi-card-text mr-2"></i>
-          Explore
+          Documents
+        </Link>
+        <Link
+          to="/questions/list"
+          className="rounded-lg border  bg-white px-5 py-2 font-bold  hover:bg-blue-700 hover:text-white  md:px-10 md:py-3"
+        >
+          <i className="bi bi-check2-square mr-2"></i>
+          Answers
         </Link>
         <Link
           to="/document/upload"
@@ -80,13 +89,6 @@ const SearchSection = ({ data }) => {
         >
           <i className="bi bi-file-earmark-arrow-up mr-2"></i>
           Upload
-        </Link>
-        <Link
-          to="/document/upload"
-          className="rounded-lg border  bg-white px-5 py-2 font-bold  hover:bg-blue-700 hover:text-white  md:px-10 md:py-3"
-        >
-          <i className="bi bi-file-earmark-arrow-up mr-2"></i>
-          Answers
         </Link>
       </div>
     </div>

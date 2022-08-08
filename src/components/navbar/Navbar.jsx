@@ -130,7 +130,7 @@ const Navbar = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/" className="font-bold">
+                    <Link to="/questions/ask" className="font-bold">
                       <i className="bi bi-question-square "></i>Ask
                     </Link>
                   </li>

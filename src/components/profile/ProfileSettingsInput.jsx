@@ -164,7 +164,7 @@ const ProfileSettingsInput = ({ data }) => {
         <div className="p-2">
           <button onClick={submitChanges} className="btn btn-success  ">
             {isInfoLoading ? (
-              <i className="bi bi-arrow-clockwise"></i>
+              <i className="bi bi-arrow-clockwise animate-spin"></i>
             ) : (
               <i className="bi bi-pencil-square mr-2"></i>
             )}
