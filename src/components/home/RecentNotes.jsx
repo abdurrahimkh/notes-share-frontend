@@ -7,7 +7,7 @@ const RecentNotes = ({ data }) => {
   return (
     <div className="flex flex-col gap-2">
       {data?.slice(0, 5).map((doc, index) => (
-        <div key={index} className="flex justify-center ">
+        <div key={index} className="mb-3 flex justify-center">
           <div className="flex w-80 flex-col items-center rounded-lg border-2 bg-white shadow-lg md:max-h-48 md:min-w-[40rem] md:flex-row">
             <img
               onClick={() => window.open(doc.url, "_blank")}

@@ -28,6 +28,7 @@
     "react-router-dom": "^6.3.0",
     "react-select": "^5.4.0",
     "react-tabs": "^4.2.1",
+    "react-type-animation": "^2.0.8",
     "timeago.js": "^4.0.2",
     "yup": "^0.32.11"
   },

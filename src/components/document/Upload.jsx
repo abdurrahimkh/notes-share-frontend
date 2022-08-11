@@ -52,7 +52,7 @@ const Upload = () => {
 
   return (
     <div className="mt-6 flex min-h-[70vh] items-center  dark:bg-gray-900 ">
-      <div className="mx-auto h-full max-w-md flex-1 overflow-hidden rounded-lg border border-blue-300 bg-white shadow-xl dark:bg-gray-800">
+      <div className="mx-3   h-full max-w-md flex-1 overflow-hidden rounded-lg border border-blue-300 bg-white shadow-xl dark:bg-gray-800 md:mx-auto">
         <form onSubmit={handleSubmit(handleUpload)}>
           <div className="p-5">
             <p className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">

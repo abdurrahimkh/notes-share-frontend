@@ -18,7 +18,10 @@ const Home = () => {
   return (
     <div>
       <SearchSection data={data} isFetching={isFetching} />
-      <div className="divider mx-40 text-xl font-bold "> Recent Documents</div>
+      <div className="divider text-xl font-bold md:mx-40 ">
+        {" "}
+        Recent Documents
+      </div>
       {isFetching ? <Loader /> : <RecentNotes data={data} />}
     </div>
   );

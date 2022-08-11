@@ -17,7 +17,7 @@ import Dashboard from "../dashboard/Dashboard";
 import ForgetPassword from "../login/ForgetPassword";
 import NewPassword from "../login/NewPassword";
 import Profile from "../profile/Profile";
-import FrontPage from "../home/FrontPage";
+import FrontPage from "../home/front-page/FrontPage";
 import ContactUs from "../contact-us/ContactUs";
 import ProfileSettings from "../profile/ProfileSettings";
 import QuestionsList from "../Ask/QuestionsList";

@@ -1,10 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addQuestion, fetchQuestions, questionDetails } from "./questionAction";
+import {
+  addAnswer,
+  addQuestion,
+  deleteAnswer,
+  fetchQuestions,
+  questionDetails,
+} from "./questionAction";
 
 const initialState = {
   questions: [],
   eachQuestion: {},
   isLoading: false,
+  answerPostLoading: false,
 };
 
 const documentSlice = createSlice({
@@ -39,6 +46,26 @@ const documentSlice = createSlice({
       state.eachQuestion = action.payload;
     },
     [questionDetails.rejected]: state => {
+      state.isLoading = false;
+    },
+    [addAnswer.pending]: state => {
+      state.answerPostLoading = true;
+    },
+    [addAnswer.fulfilled]: (state, action) => {
+      state.answerPostLoading = false;
+      state.eachQuestion = action.payload;
+    },
+    [addAnswer.rejected]: state => {
+      state.answerPostLoading = false;
+    },
+    [deleteAnswer.pending]: state => {
+      state.isLoading = true;
+    },
+    [deleteAnswer.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.eachQuestion = action.payload;
+    },
+    [deleteAnswer.rejected]: state => {
       state.isLoading = false;
     },
   },

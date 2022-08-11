@@ -17,7 +17,7 @@ const SearchSection = ({ data }) => {
   };
 
   return (
-    <div className="flex h-[90vh] w-screen flex-col items-center justify-center bg-gray-50 pt-16 pb-10 ">
+    <div className="flex h-[60vh] w-screen flex-col items-center justify-center bg-gray-50 pt-16 pb-10 md:h-[90vh] ">
       <motion.div
         initial={{ y: "-100%" }}
         animate={{ y: 0 }}
@@ -51,7 +51,7 @@ const SearchSection = ({ data }) => {
         <motion.div
           initial={{ y: "30%" }}
           animate={{ y: 0 }}
-          className="mt-1 w-96 rounded-md border bg-white p-2"
+          className="mt-1 w-96 rounded-md border bg-white p-2 "
         >
           {filteredData.slice(0, 5).map((doc, key) => {
             return (
@@ -68,7 +68,7 @@ const SearchSection = ({ data }) => {
       )}
       <div className="divider mt-10 px-40">OR</div>
       <div className="text-lg font-bold tracking-wider">EXPLORE</div>
-      <div className="mt-8 flex gap-10">
+      <div className="mt-8 flex flex-col gap-10 md:flex-row">
         <Link
           to="/dashboard"
           className="rounded-lg border bg-white px-5 py-2 font-bold  hover:bg-blue-700 hover:text-white  md:px-10 md:py-3"

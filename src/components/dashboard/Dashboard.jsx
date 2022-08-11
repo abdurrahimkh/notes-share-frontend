@@ -11,6 +11,7 @@ import Select from "react-select";
 import { useState } from "react";
 import { getSameValKey, sortData } from "../../helpers/Dashboard";
 import Loader from "../loader/Loader";
+import EmptyStat from "./EmptyStat";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -82,7 +83,7 @@ const Dashboard = () => {
       </div>
       {keys.length === 0 ? (
         <div className="pt-10 text-center text-2xl font-bold">
-          {isLoading ? <Loader /> : "😕 No Documents Found"}
+          {isLoading ? <Loader /> : <EmptyStat />}
         </div>
       ) : (
         keys.map((res, index) => (

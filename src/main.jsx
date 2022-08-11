@@ -7,7 +7,7 @@ import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import Test from "./Test";
-import FrontPage from "./components/home/FrontPage";
+import FrontPage from "./components/home/front-page/FrontPage";
 
 ReactDOM.render(
   <React.StrictMode>

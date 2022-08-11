@@ -56,3 +56,97 @@ export const questionDetails = createAsyncThunk(
     }
   }
 );
+
+export const addAnswer = createAsyncThunk(
+  "question/add-answer",
+  async (answerData, { getState }) => {
+    const { id, answer, file } = answerData;
+    console.log(answerData);
+    const token = getState().auth.user.token;
+    const data = new FormData();
+    data.append("file", file);
+    data.append("upload_preset", "fyp-project");
+    data.append("cloud_name", "fypproject07");
+
+    if (file) {
+      const res = await axios({
+        method: "post",
+        url: "https://api.cloudinary.com/v1_1/fypproject07/raw/upload",
+        data,
+      });
+      const result = await res.data;
+      const commentFileUrl = result.secure_url;
+      if (commentFileUrl) {
+        const response = await fetch("http://localhost:8000/api/answers", {
+          method: "put",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            id,
+            text: answer,
+            file: commentFileUrl,
+          }),
+        });
+        const response2 = await response.json();
+        if (response2) {
+          toast.success("Answer Added", {
+            duration: 3000,
+          });
+          return response2;
+        } else if (response2.error) {
+          toast.error(response2.error);
+        }
+      }
+    } else if (!file) {
+      const response = await fetch("http://localhost:8000/api/answers", {
+        method: "put",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          id,
+          text: answer,
+        }),
+      });
+      const response2 = await response.json();
+      console.log(response2);
+      if (response2) {
+        toast.success("Answer Added", {
+          duration: 3000,
+        });
+        return response2;
+      } else if (response2.error) {
+        toast.error(response2.error);
+      }
+    }
+  }
+);
+
+export const deleteAnswer = createAsyncThunk(
+  "question/delete-answer",
+  async (answerData, { getState }) => {
+    const token = getState().auth.user.token;
+    console.log(token);
+    try {
+      const res = await axios({
+        method: "delete",
+        url: "http://localhost:8000/api/answers",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        data: answerData,
+      });
+
+      if (res.data) {
+        console.log(res.data);
+        toast.success("Answer Deleted");
+        return res.data;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
