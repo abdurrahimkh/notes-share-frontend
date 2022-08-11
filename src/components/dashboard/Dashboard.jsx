@@ -44,7 +44,7 @@ const Dashboard = () => {
   const handleFieldChange = selectedOption => {
     setIsLoading(true);
     fetch(
-      `http://localhost:8000/api/documents/search?field=${selectedOption.value}`
+      `https://notes-share-fyp.herokuapp.com/api/documents/search?field=${selectedOption.value}`
     )
       .then(res => res.json())
       .then(result => {
@@ -56,7 +56,7 @@ const Dashboard = () => {
   const handleSubjectChange = selectedOption => {
     setIsLoading(true);
     fetch(
-      `http://localhost:8000/api/documents/search?subject=${selectedOption.value}`
+      `https://notes-share-fyp.herokuapp.com/api/documents/search?subject=${selectedOption.value}`
     )
       .then(res => res.json())
       .then(result => {

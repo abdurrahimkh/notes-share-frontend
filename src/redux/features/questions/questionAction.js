@@ -6,7 +6,9 @@ export const fetchQuestions = createAsyncThunk(
   "question/fetch-questions",
   async () => {
     try {
-      const res = await axios.get("http://localhost:8000/api/questions");
+      const res = await axios.get(
+        "https://notes-share-fyp.herokuapp.com/api/questions"
+      );
       if (res.data) {
         return res.data;
       }
@@ -24,7 +26,7 @@ export const addQuestion = createAsyncThunk(
     const token = getState().auth.user.token;
     try {
       const res = await axios.post(
-        "http://localhost:8000/api/questions",
+        "https://notes-share-fyp.herokuapp.com/api/questions",
         questionData,
         {
           headers: {
@@ -47,7 +49,9 @@ export const questionDetails = createAsyncThunk(
   "question/question-details",
   async id => {
     try {
-      const res = await axios.get(`http://localhost:8000/api/question/${id}`);
+      const res = await axios.get(
+        `https://notes-share-fyp.herokuapp.com/api/question/${id}`
+      );
       if (res.data) {
         return res.data;
       }
@@ -77,18 +81,21 @@ export const addAnswer = createAsyncThunk(
       const result = await res.data;
       const commentFileUrl = result.secure_url;
       if (commentFileUrl) {
-        const response = await fetch("http://localhost:8000/api/answers", {
-          method: "put",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({
-            id,
-            text: answer,
-            file: commentFileUrl,
-          }),
-        });
+        const response = await fetch(
+          "https://notes-share-fyp.herokuapp.com/api/answers",
+          {
+            method: "put",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+              id,
+              text: answer,
+              file: commentFileUrl,
+            }),
+          }
+        );
         const response2 = await response.json();
         if (response2) {
           toast.success("Answer Added", {
@@ -100,17 +107,20 @@ export const addAnswer = createAsyncThunk(
         }
       }
     } else if (!file) {
-      const response = await fetch("http://localhost:8000/api/answers", {
-        method: "put",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          id,
-          text: answer,
-        }),
-      });
+      const response = await fetch(
+        "https://notes-share-fyp.herokuapp.com/api/answers",
+        {
+          method: "put",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            id,
+            text: answer,
+          }),
+        }
+      );
       const response2 = await response.json();
       console.log(response2);
       if (response2) {
@@ -133,7 +143,7 @@ export const deleteAnswer = createAsyncThunk(
     try {
       const res = await axios({
         method: "delete",
-        url: "http://localhost:8000/api/answers",
+        url: "https://notes-share-fyp.herokuapp.com/api/answers",
         headers: {
           Authorization: `Bearer ${token}`,
         },

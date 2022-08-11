@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const documentApi = createApi({
   reducerPath: "documentsApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:8000/api/",
+    baseUrl: "https://notes-share-fyp.herokuapp.com/api/",
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth?.user.token;
       if (token) {
