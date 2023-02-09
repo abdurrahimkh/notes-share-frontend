@@ -1,50 +1,44 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const documentApi = createApi({
-  reducerPath: "documentsApi",
+  reducerPath: 'documentsApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://notes-share-server.herokuapp.com/api/",
+    baseUrl: 'import.meta.env.VITE_REACT_API/api/',
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth?.user.token;
       if (token) {
-        headers.set("authorization", `Bearer ${token}`);
+        headers.set('authorization', `Bearer ${token}`);
       }
 
       return headers;
     },
   }),
-  tagTypes: ["Document", "Rating"],
+  tagTypes: ['Document', 'Rating'],
   endpoints: builder => ({
     approvedDocuments: builder.query({
-      query: () => "documents/approved",
-      providesTags: ["Document"],
+      query: () => 'documents/approved',
+      providesTags: ['Document'],
     }),
     recentDocuments: builder.query({
-      query: () => "documents/recent",
-      providesTags: ["Document"],
+      query: () => 'documents/recent',
+      providesTags: ['Document'],
     }),
     userProfile: builder.query({
       query: id => `users/profile/${id}`,
     }),
     documentDetails: builder.query({
       query: id => `documents/document/${id}`,
-      providesTags: ["Rating"],
+      providesTags: ['Rating'],
     }),
     addRating: builder.mutation({
       query: data => ({
-        url: "documents/document/review",
-        method: "POST",
+        url: 'documents/document/review',
+        method: 'POST',
         body: data,
       }),
-      invalidatesTags: ["Rating"],
+      invalidatesTags: ['Rating'],
     }),
   }),
 });
 
-export const {
-  useApprovedDocumentsQuery,
-  useRecentDocumentsQuery,
-  useUserProfileQuery,
-  useDocumentDetailsQuery,
-  useAddRatingMutation,
-} = documentApi;
+export const { useApprovedDocumentsQuery, useRecentDocumentsQuery, useUserProfileQuery, useDocumentDetailsQuery, useAddRatingMutation } = documentApi;
